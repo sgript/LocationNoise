@@ -1,2 +1,2 @@
-# LocationNoise
-Location privacy app to add noise before transmission of location in iOS.
+# Noise
+An iOS implementation of a location privacy application

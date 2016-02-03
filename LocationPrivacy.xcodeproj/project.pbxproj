@@ -1,0 +1,752 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		299F17CB1C5AB3230018A5CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299F17CA1C5AB3230018A5CA /* AppDelegate.swift */; };
+		299F17D21C5AB3230018A5CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 299F17D11C5AB3230018A5CA /* Assets.xcassets */; };
+		299F17D51C5AB3230018A5CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 299F17D31C5AB3230018A5CA /* LaunchScreen.storyboard */; };
+		299F17E01C5AB3240018A5CA /* LocationPrivacyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299F17DF1C5AB3240018A5CA /* LocationPrivacyTests.swift */; };
+		299F17EB1C5AB3240018A5CA /* LocationPrivacyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299F17EA1C5AB3240018A5CA /* LocationPrivacyUITests.swift */; };
+		299F17FD1C5AFFC00018A5CA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299F17FC1C5AFFC00018A5CA /* CoreLocation.framework */; };
+		29AB4B761C5EA74C00569289 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29AB4B691C5EA6C000569289 /* Alamofire.framework */; };
+		29AB4B771C5EA74C00569289 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 29AB4B691C5EA6C000569289 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		29E093F31C61702C00B50F53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29E093F11C61702C00B50F53 /* Main.storyboard */; };
+		29E094411C617C6D00B50F53 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E094401C617C6D00B50F53 /* SearchViewController.swift */; };
+		29E094431C617C7A00B50F53 /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E094421C617C7A00B50F53 /* PlacesViewController.swift */; };
+		40147303F844E0617C02C6AD /* Pods_LocationPrivacy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 177865B8D650AD80D97F20ED /* Pods_LocationPrivacy.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		299F17DC1C5AB3240018A5CA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 299F17BF1C5AB3230018A5CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 299F17C61C5AB3230018A5CA;
+			remoteInfo = LocationPrivacy;
+		};
+		299F17E71C5AB3240018A5CA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 299F17BF1C5AB3230018A5CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 299F17C61C5AB3230018A5CA;
+			remoteInfo = LocationPrivacy;
+		};
+		29AB4B681C5EA6C000569289 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29AB4B5E1C5EA6C000569289 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F8111E3319A95C8B0040E7D1;
+			remoteInfo = "Alamofire iOS";
+		};
+		29AB4B6A1C5EA6C000569289 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29AB4B5E1C5EA6C000569289 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F8111E3E19A95C8B0040E7D1;
+			remoteInfo = "Alamofire iOS Tests";
+		};
+		29AB4B6C1C5EA6C000569289 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29AB4B5E1C5EA6C000569289 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4DD67C0B1A5C55C900ED2280;
+			remoteInfo = "Alamofire OSX";
+		};
+		29AB4B6E1C5EA6C000569289 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29AB4B5E1C5EA6C000569289 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F829C6B21A7A94F100A2CD59;
+			remoteInfo = "Alamofire OSX Tests";
+		};
+		29AB4B701C5EA6C000569289 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29AB4B5E1C5EA6C000569289 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4CF626EF1BA7CB3E0011A099;
+			remoteInfo = "Alamofire tvOS";
+		};
+		29AB4B721C5EA6C000569289 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29AB4B5E1C5EA6C000569289 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4CF626F81BA7CB3E0011A099;
+			remoteInfo = "Alamofire tvOS Tests";
+		};
+		29AB4B741C5EA6C000569289 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29AB4B5E1C5EA6C000569289 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E4202FE01B667AA100C997FB;
+			remoteInfo = "Alamofire watchOS";
+		};
+		29AB4B781C5EA74C00569289 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29AB4B5E1C5EA6C000569289 /* Alamofire.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
+			remoteInfo = "Alamofire iOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		29AB4B7A1C5EA74C00569289 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				29AB4B771C5EA74C00569289 /* Alamofire.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		177865B8D650AD80D97F20ED /* Pods_LocationPrivacy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocationPrivacy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		299F17C71C5AB3230018A5CA /* LocationPrivacy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationPrivacy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		299F17CA1C5AB3230018A5CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		299F17D11C5AB3230018A5CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		299F17D41C5AB3230018A5CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		299F17D61C5AB3230018A5CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		299F17DB1C5AB3240018A5CA /* LocationPrivacyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocationPrivacyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		299F17DF1C5AB3240018A5CA /* LocationPrivacyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPrivacyTests.swift; sourceTree = "<group>"; };
+		299F17E11C5AB3240018A5CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		299F17E61C5AB3240018A5CA /* LocationPrivacyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocationPrivacyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		299F17EA1C5AB3240018A5CA /* LocationPrivacyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPrivacyUITests.swift; sourceTree = "<group>"; };
+		299F17EC1C5AB3240018A5CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		299F17FC1C5AFFC00018A5CA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		29AB4B5E1C5EA6C000569289 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
+		29E093F21C61702C00B50F53 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		29E094401C617C6D00B50F53 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		29E094421C617C7A00B50F53 /* PlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
+		6522A06E4F76EDC765D22E76 /* Pods-LocationPrivacy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationPrivacy.release.xcconfig"; path = "Pods/Target Support Files/Pods-LocationPrivacy/Pods-LocationPrivacy.release.xcconfig"; sourceTree = "<group>"; };
+		BCFA717E000B30C76D390163 /* Pods-LocationPrivacy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationPrivacy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LocationPrivacy/Pods-LocationPrivacy.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		299F17C41C5AB3230018A5CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				299F17FD1C5AFFC00018A5CA /* CoreLocation.framework in Frameworks */,
+				29AB4B761C5EA74C00569289 /* Alamofire.framework in Frameworks */,
+				40147303F844E0617C02C6AD /* Pods_LocationPrivacy.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		299F17D81C5AB3240018A5CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		299F17E31C5AB3240018A5CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		299F17BE1C5AB3230018A5CA = {
+			isa = PBXGroup;
+			children = (
+				29AB4B5E1C5EA6C000569289 /* Alamofire.xcodeproj */,
+				299F17FC1C5AFFC00018A5CA /* CoreLocation.framework */,
+				299F17C91C5AB3230018A5CA /* LocationPrivacy */,
+				299F17DE1C5AB3240018A5CA /* LocationPrivacyTests */,
+				299F17E91C5AB3240018A5CA /* LocationPrivacyUITests */,
+				299F17C81C5AB3230018A5CA /* Products */,
+				95CCDA000BDD2C76A34931CA /* Pods */,
+				74DFE64FA44CAB9E9BC82718 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		299F17C81C5AB3230018A5CA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				299F17C71C5AB3230018A5CA /* LocationPrivacy.app */,
+				299F17DB1C5AB3240018A5CA /* LocationPrivacyTests.xctest */,
+				299F17E61C5AB3240018A5CA /* LocationPrivacyUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		299F17C91C5AB3230018A5CA /* LocationPrivacy */ = {
+			isa = PBXGroup;
+			children = (
+				29E094401C617C6D00B50F53 /* SearchViewController.swift */,
+				29E094421C617C7A00B50F53 /* PlacesViewController.swift */,
+				299F17CA1C5AB3230018A5CA /* AppDelegate.swift */,
+				29E093F11C61702C00B50F53 /* Main.storyboard */,
+				299F17D31C5AB3230018A5CA /* LaunchScreen.storyboard */,
+				299F17D61C5AB3230018A5CA /* Info.plist */,
+				299F17D11C5AB3230018A5CA /* Assets.xcassets */,
+			);
+			path = LocationPrivacy;
+			sourceTree = "<group>";
+		};
+		299F17DE1C5AB3240018A5CA /* LocationPrivacyTests */ = {
+			isa = PBXGroup;
+			children = (
+				299F17DF1C5AB3240018A5CA /* LocationPrivacyTests.swift */,
+				299F17E11C5AB3240018A5CA /* Info.plist */,
+			);
+			path = LocationPrivacyTests;
+			sourceTree = "<group>";
+		};
+		299F17E91C5AB3240018A5CA /* LocationPrivacyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				299F17EA1C5AB3240018A5CA /* LocationPrivacyUITests.swift */,
+				299F17EC1C5AB3240018A5CA /* Info.plist */,
+			);
+			path = LocationPrivacyUITests;
+			sourceTree = "<group>";
+		};
+		29AB4B5F1C5EA6C000569289 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				29AB4B691C5EA6C000569289 /* Alamofire.framework */,
+				29AB4B6B1C5EA6C000569289 /* Alamofire iOS Tests.xctest */,
+				29AB4B6D1C5EA6C000569289 /* Alamofire.framework */,
+				29AB4B6F1C5EA6C000569289 /* Alamofire OSX Tests.xctest */,
+				29AB4B711C5EA6C000569289 /* Alamofire.framework */,
+				29AB4B731C5EA6C000569289 /* Alamofire tvOS Tests.xctest */,
+				29AB4B751C5EA6C000569289 /* Alamofire.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		74DFE64FA44CAB9E9BC82718 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				177865B8D650AD80D97F20ED /* Pods_LocationPrivacy.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		95CCDA000BDD2C76A34931CA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BCFA717E000B30C76D390163 /* Pods-LocationPrivacy.debug.xcconfig */,
+				6522A06E4F76EDC765D22E76 /* Pods-LocationPrivacy.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		299F17C61C5AB3230018A5CA /* LocationPrivacy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 299F17EF1C5AB3240018A5CA /* Build configuration list for PBXNativeTarget "LocationPrivacy" */;
+			buildPhases = (
+				7B5D54A7398B74C2F828B2AD /* Check Pods Manifest.lock */,
+				299F17C31C5AB3230018A5CA /* Sources */,
+				299F17C41C5AB3230018A5CA /* Frameworks */,
+				299F17C51C5AB3230018A5CA /* Resources */,
+				17044FD3F6A2E1FF2B79D3DE /* Embed Pods Frameworks */,
+				9853096E5F2793D049D052F7 /* Copy Pods Resources */,
+				29AB4B7A1C5EA74C00569289 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				29AB4B791C5EA74C00569289 /* PBXTargetDependency */,
+			);
+			name = LocationPrivacy;
+			productName = LocationPrivacy;
+			productReference = 299F17C71C5AB3230018A5CA /* LocationPrivacy.app */;
+			productType = "com.apple.product-type.application";
+		};
+		299F17DA1C5AB3240018A5CA /* LocationPrivacyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 299F17F21C5AB3240018A5CA /* Build configuration list for PBXNativeTarget "LocationPrivacyTests" */;
+			buildPhases = (
+				299F17D71C5AB3240018A5CA /* Sources */,
+				299F17D81C5AB3240018A5CA /* Frameworks */,
+				299F17D91C5AB3240018A5CA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				299F17DD1C5AB3240018A5CA /* PBXTargetDependency */,
+			);
+			name = LocationPrivacyTests;
+			productName = LocationPrivacyTests;
+			productReference = 299F17DB1C5AB3240018A5CA /* LocationPrivacyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		299F17E51C5AB3240018A5CA /* LocationPrivacyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 299F17F51C5AB3240018A5CA /* Build configuration list for PBXNativeTarget "LocationPrivacyUITests" */;
+			buildPhases = (
+				299F17E21C5AB3240018A5CA /* Sources */,
+				299F17E31C5AB3240018A5CA /* Frameworks */,
+				299F17E41C5AB3240018A5CA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				299F17E81C5AB3240018A5CA /* PBXTargetDependency */,
+			);
+			name = LocationPrivacyUITests;
+			productName = LocationPrivacyUITests;
+			productReference = 299F17E61C5AB3240018A5CA /* LocationPrivacyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		299F17BF1C5AB3230018A5CA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Shazaib Ahmad";
+				TargetAttributes = {
+					299F17C61C5AB3230018A5CA = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = NWFK758PSC;
+					};
+					299F17DA1C5AB3240018A5CA = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 299F17C61C5AB3230018A5CA;
+					};
+					299F17E51C5AB3240018A5CA = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 299F17C61C5AB3230018A5CA;
+					};
+				};
+			};
+			buildConfigurationList = 299F17C21C5AB3230018A5CA /* Build configuration list for PBXProject "LocationPrivacy" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 299F17BE1C5AB3230018A5CA;
+			productRefGroup = 299F17C81C5AB3230018A5CA /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 29AB4B5F1C5EA6C000569289 /* Products */;
+					ProjectRef = 29AB4B5E1C5EA6C000569289 /* Alamofire.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				299F17C61C5AB3230018A5CA /* LocationPrivacy */,
+				299F17DA1C5AB3240018A5CA /* LocationPrivacyTests */,
+				299F17E51C5AB3240018A5CA /* LocationPrivacyUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		29AB4B691C5EA6C000569289 /* Alamofire.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Alamofire.framework;
+			remoteRef = 29AB4B681C5EA6C000569289 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		29AB4B6B1C5EA6C000569289 /* Alamofire iOS Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Alamofire iOS Tests.xctest";
+			remoteRef = 29AB4B6A1C5EA6C000569289 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		29AB4B6D1C5EA6C000569289 /* Alamofire.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Alamofire.framework;
+			remoteRef = 29AB4B6C1C5EA6C000569289 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		29AB4B6F1C5EA6C000569289 /* Alamofire OSX Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Alamofire OSX Tests.xctest";
+			remoteRef = 29AB4B6E1C5EA6C000569289 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		29AB4B711C5EA6C000569289 /* Alamofire.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Alamofire.framework;
+			remoteRef = 29AB4B701C5EA6C000569289 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		29AB4B731C5EA6C000569289 /* Alamofire tvOS Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Alamofire tvOS Tests.xctest";
+			remoteRef = 29AB4B721C5EA6C000569289 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		29AB4B751C5EA6C000569289 /* Alamofire.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Alamofire.framework;
+			remoteRef = 29AB4B741C5EA6C000569289 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		299F17C51C5AB3230018A5CA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29E093F31C61702C00B50F53 /* Main.storyboard in Resources */,
+				299F17D51C5AB3230018A5CA /* LaunchScreen.storyboard in Resources */,
+				299F17D21C5AB3230018A5CA /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		299F17D91C5AB3240018A5CA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		299F17E41C5AB3240018A5CA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		17044FD3F6A2E1FF2B79D3DE /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LocationPrivacy/Pods-LocationPrivacy-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7B5D54A7398B74C2F828B2AD /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9853096E5F2793D049D052F7 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LocationPrivacy/Pods-LocationPrivacy-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		299F17C31C5AB3230018A5CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29E094431C617C7A00B50F53 /* PlacesViewController.swift in Sources */,
+				29E094411C617C6D00B50F53 /* SearchViewController.swift in Sources */,
+				299F17CB1C5AB3230018A5CA /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		299F17D71C5AB3240018A5CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				299F17E01C5AB3240018A5CA /* LocationPrivacyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		299F17E21C5AB3240018A5CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				299F17EB1C5AB3240018A5CA /* LocationPrivacyUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		299F17DD1C5AB3240018A5CA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 299F17C61C5AB3230018A5CA /* LocationPrivacy */;
+			targetProxy = 299F17DC1C5AB3240018A5CA /* PBXContainerItemProxy */;
+		};
+		299F17E81C5AB3240018A5CA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 299F17C61C5AB3230018A5CA /* LocationPrivacy */;
+			targetProxy = 299F17E71C5AB3240018A5CA /* PBXContainerItemProxy */;
+		};
+		29AB4B791C5EA74C00569289 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Alamofire iOS";
+			targetProxy = 29AB4B781C5EA74C00569289 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		299F17D31C5AB3230018A5CA /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				299F17D41C5AB3230018A5CA /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		29E093F11C61702C00B50F53 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				29E093F21C61702C00B50F53 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		299F17ED1C5AB3240018A5CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		299F17EE1C5AB3240018A5CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		299F17F01C5AB3240018A5CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BCFA717E000B30C76D390163 /* Pods-LocationPrivacy.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = LocationPrivacy/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.shazaibahmad.LocationPrivacy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		299F17F11C5AB3240018A5CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6522A06E4F76EDC765D22E76 /* Pods-LocationPrivacy.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = LocationPrivacy/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.shazaibahmad.LocationPrivacy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		299F17F31C5AB3240018A5CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = LocationPrivacyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.shazaibahmad.LocationPrivacyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LocationPrivacy.app/LocationPrivacy";
+			};
+			name = Debug;
+		};
+		299F17F41C5AB3240018A5CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = LocationPrivacyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.shazaibahmad.LocationPrivacyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LocationPrivacy.app/LocationPrivacy";
+			};
+			name = Release;
+		};
+		299F17F61C5AB3240018A5CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = LocationPrivacyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.shazaibahmad.LocationPrivacyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = LocationPrivacy;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		299F17F71C5AB3240018A5CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = LocationPrivacyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.shazaibahmad.LocationPrivacyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = LocationPrivacy;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		299F17C21C5AB3230018A5CA /* Build configuration list for PBXProject "LocationPrivacy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				299F17ED1C5AB3240018A5CA /* Debug */,
+				299F17EE1C5AB3240018A5CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		299F17EF1C5AB3240018A5CA /* Build configuration list for PBXNativeTarget "LocationPrivacy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				299F17F01C5AB3240018A5CA /* Debug */,
+				299F17F11C5AB3240018A5CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		299F17F21C5AB3240018A5CA /* Build configuration list for PBXNativeTarget "LocationPrivacyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				299F17F31C5AB3240018A5CA /* Debug */,
+				299F17F41C5AB3240018A5CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		299F17F51C5AB3240018A5CA /* Build configuration list for PBXNativeTarget "LocationPrivacyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				299F17F61C5AB3240018A5CA /* Debug */,
+				299F17F71C5AB3240018A5CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 299F17BF1C5AB3230018A5CA /* Project object */;
+}
