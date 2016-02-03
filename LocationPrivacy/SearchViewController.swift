@@ -13,7 +13,7 @@ import Alamofire
 import SwiftyJSON
 import Darwin
 
-class SearchViewController: UIViewController {
+class SearchViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var typeOfLocation: UITextField!
     @IBOutlet weak var noiseValue: UILabel!
     var locationManager:CLLocationManager!
@@ -23,6 +23,9 @@ class SearchViewController: UIViewController {
     var json: JSON = []
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        self.typeOfLocation.delegate = self;
+
         locationManager = CLLocationManager()
         locationManager.startUpdatingLocation()
         locationManager.requestAlwaysAuthorization()
@@ -34,18 +37,19 @@ class SearchViewController: UIViewController {
     }
     
     @IBAction func searchLocation(sender: UIButton) {
-        //(longitude, latitude) = (getCurrentLocation()[0], getCurrentLocation()[1])
+        (longitude, latitude) = (getCurrentLocation()[0], getCurrentLocation()[1])
         //print(longitude, latitude)
         
         // If statement needed to ensure input for type of location + noise is given
         var artiflongitude: Double = 0.0
         var artiflatitude: Double = 0.0
-        (artiflongitude, artiflatitude) = (addNoise(Double(noiseValue.text!)!)[0], addNoise(Double(noiseValue.text!)!)[1])
         
+        var noise: [Double] = addNoise(Double(noiseValue.text!)!)
+        (artiflongitude, artiflatitude) = (noise[0], noise[1])
         
         let parameters : [String : AnyObject] = [
-//            "location" : "\(artiflatitude),\(artiflongitude)",
-            "location" : "51.4836193155864, -3.16298625178967",             // CHANGE LATER BACK TO ARTIFICIAL!!!
+            "location" : "\(artiflatitude),\(artiflongitude)",
+            // "location" : "51.4836193155864, -3.16298625178967", // Fixed location for debugging
             "radius" : mapRadius,
             "types" : noiseValue.text!,
             "sensor" : "true",
@@ -129,6 +133,10 @@ class SearchViewController: UIViewController {
             placesVC.json = self.json
             placesVC.chosenType = self.typeOfLocation.text! // Check for crashes when no location given!!
         }
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
 }
