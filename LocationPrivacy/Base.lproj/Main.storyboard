@@ -158,7 +158,7 @@
         <scene sceneID="UaR-Hn-rN2">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ONU-1O-cKp" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Privacy" id="1Hq-yc-tWc"/>
+                    <tabBarItem key="tabBarItem" title="Privacy" image="lock" selectedImage="lock-selected" id="1Hq-yc-tWc"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gh1-Gb-4N1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -186,7 +186,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Emergency" id="M2H-51-jok"/>
+                    <tabBarItem key="tabBarItem" title="Emergency" image="warning" selectedImage="warning-selected" id="M2H-51-jok"/>
                     <navigationItem key="navigationItem" id="i81-5W-ZWf"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IF1-bo-dzf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -212,4 +212,10 @@
             <point key="canvasLocation" x="546" y="412"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="lock" width="25" height="25"/>
+        <image name="lock-selected" width="25" height="25"/>
+        <image name="warning" width="25" height="25"/>
+        <image name="warning-selected" width="25" height="25"/>
+    </resources>
 </document>

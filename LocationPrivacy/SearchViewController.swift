@@ -21,32 +21,38 @@ class SearchViewController: UIViewController {
     var latitude: Double = 0.0
     var mapRadius = 1000;
     var json: JSON = []
-
+    
     override func viewDidLoad() {
         locationManager = CLLocationManager()
         locationManager.startUpdatingLocation()
         locationManager.requestAlwaysAuthorization()
     }
     
-    @IBAction func noiseAction(sender: UISlider) {
+    @IBAction func noiseAction(sender: UISlider) { // Note to self, sliders suck, change to something else.
         let currentVal = Int(sender.value)
         noiseValue.text = "\(currentVal)"
     }
-
+    
     @IBAction func searchLocation(sender: AnyObject) {
         var chosenType = typeOfLocation.text
         (longitude, latitude) = (getCurrentLocation()[0], getCurrentLocation()[1])
-
+        print(longitude, latitude)
+        
+        // If statement needed to ensure input for type of location + noise is given
+        var artiflongitude: Double = 0.0
+        var artiflatitude: Double = 0.0
+        (artiflongitude, artiflatitude) = (addNoise(Double(noiseValue.text!)!)[0], addNoise(Double(noiseValue.text!)!)[1])
+        
         
         let parameters : [String : AnyObject] = [
-            "location" : "\(latitude),\(longitude)",
+            "location" : "\(artiflatitude),\(artiflongitude)",
             "radius" : mapRadius,
             "types" : noiseValue.text!,
             "sensor" : "true",
             "key" : "AIzaSyDhx9NTuC7DBbVGKhrEuMLD5GJESIgzZjw"
-            
+
         ]
-        
+
         Alamofire.request(.GET, "https:maps.googleapis.com/maps/api/place/nearbysearch/json?", parameters: parameters).responseJSON { response in
             print(response)
             switch response.result {
@@ -57,9 +63,9 @@ class SearchViewController: UIViewController {
                 print("Request failed with error: \(error)")
             }
         }
-    
+        
     }
-
+    
     func getCurrentLocation() -> [Double] {
         var currentLocation: CLLocation!
         
@@ -75,8 +81,37 @@ class SearchViewController: UIViewController {
         return [Double(0)]
     }
     
-    func addNoise(metres: String) {
+    func addNoise(metres: Double) -> [Double] {
+        var artifLong: Double
+        var artifLat: Double
+        let earthRadius: Double = 6371.0
+        let angle = Double(arc4random_uniform(360) + 1) // General random angle 0-360
+        print("Angle: " + String(angle))
+        let distance:Double = metres/1000.0
+        let diam: Double = 180.0
         
+        let angularDistance = (distance / earthRadius)
+        
+        // Conversion to Radians
+        let angleRad = angle / diam * M_PI
+        let longRad = longitude / diam * M_PI
+        let latRad = latitude / diam * M_PI
+        
+        // Fake locations - Based on given angularDistance and Angle relative to North
+        let artifLatRad = asin(sin(latRad) * cos(angularDistance) + cos(latRad) * sin(angularDistance) * cos(angleRad))
+        let artifLongRad = longRad + atan2(sin(angleRad) * sin(angularDistance) * cos(latRad), cos(angularDistance) - sin(latRad) * sin(artifLatRad))
+        
+        // Back to decimals
+        artifLong = artifLongRad * diam / M_PI
+        artifLat = artifLatRad * diam / M_PI
+        
+        print("      Real Longitude: " + String(longitude))
+        print("Artificial Longitude: " + String(artifLong) + "\n")
+        
+        print("      Real Latitude: " + String(latitude))
+        print("Artificial Latitude: " + String(artifLat))
+        
+        return [artifLong, artifLat]
     }
     
 }
