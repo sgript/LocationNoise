@@ -23,7 +23,7 @@
                                 <state key="normal" title="Search"/>
                                 <connections>
                                     <action selector="searchLocation:" destination="vbi-b4-PAv" eventType="touchUpInside" id="1w1-0n-Xyh"/>
-                                    <segue destination="CJp-fd-fmQ" kind="push" id="zAR-x1-cxZ"/>
+                                    <segue destination="CJp-fd-fmQ" kind="push" identifier="showPlaceList" id="zAR-x1-cxZ"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose type of location" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sLT-kd-o8f">
@@ -97,10 +97,10 @@
             </objects>
             <point key="canvasLocation" x="1610" y="412"/>
         </scene>
-        <!--View Controller-->
+        <!--Places View Controller-->
         <scene sceneID="fBt-wR-9c4">
             <objects>
-                <viewController id="CJp-fd-fmQ" sceneMemberID="viewController">
+                <viewController id="CJp-fd-fmQ" customClass="PlacesViewController" customModule="LocationPrivacy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EOe-qi-oUo"/>
                         <viewControllerLayoutGuide type="bottom" id="aPz-xT-1we"/>

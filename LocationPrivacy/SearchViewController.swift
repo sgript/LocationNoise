@@ -34,7 +34,6 @@ class SearchViewController: UIViewController {
     }
     
     @IBAction func searchLocation(sender: AnyObject) {
-        var chosenType = typeOfLocation.text
         (longitude, latitude) = (getCurrentLocation()[0], getCurrentLocation()[1])
         print(longitude, latitude)
         
@@ -54,15 +53,20 @@ class SearchViewController: UIViewController {
         ]
 
         Alamofire.request(.GET, "https:maps.googleapis.com/maps/api/place/nearbysearch/json?", parameters: parameters).responseJSON { response in
-            print(response)
             switch response.result {
+                
             case .Success(let data):
                 self.json = JSON(data)["results"]
-
+                self.performSegueWithIdentifier("showPlaceList", sender: nil)
+    
             case .Failure(let error):
                 print("Request failed with error: \(error)")
             }
         }
+        
+    }
+    
+    func getData(completionHandler: (responseObject: NSDictionary?) -> ()) -> () {
         
     }
     
@@ -112,6 +116,15 @@ class SearchViewController: UIViewController {
         print("Artificial Latitude: " + String(artifLat))
         
         return [artifLong, artifLat]
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if (segue.identifier == "showPlaceList") {
+            let placesVC = segue.destinationViewController as! PlacesViewController
+
+            placesVC.json = self.json
+            placesVC.chosenType = self.typeOfLocation.text! // Check for crashes when no location given!!
+        }
     }
     
 }
