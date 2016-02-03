@@ -34,8 +34,8 @@ class SearchViewController: UIViewController {
     }
     
     @IBAction func searchLocation(sender: UIButton) {
-        (longitude, latitude) = (getCurrentLocation()[0], getCurrentLocation()[1])
-        print(longitude, latitude)
+        //(longitude, latitude) = (getCurrentLocation()[0], getCurrentLocation()[1])
+        //print(longitude, latitude)
         
         // If statement needed to ensure input for type of location + noise is given
         var artiflongitude: Double = 0.0

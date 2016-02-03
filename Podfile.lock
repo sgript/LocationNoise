@@ -1,8 +1,12 @@
 PODS:
+  - Alamofire (3.1.5)
+  - AlamofireImage (2.3.0):
+    - Alamofire (~> 3.1)
   - GoogleMaps (1.11.1)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
+  - AlamofireImage (~> 2.0)
   - GoogleMaps
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
 
@@ -16,6 +20,8 @@ CHECKOUT OPTIONS:
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
+  Alamofire: 5f730ba29fd113b7ddd71c1e65d0c630acf5d7b0
+  AlamofireImage: 4013fb5b99b10117bf2554a67b9bd2231d476b45
   GoogleMaps: c947160008f414c66707a5ea60f35e92055c7670
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 

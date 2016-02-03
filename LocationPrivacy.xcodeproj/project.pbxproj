@@ -16,8 +16,8 @@
 		29AB4B761C5EA74C00569289 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29AB4B691C5EA6C000569289 /* Alamofire.framework */; };
 		29AB4B771C5EA74C00569289 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 29AB4B691C5EA6C000569289 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		29E094411C617C6D00B50F53 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E094401C617C6D00B50F53 /* SearchViewController.swift */; };
-		29E094431C617C7A00B50F53 /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E094421C617C7A00B50F53 /* PlacesViewController.swift */; };
 		29E0944F1C62711300B50F53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29E0944D1C62711300B50F53 /* Main.storyboard */; };
+		29E094511C62799300B50F53 /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E094501C62799300B50F53 /* PlacesViewController.swift */; };
 		40147303F844E0617C02C6AD /* Pods_LocationPrivacy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 177865B8D650AD80D97F20ED /* Pods_LocationPrivacy.framework */; };
 /* End PBXBuildFile section */
 
@@ -124,8 +124,8 @@
 		299F17FC1C5AFFC00018A5CA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		29AB4B5E1C5EA6C000569289 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		29E094401C617C6D00B50F53 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		29E094421C617C7A00B50F53 /* PlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
 		29E0944E1C62711300B50F53 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		29E094501C62799300B50F53 /* PlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
 		6522A06E4F76EDC765D22E76 /* Pods-LocationPrivacy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationPrivacy.release.xcconfig"; path = "Pods/Target Support Files/Pods-LocationPrivacy/Pods-LocationPrivacy.release.xcconfig"; sourceTree = "<group>"; };
 		BCFA717E000B30C76D390163 /* Pods-LocationPrivacy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationPrivacy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LocationPrivacy/Pods-LocationPrivacy.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -186,7 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				29E094401C617C6D00B50F53 /* SearchViewController.swift */,
-				29E094421C617C7A00B50F53 /* PlacesViewController.swift */,
+				29E094501C62799300B50F53 /* PlacesViewController.swift */,
 				299F17CA1C5AB3230018A5CA /* AppDelegate.swift */,
 				29E0944D1C62711300B50F53 /* Main.storyboard */,
 				299F17D31C5AB3230018A5CA /* LaunchScreen.storyboard */,
@@ -488,7 +488,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				29E094431C617C7A00B50F53 /* PlacesViewController.swift in Sources */,
+				29E094511C62799300B50F53 /* PlacesViewController.swift in Sources */,
 				29E094411C617C6D00B50F53 /* SearchViewController.swift in Sources */,
 				299F17CB1C5AB3230018A5CA /* AppDelegate.swift in Sources */,
 			);

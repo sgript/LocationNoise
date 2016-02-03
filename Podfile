@@ -8,6 +8,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.1'
 pod 'GoogleMaps'
 pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
+pod 'AlamofireImage', '~> 2.0'
 
 use_frameworks! 
 end
