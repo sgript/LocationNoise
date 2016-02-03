@@ -23,7 +23,6 @@
                                 <state key="normal" title="Search"/>
                                 <connections>
                                     <action selector="searchLocation:" destination="vbi-b4-PAv" eventType="touchUpInside" id="1w1-0n-Xyh"/>
-                                    <segue destination="CJp-fd-fmQ" kind="push" identifier="showPlaceList" id="zAR-x1-cxZ"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose type of location" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sLT-kd-o8f">
@@ -91,6 +90,7 @@
                     <connections>
                         <outlet property="noiseValue" destination="aGN-gF-Ghd" id="FpJ-yS-dSz"/>
                         <outlet property="typeOfLocation" destination="cS3-6o-RL5" id="KSb-4Q-0Eo"/>
+                        <segue destination="CJp-fd-fmQ" kind="push" identifier="showPlaceList" id="p5k-M3-Nsu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UJ3-MA-f1c" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -20,10 +20,7 @@ class PlacesViewController: UIViewController {
         super.viewDidLoad()
         print("In places view controller")
         
-        if (json.isEmpty == false){
-            print(json)
-            arrayifyJSON()
-        }
+        arrayifyJSON()
         
         // Do any additional setup after loading the view.
     }
@@ -55,11 +52,16 @@ extension PlacesViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return arrayOfDictionary.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
+        var arr: [AnyObject] = []
+        for places in arrayOfDictionary {
+            arr.append(places["name"]!) as! [Int]
+        }
+        cell.textLabel?.text = "\(arr[indexPath.row])"
         return cell
     }
     

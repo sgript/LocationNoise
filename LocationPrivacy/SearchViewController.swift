@@ -33,7 +33,7 @@ class SearchViewController: UIViewController {
         noiseValue.text = "\(currentVal)"
     }
     
-    @IBAction func searchLocation(sender: AnyObject) {
+    @IBAction func searchLocation(sender: UIButton) {
         (longitude, latitude) = (getCurrentLocation()[0], getCurrentLocation()[1])
         print(longitude, latitude)
         
@@ -44,7 +44,8 @@ class SearchViewController: UIViewController {
         
         
         let parameters : [String : AnyObject] = [
-            "location" : "\(artiflatitude),\(artiflongitude)",
+//            "location" : "\(artiflatitude),\(artiflongitude)",
+            "location" : "51.4836193155864, -3.16298625178967",             // CHANGE LATER BACK TO ARTIFICIAL!!!
             "radius" : mapRadius,
             "types" : noiseValue.text!,
             "sensor" : "true",
@@ -52,23 +53,26 @@ class SearchViewController: UIViewController {
 
         ]
 
-        Alamofire.request(.GET, "https:maps.googleapis.com/maps/api/place/nearbysearch/json?", parameters: parameters).responseJSON { response in
+        Alamofire.request(.GET, "https:maps.googleapis.com/maps/api/place/nearbysearch/json?", parameters: parameters)
+            .validate()
+            .responseJSON { response in
             switch response.result {
                 
             case .Success(let data):
                 self.json = JSON(data)["results"]
-                self.performSegueWithIdentifier("showPlaceList", sender: nil)
-    
+                
+                dispatch_async(dispatch_get_main_queue()){
+                    self.performSegueWithIdentifier("showPlaceList", sender: nil) // NOTE TO SELF: Hooked up segue from searchViewController to PlacesViewController, rather than Search button
+                }
+                
             case .Failure(let error):
                 print("Request failed with error: \(error)")
             }
+    
         }
         
     }
     
-    func getData(completionHandler: (responseObject: NSDictionary?) -> ()) -> () {
-        
-    }
     
     func getCurrentLocation() -> [Double] {
         var currentLocation: CLLocation!
