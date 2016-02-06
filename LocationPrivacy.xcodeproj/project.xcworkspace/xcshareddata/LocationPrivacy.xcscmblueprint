@@ -7,14 +7,14 @@
     "E3A07804EDCCEB5E32DBEEA5C5D3ED8D33A8492C" : 0,
     "67620B5EFA902936DF04070AF595B76AB0333747" : 0
   },
-  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "9512CCC7-5FB0-4024-A9B0-D3F4DE0FEFFA",
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "80257715-B5BF-44FD-8F2D-1B5EB18D80D0",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "E3A07804EDCCEB5E32DBEEA5C5D3ED8D33A8492C" : "LocationNoise\/",
     "67620B5EFA902936DF04070AF595B76AB0333747" : "LocationNoise\/Alamofire\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "LocationPrivacy",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
-  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "LocationPrivacy.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "LocationPrivacy.xcodeproj",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Alamofire\/Alamofire.git",

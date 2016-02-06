@@ -37,7 +37,9 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func searchLocation(sender: UIButton) {
-        (longitude, latitude) = (getCurrentLocation()[0], getCurrentLocation()[1])
+        
+        var longlat: [Double] = getCurrentLocation()
+        (longitude, latitude) = (longlat[0], longlat[1])
         //print(longitude, latitude)
         
         // If statement needed to ensure input for type of location + noise is given
@@ -129,9 +131,12 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == "showPlaceList") {
             let placesVC = segue.destinationViewController as! PlacesViewController
-
+            
             placesVC.json = self.json
-            placesVC.chosenType = self.typeOfLocation.text! // Check for crashes when no location given!!
+            
+            var inputAsArray:Array = (self.typeOfLocation.text!.stringByReplacingOccurrencesOfString(" ", withString: "")).componentsSeparatedByString(",")
+            placesVC.chosenType = inputAsArray //self.typeOfLocation.text! // Check for crashes when no location given!!
+            placesVC.actual = [latitude, longitude]
         }
     }
     

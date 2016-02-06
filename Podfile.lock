@@ -6,6 +6,7 @@ PODS:
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
+  - Alamofire (~> 3.0)
   - AlamofireImage (~> 2.0)
   - GoogleMaps
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
