@@ -66,6 +66,7 @@ class PlacesViewController: UIViewController {
         quickSort(&sortMiles, left: 0, right: miles.count-1)
         //print("miles sorted \(sortMiles)") // DEBUG
         
+        // Reconstruct the array of dictionaries to be in sorted order using indexes.
         var copyArrayOfDictionary: [[String: AnyObject]] = []
         for sorted in sortMiles{
             var index:Int = miles.indexOf(sorted)!
@@ -151,7 +152,7 @@ extension PlacesViewController: UITableViewDataSource {
         var miles = String(format:"%.1f", item["distance"]! as! Float)
         var rating = item["rating"]!
         
-        cell.textLabel?.attributedText = makeAttributedString(title: "\(item["name"]!)", subtitle: "\(rating)/5", subtitle2: "As \(item["type"]!), Actual distance (miles): \(miles)")
+        cell.textLabel?.attributedText = makeAttributedString(title: "\(item["name"]!)", subtitle: "As \(item["type"]!). Rating: \(rating)/5", subtitle2: "Actual distance (miles): \(miles)")
         cell.textLabel?.numberOfLines = 3;
         cell.textLabel?.lineBreakMode = NSLineBreakMode.ByWordWrapping;
         
