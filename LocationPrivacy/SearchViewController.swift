@@ -12,15 +12,22 @@ import GoogleMaps
 import Alamofire
 import SwiftyJSON
 import Darwin
+import QuartzCore
 
-class SearchViewController: UIViewController, UITextFieldDelegate {
-    @IBOutlet weak var typeOfLocation: UITextField!
+class SearchViewController: UIViewController {
+    @IBOutlet weak var typeOfLocation: CustomTextField!
     @IBOutlet weak var noiseValue: UILabel!
+    @IBOutlet weak var searchButton: UIButton!
+
     var locationManager:CLLocationManager!
     var longitude: Double = 0.0
     var latitude: Double = 0.0
+    public var artiflongitude: Double = 0.0
+    public var artiflatitude: Double = 0.0
     var mapRadius = 1000;
     var json: JSON = []
+    var noiseLevel: Double = 0.0
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,31 +36,56 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
         locationManager = CLLocationManager()
         locationManager.startUpdatingLocation()
         locationManager.requestAlwaysAuthorization()
+        
+    
+        typeOfLocation.delegate = self
+        typeOfLocation.layer.borderWidth = 1.0
+        typeOfLocation.layer.borderColor = UIColor.seaShell().CGColor
+        searchButton.setTitleColor(UIColor.appleRed(), forState: UIControlState.Normal)
+        
+        //setNeedsStatusBarAppearanceUpdate()
+
+    }
+    
+//    public override func viewWillAppear(animated: Bool) {
+//        super.viewWillAppear(animated)
+//        
+//        if isBeingPresented() {
+//            initialStatusBarStyle = UIApplication.sharedApplication().statusBarStyle
+//        }
+//        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
+//    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        print("SearchVC")
     }
     
     @IBAction func noiseAction(sender: UISlider) { // Note to self, sliders suck, change to something else.
         let currentVal = Int(sender.value)
-        noiseValue.text = "\(currentVal)"
+        noiseValue.text = "\(currentVal)m"
+        noiseLevel = Double(currentVal)
     }
     
-    @IBAction func searchLocation(sender: UIButton) {
-        
+    @IBAction func searchLocation(sender: AnyObject) {
+
         var longlat: [Double] = getCurrentLocation()
         (longitude, latitude) = (longlat[0], longlat[1])
         //print(longitude, latitude)
         
         // If statement needed to ensure input for type of location + noise is given
-        var artiflongitude: Double = 0.0
-        var artiflatitude: Double = 0.0
         
-        var noise: [Double] = addNoise(Double(noiseValue.text!)!)
+        var noise: [Double] = addNoise(noiseLevel)
         (artiflongitude, artiflatitude) = (noise[0], noise[1])
+        (artificial.longitude, artificial.latitude) = (noise[0], noise[1])
         
+        print(noiseValue.text!)
+        print(typeOfLocation.text!)
         let parameters : [String : AnyObject] = [
             "location" : "\(artiflatitude),\(artiflongitude)",
             // "location" : "51.4836193155864, -3.16298625178967", // Fixed location for debugging
             "radius" : mapRadius,
-            "types" : noiseValue.text!,
+            "types" : typeOfLocation.text!,
             "sensor" : "true",
             "key" : "AIzaSyDhx9NTuC7DBbVGKhrEuMLD5GJESIgzZjw"
 
@@ -140,8 +172,22 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override public func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
     
+//    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+//        return .LightContent
+//    }
+    
+}
+
+extension SearchViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        view.endEditing(true)
+        if textField == typeOfLocation {
+            searchLocation(textField)
+        }
+        return true
+    }
 }

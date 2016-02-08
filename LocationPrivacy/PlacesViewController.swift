@@ -9,7 +9,6 @@
 import UIKit
 import SwiftyJSON
 import Alamofire
-import AlamofireImage
 import CoreLocation
 
 class PlacesViewController: UIViewController {
@@ -29,6 +28,7 @@ class PlacesViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        print("PlacesVC")
     }
     
     func arrayifyJSON(){
@@ -40,24 +40,50 @@ class PlacesViewController: UIViewController {
             let stringArray = array.map { $0.string!}
             
             //for(var j = 0; j < chosenType.count; j++){//
-                
+    
+            
+            var previous = ""
+            var current = " "
             for type in chosenType{
-                if(stringArray.contains(type)){ // Perhaps look at splitting for better, more meaningful else statements!
-                   
-                    print(type, "\(json[i]["name"])")
-                    
+                if(stringArray.contains(type)){ // MAY REMOVE
+
                     let lat = Double("\(json[i]["geometry"]["location"]["lat"])")
                     let long = Double("\(json[i]["geometry"]["location"]["lng"])")
                     let distance = distanceFromEveryLocation(long!, loclat: lat!)
-                    miles.append(distance)
+                    //miles.append(distance)
                     
+                    current = "\(json[i]["name"])"
                     
-                    arrayOfDictionary.append(["name": "\(json[i]["name"])", "rating" : "\(json[i]["rating"])", "icon" : "\(json[i]["icon"])", "vicinity" : "\(json[i]["vicinity"])", "type" : "\(type)", "lat" : lat!, "long" : long!, "distance" : distance]) // Possibly not use "!" and just use as string, later convert safely as long lat doubles.
+                    if (arrayOfDictionary.count > 0){
+                        //previous = "\(arrayOfDictionary[arrayOfDictionary.count-2]["name"] as! String)"
+                        previous = "\(arrayOfDictionary[arrayOfDictionary.count-1]["name"] as! String)"
+                        print("\(previous), \(current)")
+                        print("\(arrayOfDictionary[arrayOfDictionary.count-1])\n")
+                    }
+                    
+                    if(current != previous){
+                        arrayOfDictionary.append(["name": "\(json[i]["name"])", "rating" : "\(json[i]["rating"])", "icon" : "\(json[i]["icon"])", "vicinity" : "\(json[i]["vicinity"])", "type" : "\(type.capitalizedString)", "lat" : lat!, "long" : long!, "distance" : distance]) // Possibly not use "!" and just use as string, later convert safely as long lat doubles.
+                       miles.append(distance)
+                   
+                    }
+                    if(current == previous){
+                        var currentTypes = "\(arrayOfDictionary[arrayOfDictionary.count-1]["type"] as! String)"
+                        var appendedType = "\(currentTypes), \(type)"
+                        
+                        arrayOfDictionary.removeAtIndex(arrayOfDictionary.count-1)
+                        arrayOfDictionary.append(["name": "\(json[i]["name"])", "rating" : "\(json[i]["rating"])", "icon" : "\(json[i]["icon"])", "vicinity" : "\(json[i]["vicinity"])", "type" : "\(appendedType)", "lat" : lat!, "long" : long!, "distance" : distance])
+                                                
+                    }
+                    
 
                 }
+                
             }
+            print("miles: \(miles.count)")
+            print("arrdict: \(arrayOfDictionary.count)")
         }
-        print(arrayOfDictionary)
+        print("out")
+        //print(arrayOfDictionary)
         
         //print(String(arrayOfDictionary)) // DEBUG
         //print(arrayOfDictionary.count) // DEBUG
@@ -116,13 +142,12 @@ class PlacesViewController: UIViewController {
             quickSort(&dataList, left: pivotPos + 1, right: right)
         }
     }
-    
 }
 
 extension PlacesViewController: UITableViewDataSource {
     // Newly added subtitle2
     func makeAttributedString(title title: String, subtitle: String, subtitle2: String) -> NSAttributedString { // Taken from https://www.hackingwithswift.com/read/32/2/automatically-resizing-uitableviewcells-with-dynamic-type-and-ns
-        let titleAttributes = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline), NSForegroundColorAttributeName: UIColor.purpleColor()]
+        let titleAttributes = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline), NSForegroundColorAttributeName: UIColor.appleRed()]
         let subtitleAttributes = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline)]
         
         let titleString = NSMutableAttributedString(string: "\(title)\n", attributes: titleAttributes)
@@ -146,13 +171,17 @@ extension PlacesViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+
+        //let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+        let cell = UITableViewCell()
         var item = arrayOfDictionary[indexPath.row]
         var miles = String(format:"%.1f", item["distance"]! as! Float)
         var rating = item["rating"]!
+        if item["rating"]! is NSNull {
+            rating = "No rating available."
+        }
         
-        cell.textLabel?.attributedText = makeAttributedString(title: "\(item["name"]!)", subtitle: "As \(item["type"]!). Rating: \(rating)/5", subtitle2: "Actual distance (miles): \(miles)")
+        cell.textLabel?.attributedText = makeAttributedString(title: "\(item["name"]!)", subtitle: "\(item["type"]!). Rating: \(rating)/5", subtitle2: "Actual distance: \(miles) miles")
         cell.textLabel?.numberOfLines = 3;
         cell.textLabel?.lineBreakMode = NSLineBreakMode.ByWordWrapping;
         
@@ -165,12 +194,29 @@ extension PlacesViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
+        
     }
     
 }
 
 extension PlacesViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        let indexPath = tableView.indexPathForSelectedRow
+//        let currentCell = tableView.cellForRowAtIndexPath(indexPath!) as UITableViewCell!
         
+        performSegueWithIdentifier("giveDetails", sender: indexPath)
+
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if (segue.identifier == "giveDetails") {
+            let detailsVC = segue.destinationViewController as! DetailsViewController
+            
+
+            print(sender.row)
+            detailsVC.placeDetails = self.arrayOfDictionary[sender.row]
+        }
+    }
+    
 }
+

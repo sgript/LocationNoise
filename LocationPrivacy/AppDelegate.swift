@@ -21,6 +21,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // API Key for Google Places
         GMSServices.provideAPIKey("AIzaSyBEwA_EtMLXu-B0kGKF-lgLxp1eBGDrucU")
         
+        //UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
+
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        UINavigationBar.appearance().barTintColor = UIColor.appleRed()
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+        UINavigationBar.appearance().translucent = true
+        
+        UITabBar.appearance().tintColor = UIColor.appleRed()
+        UITabBar.appearance().translucent = true
+        UITabBar.appearance().barTintColor = UIColor.uberWhite()
+            //.appleRed()
+        
+        
+        
         return true
     }
 
@@ -45,7 +59,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
 
 }
 
