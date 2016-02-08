@@ -10,9 +10,14 @@ import UIKit
 import AlamofireImage
 import Alamofire
 import SwiftyJSON
+import GoogleMaps
 
 class DetailsViewController: UIViewController {
+    @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var placeIcon: UIImageView!
+    @IBOutlet weak var placeTitle: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     var placeDetails: [String: AnyObject]?
     
     override func viewDidLoad() {
@@ -24,6 +29,8 @@ class DetailsViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         print("DetailsVC")
+        
+        scrollView.contentSize.height = 1000
     }
     
     
@@ -44,17 +51,25 @@ class DetailsViewController: UIViewController {
 //                        let scaledImage = image.af_imageScaledToSize(size)
 //                        print("image downloaded: \(scaledImage)")
                         
-//                        let newSize = CGSizeMake(CGFloat(35.0), CGFloat(35.0))
-//                        UIGraphicsBeginImageContext(newSize)
-//                        image.drawInRect(CGRectMake(0, 0, CGFloat(35.0), CGFloat(35.0)))
-//                        let newImg = UIGraphicsGetImageFromCurrentImageContext()
-//                        UIGraphicsEndImageContext()
+                        let newSize = CGSizeMake(CGFloat(35.0), CGFloat(35.0))
+                        UIGraphicsBeginImageContext(newSize)
+                        image.drawInRect(CGRectMake(0, 0, CGFloat(35.0), CGFloat(35.0)))
+                        let newImg = UIGraphicsGetImageFromCurrentImageContext()
+                        UIGraphicsEndImageContext()
 //
                         self.placeIcon.image = image
                     }
                 }
         }
+        
+        self.placeTitle.text = "\(placeDetails!["name"]!)"
             
     }
+    
+//    override func loadView() {
+//        let camera = GMSCameraPosition.cameraWithLatitude(1.285, longitude: 103.848, zoom: 12)
+//        let mapView = GMSMapView.mapWithFrame(CGRectZero, camera: camera)
+//        self.view = mapView
+//    }
     
 }
