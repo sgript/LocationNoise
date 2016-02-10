@@ -12,3 +12,8 @@ struct artificial {
     static var longitude: Double?
     static var latitude: Double?
 }
+
+struct real {
+    static var longitude: Double?
+    static var latitude: Double?
+}

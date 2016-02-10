@@ -21,4 +21,8 @@ extension UIColor {
     public class func seaShell() -> UIColor! {
         return UIColor(red: 205/255.0, green: 197/255.0, blue: 191/255.0, alpha: 1.0)
     }
+    
+    public class func googleBlue() -> UIColor! {
+        return UIColor(red: 66/255.0, green: 133/255.0, blue: 244/255.0, alpha: 1.0)
+    }
 }

@@ -57,8 +57,8 @@ class PlacesViewController: UIViewController {
                     if (arrayOfDictionary.count > 0){
                         //previous = "\(arrayOfDictionary[arrayOfDictionary.count-2]["name"] as! String)"
                         previous = "\(arrayOfDictionary[arrayOfDictionary.count-1]["name"] as! String)"
-                        print("\(previous), \(current)")
-                        print("\(arrayOfDictionary[arrayOfDictionary.count-1])\n")
+                        //print("\(previous), \(current)")
+                        //print("\(arrayOfDictionary[arrayOfDictionary.count-1])\n")
                     }
                     
                     if(current != previous){
@@ -79,10 +79,10 @@ class PlacesViewController: UIViewController {
                 }
                 
             }
-            print("miles: \(miles.count)")
-            print("arrdict: \(arrayOfDictionary.count)")
+            //print("miles: \(miles.count)")
+            //print("arrdict: \(arrayOfDictionary.count)")
         }
-        print("out")
+        //print("out")
         //print(arrayOfDictionary)
         
         //print(String(arrayOfDictionary)) // DEBUG
@@ -213,7 +213,7 @@ extension PlacesViewController: UITableViewDelegate {
             let detailsVC = segue.destinationViewController as! DetailsViewController
             
 
-            print(sender.row)
+            print(arrayOfDictionary[sender.row])
             detailsVC.placeDetails = self.arrayOfDictionary[sender.row]
         }
     }

@@ -74,6 +74,7 @@
 		29E094401C617C6D00B50F53 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		29E0944E1C62711300B50F53 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		29E094501C62799300B50F53 /* PlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
+		29E761F31C6A8D360059168E /* LocationPrivacy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LocationPrivacy-Bridging-Header.h"; sourceTree = "<group>"; };
 		29FDA8691C6844C9006D10C1 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		29FDA86B1C685559006D10C1 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		6522A06E4F76EDC765D22E76 /* Pods-LocationPrivacy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationPrivacy.release.xcconfig"; path = "Pods/Target Support Files/Pods-LocationPrivacy/Pods-LocationPrivacy.release.xcconfig"; sourceTree = "<group>"; };
@@ -153,6 +154,7 @@
 				299F17D31C5AB3230018A5CA /* LaunchScreen.storyboard */,
 				299F17D61C5AB3230018A5CA /* Info.plist */,
 				299F17D11C5AB3230018A5CA /* Assets.xcassets */,
+				29E761F31C6A8D360059168E /* LocationPrivacy-Bridging-Header.h */,
 			);
 			path = LocationPrivacy;
 			sourceTree = "<group>";
@@ -525,6 +527,7 @@
 			baseConfigurationReference = BCFA717E000B30C76D390163 /* Pods-LocationPrivacy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
@@ -534,6 +537,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.shazaibahmad.LocationPrivacy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "LocationPrivacy/LocationPrivacy-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -542,6 +547,7 @@
 			baseConfigurationReference = 6522A06E4F76EDC765D22E76 /* Pods-LocationPrivacy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
@@ -551,6 +557,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.shazaibahmad.LocationPrivacy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "LocationPrivacy/LocationPrivacy-Bridging-Header.h";
 			};
 			name = Release;
 		};
