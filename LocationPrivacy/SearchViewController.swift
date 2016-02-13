@@ -22,8 +22,8 @@ class SearchViewController: UIViewController {
     var locationManager:CLLocationManager!
     var longitude: Double = 0.0
     var latitude: Double = 0.0
-    public var artiflongitude: Double = 0.0
-    public var artiflatitude: Double = 0.0
+    internal var artiflongitude: Double = 0.0
+    internal var artiflatitude: Double = 0.0
     var mapRadius = 1000;
     var json: JSON = []
     var noiseLevel: Double = 0.0
@@ -71,6 +71,8 @@ class SearchViewController: UIViewController {
 
         var longlat: [Double] = getCurrentLocation()
         (longitude, latitude) = (longlat[0], longlat[1])
+        print(latitude, longitude)
+        
         //print(longitude, latitude)
         
         // If statement needed to ensure input for type of location + noise is given
@@ -166,13 +168,13 @@ class SearchViewController: UIViewController {
             
             placesVC.json = self.json
             
-            var inputAsArray:Array = (self.typeOfLocation.text!.stringByReplacingOccurrencesOfString(" ", withString: "")).componentsSeparatedByString(",")
+            let inputAsArray:Array = (self.typeOfLocation.text!.stringByReplacingOccurrencesOfString(" ", withString: "")).componentsSeparatedByString(",")
             placesVC.chosenType = inputAsArray //self.typeOfLocation.text! // Check for crashes when no location given!!
             placesVC.actual = [latitude, longitude]
         }
     }
     
-    override public func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override internal func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
     

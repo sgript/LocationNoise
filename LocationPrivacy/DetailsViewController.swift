@@ -80,7 +80,7 @@ class DetailsViewController: UIViewController {
                         let newImg = UIGraphicsGetImageFromCurrentImageContext()
                         UIGraphicsEndImageContext()
 
-                        //self.placeIcon.image = image
+                        //self.placeIcon.image = newImg
                     }
                 }
         }

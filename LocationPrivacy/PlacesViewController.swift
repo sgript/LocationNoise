@@ -67,8 +67,8 @@ class PlacesViewController: UIViewController {
                    
                     }
                     if(current == previous){
-                        var currentTypes = "\(arrayOfDictionary[arrayOfDictionary.count-1]["type"] as! String)"
-                        var appendedType = "\(currentTypes), \(type)"
+                        let currentTypes = "\(arrayOfDictionary[arrayOfDictionary.count-1]["type"] as! String)"
+                        let appendedType = "\(currentTypes), \(type)"
                         
                         arrayOfDictionary.removeAtIndex(arrayOfDictionary.count-1)
                         arrayOfDictionary.append(["name": "\(json[i]["name"])", "rating" : "\(json[i]["rating"])", "icon" : "\(json[i]["icon"])", "vicinity" : "\(json[i]["vicinity"])", "type" : "\(appendedType)", "lat" : lat!, "long" : long!, "distance" : distance])
@@ -95,7 +95,7 @@ class PlacesViewController: UIViewController {
         // Reconstruct the array of dictionaries to be in sorted order using indexes.
         var copyArrayOfDictionary: [[String: AnyObject]] = []
         for sorted in sortMiles{
-            var index:Int = miles.indexOf(sorted)!
+            let index:Int = miles.indexOf(sorted)!
             copyArrayOfDictionary.append(arrayOfDictionary[index])
             
             // Remove so the exact same value is not copied based on distance, as types will be different.
@@ -111,7 +111,7 @@ class PlacesViewController: UIViewController {
         let currentLocation = CLLocation(latitude: actual[0], longitude: actual[1])
         let placelocation = CLLocation(latitude: loclat, longitude: loclong)
         
-        var distance = (currentLocation.distanceFromLocation(placelocation) / 1000) * 0.62137 // In miles
+        let distance = (currentLocation.distanceFromLocation(placelocation) / 1000) * 0.62137 // In miles
         
         //1. TODO - Will calculate distance from each location and real location of user and make an array of distances in metres for each location as-is for arrayOfDictionary
         //2. Copy of this array will be made
@@ -124,7 +124,7 @@ class PlacesViewController: UIViewController {
     
     func partition(inout dataList: [Double], low: Int, high: Int) -> Int { // https://gist.github.com/fjcaetano/b0c00a889dc2a17efad9#gistcomment-1338271
         var pivotPos = low
-        var pivot = dataList[low]
+        let pivot = dataList[low]
         
         for var i = low + 1; i <= high; i++ {
             if dataList[i] < pivot && ++pivotPos != i {
@@ -137,7 +137,7 @@ class PlacesViewController: UIViewController {
     
     func quickSort(inout dataList: [Double], left: Int, right: Int) {
         if left < right {
-            var pivotPos = partition(&dataList, low: left, high: right)
+            let pivotPos = partition(&dataList, low: left, high: right)
             quickSort(&dataList, left: left, right: pivotPos - 1)
             quickSort(&dataList, left: pivotPos + 1, right: right)
         }
@@ -175,7 +175,7 @@ extension PlacesViewController: UITableViewDataSource {
         //let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
         let cell = UITableViewCell()
         var item = arrayOfDictionary[indexPath.row]
-        var miles = String(format:"%.1f", item["distance"]! as! Float)
+        let miles = String(format:"%.1f", item["distance"]! as! Float)
         var rating = item["rating"]!
         if item["rating"]! is NSNull {
             rating = "No rating available."
