@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import RealmSwift
 
 class SettingsViewController: UITableViewController, UISearchResultsUpdating
 {
@@ -73,41 +74,54 @@ class SettingsViewController: UITableViewController, UISearchResultsUpdating
         }
         else
         {
-            // Do nothing
-            
             return cell!
         }
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print(self.array[indexPath.row])
+        //print(self.array[indexPath.row])
+
+        var item = self.array[indexPath.row]
+        let place_id = item["place_id"]!
+        let address = item["formatted_address"]!
+        let lat = item["lat"]! as! Double
+        let long = item["long"]! as! Double
+        
+        
+        let sensitive = SensitiveLocations()
+        //var location = SensitiveLocations(id: "0", formatted_address: address as! NSString, latitude: lat, longitude: long)
+        
+        sensitive.id = place_id as! String
+        sensitive.formatted_address = address as! String
+        sensitive.latitude = lat
+        sensitive.longitude = long
+        
+        let realm = try! Realm()
+        
+        let exists = realm.objectForPrimaryKey(SensitiveLocations.self, key: place_id)
+        print(exists)
+        if (exists == nil) {
+            try! realm.write {
+                realm.add(sensitive)
+            }
+        }
+        else {
+            print("This already exists!") // Throw some popup notification
+        }
+
+        print(lat,long)
+        //sensitive.locations!.append(lat, long)
+        
+        //print(sensitive.locations)
     }
     
     func updateSearchResultsForSearchController(searchController: UISearchController)
     {
         self.filteredAppleProducts.removeAll(keepCapacity: false)
         
-        let searchPredicate = NSPredicate(format: "SELF CONTAINS[c] %@", searchController.searchBar.text!)
-        
-        // Come back later
-        //let array = (self.appleProducts as NSArray).filteredArrayUsingPredicate(searchPredicate)
-        //self.filteredAppleProducts = array as! [String]
-        
-        var returnedjson: [[String: AnyObject]] = []
-        var arrayObj: [String] = []
-        
         if((searchController.searchBar.text!.characters.count) > 4){
         self.getPlaces(String(searchController.searchBar.text!))
         }
-        
-//        for object in returnedjson{
-//            arrayObj.append(String(object["formatted_address"]))
-//            self.arrayObj = arrayObj
-//        }
-        
-        //print("\nFINAL ARRAY:\n\(array)")
-        
-        //self.tableView.reloadData()
     }
     
     func getPlaces(place: String) -> [[String: AnyObject]] {
@@ -122,8 +136,6 @@ class SettingsViewController: UITableViewController, UISearchResultsUpdating
             "key" : "AIzaSyDhx9NTuC7DBbVGKhrEuMLD5GJESIgzZjw"
             
         ]
-        
-        //print(place, countryCode)
 
         Alamofire.request(.GET, "https://maps.googleapis.com/maps/api/geocode/json?region=GB", parameters: parameters)
             .validate()
@@ -131,11 +143,9 @@ class SettingsViewController: UITableViewController, UISearchResultsUpdating
                 switch response.result {
                     
                 case .Success(let data):
-                    // Do something
-                    
+            
                     dispatch_async(dispatch_get_main_queue()){
-                        // Do something
-                        //print(data)
+                        
                         var arrayObj: [String] = []
                         
                         self.array = self.parseResponse(JSON(data)["results"])
@@ -146,18 +156,11 @@ class SettingsViewController: UITableViewController, UISearchResultsUpdating
                         }
                         
                         self.tableView.reloadData()
-                        // NOTE TO SELF FOR TOMORROW:
-                        /*
-                        Addresses are being returned correctly, therefore need to create an array with JSON
-                        "formatted_address", once this is done, list array in TableView and allow user to select cell,
-                        then be able to find the long/lat coordinates. Perhaps instead storing in a array, do it into a dictionary, so it makes it easier to retrieve later without repeated requests.
-                        */
                     }
                     
                 case .Failure(let error):
                     print("Request failed with error: \(error)")
                 }
-                
         }
         
         return array
@@ -171,12 +174,9 @@ class SettingsViewController: UITableViewController, UISearchResultsUpdating
             let lat = Double("\(json[i]["geometry"]["location"]["lat"])")
             let long = Double("\(json[i]["geometry"]["location"]["lng"])")
             
-            //print("\(json[i]["formatted_address"])")
-            
             array.append(["place_id": "\(json[i]["place_id"])", "formatted_address" : "\(json[i]["formatted_address"])", "types" : "\(json[i]["types"])", "lat" : lat!, "long" : long!])
         }
-        
-        //print("Array constructed of:\n\(array)")
+    
         return array
     }
 }

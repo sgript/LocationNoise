@@ -7,9 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		292C79B11C6FF7F1006D7FC1 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 292C79AF1C6FF7F1006D7FC1 /* Realm.framework */; };
+		292C79B21C6FF7F1006D7FC1 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 292C79AF1C6FF7F1006D7FC1 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		292C79B31C6FF7F1006D7FC1 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 292C79B01C6FF7F1006D7FC1 /* RealmSwift.framework */; };
+		292C79B41C6FF7F1006D7FC1 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 292C79B01C6FF7F1006D7FC1 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		292C79B61C6FF830006D7FC1 /* RLMSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292C79B51C6FF830006D7FC1 /* RLMSupport.swift */; };
 		293EBD491C640DD50087A9A8 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293EBD481C640DD50087A9A8 /* Array.swift */; };
 		295122B31C66993900C896F0 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295122B21C66993900C896F0 /* DetailsViewController.swift */; };
 		295122BB1C669F1000C896F0 /* Variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295122BA1C669F1000C896F0 /* Variables.swift */; };
+		299635A31C6FBAC100669066 /* SensitiveLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299635A21C6FBAC100669066 /* SensitiveLocations.swift */; };
 		299F17CB1C5AB3230018A5CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299F17CA1C5AB3230018A5CA /* AppDelegate.swift */; };
 		299F17D21C5AB3230018A5CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 299F17D11C5AB3230018A5CA /* Assets.xcassets */; };
 		299F17D51C5AB3230018A5CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 299F17D31C5AB3230018A5CA /* LaunchScreen.storyboard */; };
@@ -49,6 +55,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				292C79B41C6FF7F1006D7FC1 /* RealmSwift.framework in Embed Frameworks */,
+				292C79B21C6FF7F1006D7FC1 /* Realm.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -57,9 +65,13 @@
 
 /* Begin PBXFileReference section */
 		177865B8D650AD80D97F20ED /* Pods_LocationPrivacy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocationPrivacy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		292C79AF1C6FF7F1006D7FC1 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
+		292C79B01C6FF7F1006D7FC1 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
+		292C79B51C6FF830006D7FC1 /* RLMSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMSupport.swift; sourceTree = "<group>"; };
 		293EBD481C640DD50087A9A8 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		295122B21C66993900C896F0 /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		295122BA1C669F1000C896F0 /* Variables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Variables.swift; sourceTree = "<group>"; };
+		299635A21C6FBAC100669066 /* SensitiveLocations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensitiveLocations.swift; sourceTree = "<group>"; };
 		299F17C71C5AB3230018A5CA /* LocationPrivacy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationPrivacy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		299F17CA1C5AB3230018A5CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		299F17D11C5AB3230018A5CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -88,7 +100,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				292C79B11C6FF7F1006D7FC1 /* Realm.framework in Frameworks */,
 				299F17FD1C5AFFC00018A5CA /* CoreLocation.framework in Frameworks */,
+				292C79B31C6FF7F1006D7FC1 /* RealmSwift.framework in Frameworks */,
 				40147303F844E0617C02C6AD /* Pods_LocationPrivacy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -125,6 +139,8 @@
 		299F17BE1C5AB3230018A5CA = {
 			isa = PBXGroup;
 			children = (
+				292C79AF1C6FF7F1006D7FC1 /* Realm.framework */,
+				292C79B01C6FF7F1006D7FC1 /* RealmSwift.framework */,
 				299F17C91C5AB3230018A5CA /* LocationPrivacy */,
 				299F17DE1C5AB3240018A5CA /* LocationPrivacyTests */,
 				299F17E91C5AB3240018A5CA /* LocationPrivacyUITests */,
@@ -153,11 +169,13 @@
 				295122B21C66993900C896F0 /* DetailsViewController.swift */,
 				299F17CA1C5AB3230018A5CA /* AppDelegate.swift */,
 				29DD65351C6D6516002C48D5 /* SettingsViewController.swift */,
+				292C79B51C6FF830006D7FC1 /* RLMSupport.swift */,
 				29E0944D1C62711300B50F53 /* Main.storyboard */,
 				299F17D31C5AB3230018A5CA /* LaunchScreen.storyboard */,
 				299F17D61C5AB3230018A5CA /* Info.plist */,
 				299F17D11C5AB3230018A5CA /* Assets.xcassets */,
 				29E761F31C6A8D360059168E /* LocationPrivacy-Bridging-Header.h */,
+				299635A21C6FBAC100669066 /* SensitiveLocations.swift */,
 			);
 			path = LocationPrivacy;
 			sourceTree = "<group>";
@@ -383,10 +401,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				29E094511C62799300B50F53 /* PlacesViewController.swift in Sources */,
+				292C79B61C6FF830006D7FC1 /* RLMSupport.swift in Sources */,
 				29FDA86A1C6844C9006D10C1 /* UIColor.swift in Sources */,
 				293EBD491C640DD50087A9A8 /* Array.swift in Sources */,
 				29E094411C617C6D00B50F53 /* SearchViewController.swift in Sources */,
 				29FDA86C1C685559006D10C1 /* CustomTextField.swift in Sources */,
+				299635A31C6FBAC100669066 /* SensitiveLocations.swift in Sources */,
 				295122BB1C669F1000C896F0 /* Variables.swift in Sources */,
 				299F17CB1C5AB3230018A5CA /* AppDelegate.swift in Sources */,
 				295122B31C66993900C896F0 /* DetailsViewController.swift in Sources */,
@@ -535,6 +555,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = LocationPrivacy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -555,6 +579,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = LocationPrivacy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
