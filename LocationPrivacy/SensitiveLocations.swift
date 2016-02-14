@@ -12,8 +12,8 @@ import RealmSwift
 class SensitiveLocations: Object {
     dynamic var id = ""
     dynamic var formatted_address = ""
-    dynamic var latitude = 0.0
-    dynamic var longitude = 0.0
+    dynamic var latitude:Double = 0.0
+    dynamic var longitude:Double = 0.0
     
     override class func primaryKey() -> String? {
         return "id"

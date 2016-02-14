@@ -13,6 +13,7 @@ import Alamofire
 import SwiftyJSON
 import Darwin
 import QuartzCore
+import RealmSwift
 
 class SearchViewController: UIViewController {
     @IBOutlet weak var typeOfLocation: CustomTextField!
@@ -37,24 +38,11 @@ class SearchViewController: UIViewController {
         locationManager.startUpdatingLocation()
         locationManager.requestAlwaysAuthorization()
         
-    
         typeOfLocation.delegate = self
         typeOfLocation.layer.borderWidth = 1.0
         typeOfLocation.layer.borderColor = UIColor.seaShell().CGColor
         searchButton.setTitleColor(UIColor.appleRed(), forState: UIControlState.Normal)
-        
-        //setNeedsStatusBarAppearanceUpdate()
-
     }
-    
-//    public override func viewWillAppear(animated: Bool) {
-//        super.viewWillAppear(animated)
-//        
-//        if isBeingPresented() {
-//            initialStatusBarStyle = UIApplication.sharedApplication().statusBarStyle
-//        }
-//        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
-//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -81,8 +69,8 @@ class SearchViewController: UIViewController {
         (artiflongitude, artiflatitude) = (noise[0], noise[1])
         (artificial.longitude, artificial.latitude) = (noise[0], noise[1])
         
-        print(noiseValue.text!)
-        print(typeOfLocation.text!)
+        sensitiveLocations(latitude, long: longitude)
+        
         let parameters : [String : AnyObject] = [
             "location" : "\(artiflatitude),\(artiflongitude)",
             // "location" : "51.4836193155864, -3.16298625178967", // Fixed location for debugging
@@ -162,6 +150,27 @@ class SearchViewController: UIViewController {
         return [artifLong, artifLat]
     }
     
+    func sensitiveLocations(lat: Double, long: Double) -> Bool {
+        let realm = try! Realm()
+        
+        let filterResults = realm.objects(SensitiveLocations).filter("latitude > \(Int(lat))").filter("latitude < \(Int(lat)+1)")
+        
+        let usersLocation = CLLocation(latitude: lat, longitude: long)
+        for i in 0..<filterResults.count{
+            print(filterResults[i]["latitude"])
+            
+            let protectedLocation = CLLocation(latitude: filterResults[i]["latitude"]! as! Double, longitude: filterResults[i]["longitude"]! as! Double)
+            
+            let distance = usersLocation.distanceFromLocation(protectedLocation) / 1000
+            if distance < 10{
+                print("Needs extra noise..") // Once returned true, will need to add a percentage of extra noise for extra protection of the user's location, if and only if the number of metres chosen are insufficient.
+                return true
+            }
+        }
+        return false
+    }
+    
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == "showPlaceList") {
             let placesVC = segue.destinationViewController as! PlacesViewController
@@ -177,10 +186,6 @@ class SearchViewController: UIViewController {
     override internal func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
-//    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-//        return .LightContent
-//    }
     
 }
 
