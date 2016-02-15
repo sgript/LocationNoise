@@ -162,7 +162,7 @@ class SearchViewController: UIViewController {
             let protectedLocation = CLLocation(latitude: filterResults[i]["latitude"]! as! Double, longitude: filterResults[i]["longitude"]! as! Double)
             
             let distance = usersLocation.distanceFromLocation(protectedLocation) / 1000
-            if distance < 10{
+            if distance < 1 {
                 print("Needs extra noise..") // Once returned true, will need to add a percentage of extra noise for extra protection of the user's location, if and only if the number of metres chosen are insufficient.
                 return true
             }

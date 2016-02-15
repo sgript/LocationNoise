@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		292BDA451C7252A1000E2AD3 /* ManageSensitiveLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292BDA441C7252A1000E2AD3 /* ManageSensitiveLocations.swift */; };
+		292BDA471C725963000E2AD3 /* ManageLocationsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292BDA461C725963000E2AD3 /* ManageLocationsCell.swift */; };
 		292C79B31C6FF7F1006D7FC1 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 292C79B01C6FF7F1006D7FC1 /* RealmSwift.framework */; };
 		292C79B41C6FF7F1006D7FC1 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 292C79B01C6FF7F1006D7FC1 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		292C79B61C6FF830006D7FC1 /* RLMSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292C79B51C6FF830006D7FC1 /* RLMSupport.swift */; };
@@ -62,6 +64,8 @@
 
 /* Begin PBXFileReference section */
 		177865B8D650AD80D97F20ED /* Pods_LocationPrivacy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocationPrivacy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		292BDA441C7252A1000E2AD3 /* ManageSensitiveLocations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageSensitiveLocations.swift; sourceTree = "<group>"; };
+		292BDA461C725963000E2AD3 /* ManageLocationsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageLocationsCell.swift; sourceTree = "<group>"; };
 		292C79B01C6FF7F1006D7FC1 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
 		292C79B51C6FF830006D7FC1 /* RLMSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMSupport.swift; sourceTree = "<group>"; };
 		293EBD481C640DD50087A9A8 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
@@ -126,6 +130,7 @@
 				295122BA1C669F1000C896F0 /* Variables.swift */,
 				29FDA8691C6844C9006D10C1 /* UIColor.swift */,
 				29FDA86B1C685559006D10C1 /* CustomTextField.swift */,
+				292BDA461C725963000E2AD3 /* ManageLocationsCell.swift */,
 			);
 			name = Extensions;
 			path = ..;
@@ -170,6 +175,7 @@
 				299F17D11C5AB3230018A5CA /* Assets.xcassets */,
 				29E761F31C6A8D360059168E /* LocationPrivacy-Bridging-Header.h */,
 				299635A21C6FBAC100669066 /* SensitiveLocations.swift */,
+				292BDA441C7252A1000E2AD3 /* ManageSensitiveLocations.swift */,
 			);
 			path = LocationPrivacy;
 			sourceTree = "<group>";
@@ -398,6 +404,8 @@
 				292C79B61C6FF830006D7FC1 /* RLMSupport.swift in Sources */,
 				29FDA86A1C6844C9006D10C1 /* UIColor.swift in Sources */,
 				293EBD491C640DD50087A9A8 /* Array.swift in Sources */,
+				292BDA451C7252A1000E2AD3 /* ManageSensitiveLocations.swift in Sources */,
+				292BDA471C725963000E2AD3 /* ManageLocationsCell.swift in Sources */,
 				29E094411C617C6D00B50F53 /* SearchViewController.swift in Sources */,
 				29FDA86C1C685559006D10C1 /* CustomTextField.swift in Sources */,
 				299635A31C6FBAC100669066 /* SensitiveLocations.swift in Sources */,

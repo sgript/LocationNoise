@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Place search-->
@@ -254,11 +255,11 @@
             </objects>
             <point key="canvasLocation" x="1023.75" y="435.21126760563379"/>
         </scene>
-        <!--Settings-->
+        <!--Sensitive locations-->
         <scene sceneID="3Vl-2n-WI6">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="h70-gH-UcK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" image="warning" selectedImage="warning-selected" id="M2H-51-jok"/>
+                    <tabBarItem key="tabBarItem" title="Sensitive locations" image="warning" selectedImage="warning-selected" id="M2H-51-jok"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="krA-JE-beB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -305,17 +306,86 @@
                             <outlet property="delegate" destination="t52-ZP-lwB" id="HeV-jz-tww"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Sensitive location" id="QQR-CF-76y"/>
+                    <navigationItem key="navigationItem" title="Sensitive location" id="QQR-CF-76y">
+                        <barButtonItem key="rightBarButtonItem" image="settings-selected" id="wiZ-jP-gS4">
+                            <connections>
+                                <segue destination="zIT-eg-YlH" kind="show" id="Xdh-Qd-qkc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rsn-vw-HIE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1704" y="1293"/>
         </scene>
+        <!--Manage Sensitive Locations-->
+        <scene sceneID="sDy-Ly-lDx">
+            <objects>
+                <tableViewController id="zIT-eg-YlH" customClass="ManageSensitiveLocations" customModule="LocationPrivacy" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ApF-mc-az2">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ManageLocationsCell" id="PNq-V9-UBn" customClass="ManageLocationsCell" customModule="LocationPrivacy">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PNq-V9-UBn" id="hQM-0y-Pm0">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWq-Fj-fbB">
+                                            <rect key="frame" x="15" y="14" width="534" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6KG-3x-cZc">
+                                            <rect key="frame" x="557" y="8" width="35" height="33"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="35" id="zFx-AQ-WIv"/>
+                                            </constraints>
+                                            <state key="normal" image="cancel"/>
+                                            <connections>
+                                                <action selector="removeButtonClicked:" destination="zIT-eg-YlH" eventType="touchUpInside" id="bcn-Oi-We4"/>
+                                                <action selector="removeButtonPressed:" destination="PNq-V9-UBn" eventType="touchUpInside" id="FVZ-r0-BFM"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="iWq-Fj-fbB" firstAttribute="leading" secondItem="hQM-0y-Pm0" secondAttribute="leadingMargin" constant="7" id="CuN-Da-peJ"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="6KG-3x-cZc" secondAttribute="bottom" constant="-5.5" id="DmN-BS-3fX"/>
+                                        <constraint firstItem="6KG-3x-cZc" firstAttribute="trailing" secondItem="hQM-0y-Pm0" secondAttribute="trailingMargin" id="IHX-ZI-b30"/>
+                                        <constraint firstItem="6KG-3x-cZc" firstAttribute="leading" secondItem="iWq-Fj-fbB" secondAttribute="trailing" constant="8" symbolic="YES" id="Sav-Uh-WHF"/>
+                                        <constraint firstItem="iWq-Fj-fbB" firstAttribute="top" secondItem="hQM-0y-Pm0" secondAttribute="topMargin" constant="6" id="a9V-4Q-c8s"/>
+                                        <constraint firstItem="iWq-Fj-fbB" firstAttribute="centerY" secondItem="6KG-3x-cZc" secondAttribute="centerY" id="qMh-FU-SHJ"/>
+                                        <constraint firstItem="6KG-3x-cZc" firstAttribute="top" secondItem="hQM-0y-Pm0" secondAttribute="topMargin" id="uGm-we-SXG"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="removeButton" destination="6KG-3x-cZc" id="SzB-rk-Fwy"/>
+                                    <outlet property="sensitiveLocationText" destination="iWq-Fj-fbB" id="rwY-qv-cEL"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="zIT-eg-YlH" id="w8W-Tc-btt"/>
+                            <outlet property="delegate" destination="zIT-eg-YlH" id="Tif-jK-8Zh"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tXW-nL-DND" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2382" y="1291"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="cancel" width="32" height="32"/>
         <image name="lock" width="25" height="25"/>
         <image name="lock-selected" width="25" height="25"/>
+        <image name="settings-selected" width="25" height="25"/>
         <image name="warning" width="25" height="25"/>
         <image name="warning-selected" width="25" height="25"/>
     </resources>
+    <color key="tintColor" red="0.94481169870000004" green="0.94481169870000004" blue="0.94481169870000004" alpha="1" colorSpace="calibratedRGB"/>
 </document>
