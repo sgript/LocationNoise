@@ -25,7 +25,7 @@ class ManageSensitiveLocations: UITableViewController {
         let deleteById = toBeDeleted["place_id"]! as! String
         
         //let sensitiveLocations = realm.objects(SensitiveLocations)
-        var realmObjectToDelete = realm.objectForPrimaryKey(SensitiveLocations.self, key: "\(deleteById)")
+        let realmObjectToDelete = realm.objectForPrimaryKey(SensitiveLocations.self, key: "\(deleteById)")
         userSensitiveLocations.removeAtIndex(sender.tag)
         
         realm.beginWrite()
@@ -55,8 +55,7 @@ class ManageSensitiveLocations: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ManageLocationsCell") as! ManageLocationsCell
-        let realm = try! Realm()
-        let sensitiveLocations = realm.objects(SensitiveLocations)
+        
         var item = userSensitiveLocations[indexPath.row]
         let formatted_address = item["formatted_address"]
         

@@ -22,6 +22,7 @@
 		299F17E01C5AB3240018A5CA /* LocationPrivacyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299F17DF1C5AB3240018A5CA /* LocationPrivacyTests.swift */; };
 		299F17EB1C5AB3240018A5CA /* LocationPrivacyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299F17EA1C5AB3240018A5CA /* LocationPrivacyUITests.swift */; };
 		299F17FD1C5AFFC00018A5CA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299F17FC1C5AFFC00018A5CA /* CoreLocation.framework */; };
+		29BA93001C778C9B00A83EA3 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29BA92FF1C778C9B00A83EA3 /* CoreBluetooth.framework */; };
 		29DD65361C6D6516002C48D5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DD65351C6D6516002C48D5 /* SettingsViewController.swift */; };
 		29E094411C617C6D00B50F53 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E094401C617C6D00B50F53 /* SearchViewController.swift */; };
 		29E0944F1C62711300B50F53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29E0944D1C62711300B50F53 /* Main.storyboard */; };
@@ -84,11 +85,11 @@
 		299F17EA1C5AB3240018A5CA /* LocationPrivacyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPrivacyUITests.swift; sourceTree = "<group>"; };
 		299F17EC1C5AB3240018A5CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		299F17FC1C5AFFC00018A5CA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		29BA92FF1C778C9B00A83EA3 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		29DD65351C6D6516002C48D5 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		29E094401C617C6D00B50F53 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		29E0944E1C62711300B50F53 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		29E094501C62799300B50F53 /* PlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
-		29E761F31C6A8D360059168E /* LocationPrivacy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LocationPrivacy-Bridging-Header.h"; sourceTree = "<group>"; };
 		29FDA8691C6844C9006D10C1 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		29FDA86B1C685559006D10C1 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		6522A06E4F76EDC765D22E76 /* Pods-LocationPrivacy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationPrivacy.release.xcconfig"; path = "Pods/Target Support Files/Pods-LocationPrivacy/Pods-LocationPrivacy.release.xcconfig"; sourceTree = "<group>"; };
@@ -100,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29BA93001C778C9B00A83EA3 /* CoreBluetooth.framework in Frameworks */,
 				299F17FD1C5AFFC00018A5CA /* CoreLocation.framework in Frameworks */,
 				292C79B31C6FF7F1006D7FC1 /* RealmSwift.framework in Frameworks */,
 				40147303F844E0617C02C6AD /* Pods_LocationPrivacy.framework in Frameworks */,
@@ -173,7 +175,6 @@
 				299F17D31C5AB3230018A5CA /* LaunchScreen.storyboard */,
 				299F17D61C5AB3230018A5CA /* Info.plist */,
 				299F17D11C5AB3230018A5CA /* Assets.xcassets */,
-				29E761F31C6A8D360059168E /* LocationPrivacy-Bridging-Header.h */,
 				299635A21C6FBAC100669066 /* SensitiveLocations.swift */,
 				292BDA441C7252A1000E2AD3 /* ManageSensitiveLocations.swift */,
 			);
@@ -201,6 +202,7 @@
 		74DFE64FA44CAB9E9BC82718 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				29BA92FF1C778C9B00A83EA3 /* CoreBluetooth.framework */,
 				299F17FC1C5AFFC00018A5CA /* CoreLocation.framework */,
 				177865B8D650AD80D97F20ED /* Pods_LocationPrivacy.framework */,
 			);
@@ -567,7 +569,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.shazaibahmad.LocationPrivacy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "LocationPrivacy/LocationPrivacy-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -591,7 +592,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.shazaibahmad.LocationPrivacy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "LocationPrivacy/LocationPrivacy-Bridging-Header.h";
 			};
 			name = Release;
 		};

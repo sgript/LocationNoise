@@ -29,7 +29,6 @@ class SearchViewController: UIViewController {
     var json: JSON = []
     var noiseLevel: Double = 0.0
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.typeOfLocation.delegate = self;
@@ -37,6 +36,7 @@ class SearchViewController: UIViewController {
         locationManager = CLLocationManager()
         locationManager.startUpdatingLocation()
         locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
         
         typeOfLocation.delegate = self
         typeOfLocation.layer.borderWidth = 1.0
@@ -49,31 +49,26 @@ class SearchViewController: UIViewController {
         print("SearchVC")
     }
     
-    @IBAction func noiseAction(sender: UISlider) { // Note to self, sliders suck, change to something else.
+    @IBAction func noiseAction(sender: UISlider) {
         let currentVal = Int(sender.value)
         noiseValue.text = "\(currentVal)m"
         noiseLevel = Double(currentVal)
     }
     
     @IBAction func searchLocation(sender: AnyObject) {
-
+        
         var longlat: [Double] = getCurrentLocation()
         (longitude, latitude) = (longlat[0], longlat[1])
-        print(latitude, longitude)
-        
-        //print(longitude, latitude)
         
         // If statement needed to ensure input for type of location + noise is given
         
+        sensitiveLocations(latitude, long: longitude, noise: noiseLevel)
         var noise: [Double] = addNoise(noiseLevel)
         (artiflongitude, artiflatitude) = (noise[0], noise[1])
         (artificial.longitude, artificial.latitude) = (noise[0], noise[1])
         
-        sensitiveLocations(latitude, long: longitude)
-        
         let parameters : [String : AnyObject] = [
             "location" : "\(artiflatitude),\(artiflongitude)",
-            // "location" : "51.4836193155864, -3.16298625178967", // Fixed location for debugging
             "radius" : mapRadius,
             "types" : typeOfLocation.text!,
             "sensor" : "true",
@@ -96,9 +91,7 @@ class SearchViewController: UIViewController {
             case .Failure(let error):
                 print("Request failed with error: \(error)")
             }
-    
         }
-        
     }
     
     
@@ -141,16 +134,16 @@ class SearchViewController: UIViewController {
         artifLong = artifLongRad * diam / M_PI
         artifLat = artifLatRad * diam / M_PI
         
-        print("      Real Longitude: " + String(longitude))
-        print("Artificial Longitude: " + String(artifLong) + "\n")
-        
         print("      Real Latitude: " + String(latitude))
         print("Artificial Latitude: " + String(artifLat))
+        
+        print("      Real Longitude: " + String(longitude))
+        print("Artificial Longitude: " + String(artifLong) + "\n")
         
         return [artifLong, artifLat]
     }
     
-    func sensitiveLocations(lat: Double, long: Double) -> Bool {
+    func sensitiveLocations(lat: Double, long: Double, noise: Double) -> Bool {
         let realm = try! Realm()
         
         let filterResults = realm.objects(SensitiveLocations).filter("latitude > \(Int(lat))").filter("latitude < \(Int(lat)+1)")
@@ -161,12 +154,15 @@ class SearchViewController: UIViewController {
             
             let protectedLocation = CLLocation(latitude: filterResults[i]["latitude"]! as! Double, longitude: filterResults[i]["longitude"]! as! Double)
             
-            let distance = usersLocation.distanceFromLocation(protectedLocation) / 1000
-            if distance < 1 {
-                print("Needs extra noise..") // Once returned true, will need to add a percentage of extra noise for extra protection of the user's location, if and only if the number of metres chosen are insufficient.
+            let distance = (usersLocation.distanceFromLocation(protectedLocation) / 1000) * 0.62137 // In miles
+            if distance < 0.3 && noise < 100 {
+                self.noiseLevel = noiseLevel + 100
+                print("Noise changed to: \(self.noiseLevel)")
                 return true
             }
         }
+        self.noiseLevel = Double(noiseValue.text!)!
+        print("Noise kept/reset as: \(self.noiseLevel)")
         return false
     }
     
@@ -178,7 +174,7 @@ class SearchViewController: UIViewController {
             placesVC.json = self.json
             
             let inputAsArray:Array = (self.typeOfLocation.text!.stringByReplacingOccurrencesOfString(" ", withString: "")).componentsSeparatedByString(",")
-            placesVC.chosenType = inputAsArray //self.typeOfLocation.text! // Check for crashes when no location given!!
+            placesVC.chosenType = inputAsArray
             placesVC.actual = [latitude, longitude]
         }
     }

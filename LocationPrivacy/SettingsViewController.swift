@@ -11,19 +11,16 @@ import Alamofire
 import SwiftyJSON
 import RealmSwift
 
-class SettingsViewController: UITableViewController, UISearchResultsUpdating
-{
-    let appleProducts = ["Mac","iPhone","Apple Watch","iPad"]
-    var filteredAppleProducts = [String]()
+class SettingsViewController: UITableViewController, UISearchResultsUpdating {
     var resultSearchController = UISearchController()
-    //var array: [[String : AnyObject]] = [] // Storing results
     var arrayObj =  [String]()
     var array: [[String : AnyObject]] = []
     
-    override func viewDidLoad()
-    {
+    override func viewDidLoad(){
         super.viewDidLoad()
-        
+
+        self.definesPresentationContext = true
+
         self.resultSearchController = UISearchController(searchResultsController: nil)
         self.resultSearchController.searchResultsUpdater = self
         self.resultSearchController.dimsBackgroundDuringPresentation = false
@@ -36,60 +33,49 @@ class SettingsViewController: UITableViewController, UISearchResultsUpdating
         self.tableView.reloadData()
     }
     
-    override func didReceiveMemoryWarning()
-    {
+    override func didReceiveMemoryWarning(){
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
     
     // MARK: - Table view data source
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int
-    {
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        if (self.resultSearchController.active)
-        {
+        if (self.resultSearchController.active){
             return self.arrayObj.count
         }
-        else
-        {
+        else{
             // Do nothing
             return 0
         }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
-    {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell?
         
-        if (self.resultSearchController.active)
-        {
+        if (self.resultSearchController.active){
             cell!.textLabel?.text = self.arrayObj[indexPath.row]
             
             return cell!
         }
-        else
-        {
+        else{
             return cell!
         }
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //print(self.array[indexPath.row])
-
         var item = self.array[indexPath.row]
         let place_id = item["place_id"]!
         let address = item["formatted_address"]!
         let lat = item["lat"]! as! Double
         let long = item["long"]! as! Double
         
-        
         let sensitive = SensitiveLocations()
-        //var location = SensitiveLocations(id: "0", formatted_address: address as! NSString, latitude: lat, longitude: long)
         
         sensitive.id = place_id as! String
         sensitive.formatted_address = address as! String
@@ -110,27 +96,22 @@ class SettingsViewController: UITableViewController, UISearchResultsUpdating
         }
 
         print(lat,long)
-        //sensitive.locations!.append(lat, long)
-        
-        //print(sensitive.locations)
     }
     
     func updateSearchResultsForSearchController(searchController: UISearchController)
     {
-        self.filteredAppleProducts.removeAll(keepCapacity: false)
-        
         if((searchController.searchBar.text!.characters.count) > 4){
         self.getPlaces(String(searchController.searchBar.text!))
         }
     }
     
-    func getPlaces(place: String) -> [[String: AnyObject]] {
+    func getPlaces(place: String) {
         
         // Note this does not use CLLocation method so could be fabricated!
         let countryCode = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String
         self.array = [] // Storing results
         
-        var parameters = [
+        let parameters = [
             "address": place,
             "region" : countryCode,
             "key" : "AIzaSyDhx9NTuC7DBbVGKhrEuMLD5GJESIgzZjw"
@@ -162,8 +143,6 @@ class SettingsViewController: UITableViewController, UISearchResultsUpdating
                     print("Request failed with error: \(error)")
                 }
         }
-        
-        return array
         
     }
     
