@@ -56,43 +56,49 @@ class SearchViewController: UIViewController {
     }
     
     @IBAction func searchLocation(sender: AnyObject) {
-        
-        var longlat: [Double] = getCurrentLocation()
-        (longitude, latitude) = (longlat[0], longlat[1])
-        
-        // If statement needed to ensure input for type of location + noise is given
-        
-        sensitiveLocations(latitude, long: longitude, noise: noiseLevel)
-        var noise: [Double] = addNoise(noiseLevel)
-        (artiflongitude, artiflatitude) = (noise[0], noise[1])
-        (artificial.longitude, artificial.latitude) = (noise[0], noise[1])
-        
-        let parameters : [String : AnyObject] = [
-            "location" : "\(artiflatitude),\(artiflongitude)",
-            "radius" : mapRadius,
-            "types" : typeOfLocation.text!,
-            "sensor" : "true",
-            "key" : "AIzaSyDhx9NTuC7DBbVGKhrEuMLD5GJESIgzZjw"
+        if (!typeOfLocation.text!.isEmpty){
+            var longlat: [Double] = getCurrentLocation()
+            (longitude, latitude) = (longlat[0], longlat[1])
+            
+            sensitiveLocations(latitude, long: longitude, noise: noiseLevel)
+            var noise: [Double] = addNoise(noiseLevel)
+            (artiflongitude, artiflatitude) = (noise[0], noise[1])
+            (artificial.longitude, artificial.latitude) = (noise[0], noise[1])
+            
+            let parameters : [String : AnyObject] = [
+                "location" : "\(artiflatitude),\(artiflongitude)",
+                "radius" : mapRadius,
+                "types" : typeOfLocation.text!,
+                "sensor" : "true",
+                "key" : "AIzaSyDhx9NTuC7DBbVGKhrEuMLD5GJESIgzZjw"
 
-        ]
+            ]
 
-        Alamofire.request(.GET, "https:maps.googleapis.com/maps/api/place/nearbysearch/json?", parameters: parameters)
-            .validate()
-            .responseJSON { response in
-            switch response.result {
-                
-            case .Success(let data):
-                self.json = JSON(data)["results"]
-                
-                dispatch_async(dispatch_get_main_queue()){
-                    self.performSegueWithIdentifier("showPlaceList", sender: nil) // NOTE TO SELF: Hooked up segue from searchViewController to PlacesViewController, rather than Search button
+            Alamofire.request(.GET, "https:maps.googleapis.com/maps/api/place/nearbysearch/json?", parameters: parameters)
+                .validate()
+                .responseJSON { response in
+                switch response.result {
+                    
+                case .Success(let data):
+                    self.json = JSON(data)["results"]
+                    
+                    dispatch_async(dispatch_get_main_queue()){
+                        self.performSegueWithIdentifier("showPlaceList", sender: nil) // NOTE TO SELF: Hooked up segue from searchViewController to PlacesViewController, rather than Search button
+                    }
+                    
+                case .Failure(let error):
+                    print("Request failed with error: \(error)")
                 }
-                
-            case .Failure(let error):
-                print("Request failed with error: \(error)")
             }
         }
+        else {
+            let error = UIAlertController(title: "Please enter data", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+            error.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+            
+            self.presentViewController(error, animated: true, completion: nil)
+        }
     }
+    
     
     
     func getCurrentLocation() -> [Double] {
