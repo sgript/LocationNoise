@@ -122,7 +122,7 @@ class SearchViewController: UIViewController {
         let earthRadius: Double = 6371.0
         let angle = Double(arc4random_uniform(360) + 1) // General random angle 0-360
         print("Angle: " + String(angle))
-        let distance:Double = metres/1000.0
+        let distance:Double = metres/1000.0 // Need to generate random 0 to chosen metres
         let diam: Double = 180.0
         
         let angularDistance = (distance / earthRadius)
@@ -152,8 +152,8 @@ class SearchViewController: UIViewController {
     func sensitiveLocations(lat: Double, long: Double, noise: Double) -> Bool {
         let realm = try! Realm()
         
-        let filterResults = realm.objects(SensitiveLocations).filter("latitude > \(Int(lat))").filter("latitude < \(Int(lat)+1)")
-        
+        let filterResults = realm.objects(SensitiveLocations).filter("latitude >= \(Int(lat))").filter("latitude < \(Int(lat)+1)")
+
         let usersLocation = CLLocation(latitude: lat, longitude: long)
         for i in 0..<filterResults.count{
             print(filterResults[i]["latitude"])
@@ -161,15 +161,18 @@ class SearchViewController: UIViewController {
             let protectedLocation = CLLocation(latitude: filterResults[i]["latitude"]! as! Double, longitude: filterResults[i]["longitude"]! as! Double)
             
             let distance = (usersLocation.distanceFromLocation(protectedLocation) / 1000) * 0.62137 // In miles
+
             if distance < 0.3 && noise < 100 {
                 self.noiseLevel = noiseLevel + 100
                 print("Noise changed to: \(self.noiseLevel)")
                 return true
             }
         }
-        self.noiseLevel = Double(noiseValue.text!)!
+        
+        self.noiseLevel = Double(String(noiseValue.text!.characters.dropLast()))!
         print("Noise kept/reset as: \(self.noiseLevel)")
         return false
+            
     }
     
     
