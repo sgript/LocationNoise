@@ -3,9 +3,37 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Review Attack View Controller-->
+        <scene sceneID="mXd-75-WLw">
+            <objects>
+                <viewController id="lWn-O8-XOr" customClass="ReviewAttackViewController" customModule="LocationPrivacy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qnl-6s-AaX"/>
+                        <viewControllerLayoutGuide type="bottom" id="6WE-wK-jyN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UnW-Bg-s8K">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DQt-qi-r12" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="DQt-qi-r12" id="vej-EF-SVR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jU0-jR-Lgu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3155" y="-220"/>
+        </scene>
         <!--Place search-->
         <scene sceneID="aue-X7-5po">
             <objects>
@@ -216,6 +244,96 @@
             </objects>
             <point key="canvasLocation" x="4591" y="435"/>
         </scene>
+        <!--Attacks-->
+        <scene sceneID="asf-Ll-9Ag">
+            <objects>
+                <navigationController id="gZJ-1U-I5P" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Attacks" image="signal" id="FSz-wO-zkW"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="h3U-rv-fAC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="uA6-Tp-Ofa" kind="relationship" relationship="rootViewController" id="dHo-rv-sCj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZdI-bx-HcW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1738" y="-220"/>
+        </scene>
+        <!--Attack View Controller-->
+        <scene sceneID="cjD-cM-mUr">
+            <objects>
+                <viewController id="uA6-Tp-Ofa" customClass="AttackViewController" customModule="LocationPrivacy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BZ7-P2-FEM"/>
+                        <viewControllerLayoutGuide type="bottom" id="nXF-Vw-SUv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1CZ-e3-jYN">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="8lr-Im-3mB">
+                                <rect key="frame" x="241" y="313" width="118" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="114" id="4ft-u8-Eyv"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="slidedSlider:" destination="uA6-Tp-Ofa" eventType="valueChanged" id="214-TN-1kv"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of artificial locations:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DJn-o8-ukP">
+                                <rect key="frame" x="199" y="284" width="202" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="FpL-5u-c9x"/>
+                                    <constraint firstAttribute="width" constant="202" id="JVw-eV-3IW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hjL-xI-Mfj">
+                                <rect key="frame" x="409" y="284" width="37" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="37" id="dWp-6V-UIs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iWC-Tt-EEA">
+                                <rect key="frame" x="257" y="351" width="86" height="30"/>
+                                <state key="normal" title="Begin attack">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="beginAttack:" destination="uA6-Tp-Ofa" eventType="touchUpInside" id="JBL-aI-fKP"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="iWC-Tt-EEA" firstAttribute="top" secondItem="8lr-Im-3mB" secondAttribute="bottom" constant="8" symbolic="YES" id="0Dc-g8-pUm"/>
+                            <constraint firstItem="DJn-o8-ukP" firstAttribute="top" secondItem="BZ7-P2-FEM" secondAttribute="bottom" constant="220" id="97A-Pj-3Yy"/>
+                            <constraint firstItem="DJn-o8-ukP" firstAttribute="centerX" secondItem="1CZ-e3-jYN" secondAttribute="centerX" id="D3W-HZ-ePU"/>
+                            <constraint firstItem="hjL-xI-Mfj" firstAttribute="firstBaseline" secondItem="DJn-o8-ukP" secondAttribute="firstBaseline" id="KP6-KR-XYg"/>
+                            <constraint firstItem="8lr-Im-3mB" firstAttribute="centerX" secondItem="DJn-o8-ukP" secondAttribute="centerX" id="Txr-bz-LRW"/>
+                            <constraint firstItem="iWC-Tt-EEA" firstAttribute="centerX" secondItem="8lr-Im-3mB" secondAttribute="centerX" id="ZT9-uR-Irf"/>
+                            <constraint firstItem="hjL-xI-Mfj" firstAttribute="baseline" secondItem="DJn-o8-ukP" secondAttribute="baseline" id="e5Z-IV-lxM"/>
+                            <constraint firstItem="hjL-xI-Mfj" firstAttribute="leading" secondItem="DJn-o8-ukP" secondAttribute="trailing" constant="8" symbolic="YES" id="fHB-1L-VYo"/>
+                            <constraint firstItem="8lr-Im-3mB" firstAttribute="top" secondItem="DJn-o8-ukP" secondAttribute="bottom" constant="8" symbolic="YES" id="xxd-Io-Hlm"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="zCz-n4-rLp"/>
+                    <connections>
+                        <outlet property="updateNumOfArtificialLocations" destination="hjL-xI-Mfj" id="W71-W2-RHT"/>
+                        <segue destination="lWn-O8-XOr" kind="show" identifier="reviewAttack" id="Kr9-8F-Xwt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l3R-FH-zBO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2474" y="-220"/>
+        </scene>
         <!--Privacy-->
         <scene sceneID="UaR-Hn-rN2">
             <objects>
@@ -249,6 +367,7 @@
                     <connections>
                         <segue destination="ONU-1O-cKp" kind="relationship" relationship="viewControllers" id="zYN-cO-laF"/>
                         <segue destination="h70-gH-UcK" kind="relationship" relationship="viewControllers" id="Bhq-jq-neL"/>
+                        <segue destination="gZJ-1U-I5P" kind="relationship" relationship="viewControllers" id="Ai9-5W-Nnt"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XM2-aE-RDg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -331,7 +450,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PNq-V9-UBn" id="hQM-0y-Pm0">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWq-Fj-fbB">
@@ -384,6 +503,7 @@
         <image name="lock" width="25" height="25"/>
         <image name="lock-selected" width="25" height="25"/>
         <image name="settings-selected" width="25" height="25"/>
+        <image name="signal" width="25" height="25"/>
         <image name="warning" width="25" height="25"/>
         <image name="warning-selected" width="25" height="25"/>
     </resources>
