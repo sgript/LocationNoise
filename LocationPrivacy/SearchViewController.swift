@@ -27,7 +27,7 @@ class SearchViewController: UIViewController {
     internal var artiflatitude: Double = 0.0
     var mapRadius = 1000;
     var json: JSON = []
-    var noiseLevel: Double = 0.0
+    var noiseLevel = UInt32()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +52,7 @@ class SearchViewController: UIViewController {
     @IBAction func noiseAction(sender: UISlider) {
         let currentVal = Int(sender.value)
         noiseValue.text = "\(currentVal)m"
-        noiseLevel = Double(currentVal)
+        noiseLevel = UInt32(currentVal)             // Remember to do 0 between chosen metres here.
     }
     
     @IBAction func searchLocation(sender: AnyObject) {
@@ -116,13 +116,14 @@ class SearchViewController: UIViewController {
         return [Double(0)]
     }
     
-    func addNoise(metres: Double) -> [Double] {
+    func addNoise(metres: UInt32) -> [Double] {
         var artifLong: Double
         var artifLat: Double
         let earthRadius: Double = 6371.0
         let angle = Double(arc4random_uniform(360) + 1) // General random angle 0-360
         print("Angle: " + String(angle))
-        let distance:Double = metres/1000.0 // Need to generate random 0 to chosen metres
+        let distance = Double(arc4random_uniform(metres+1)) / 1000.0
+        print("Randomised metres from 0-\(metres): \(distance) converted to km")
         let diam: Double = 180.0
         
         let angularDistance = (distance / earthRadius)
@@ -149,7 +150,7 @@ class SearchViewController: UIViewController {
         return [artifLong, artifLat]
     }
     
-    func sensitiveLocations(lat: Double, long: Double, noise: Double) -> Bool {
+    func sensitiveLocations(lat: Double, long: Double, noise: UInt32) -> Bool {
         let realm = try! Realm()
         
         let filterResults = realm.objects(SensitiveLocations).filter("latitude >= \(Int(lat))").filter("latitude < \(Int(lat)+1)")
@@ -161,7 +162,7 @@ class SearchViewController: UIViewController {
             let protectedLocation = CLLocation(latitude: filterResults[i]["latitude"]! as! Double, longitude: filterResults[i]["longitude"]! as! Double)
             
             let distance = (usersLocation.distanceFromLocation(protectedLocation) / 1000) * 0.62137 // In miles
-
+            print(distance)
             if distance < 0.3 && noise < 100 {
                 self.noiseLevel = noiseLevel + 100
                 print("Noise changed to: \(self.noiseLevel)")
@@ -169,7 +170,7 @@ class SearchViewController: UIViewController {
             }
         }
         
-        self.noiseLevel = Double(String(noiseValue.text!.characters.dropLast()))!
+        self.noiseLevel = UInt32(String(noiseValue.text!.characters.dropLast()))!
         print("Noise kept/reset as: \(self.noiseLevel)")
         return false
             

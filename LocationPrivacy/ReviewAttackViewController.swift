@@ -14,11 +14,12 @@ import CoreLocation
 class ReviewAttackViewController: UIViewController {
     @IBOutlet weak var mapView: GMSMapView!
     let locationManager = CLLocationManager()
-    let metres = 100.0
+    let metres:UInt32 = 100
     let searchVC = SearchViewController()
     var pointsToPlot = Int()
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
@@ -88,7 +89,7 @@ extension ReviewAttackViewController: CLLocationManagerDelegate {
         marker.title = markTitle
         marker.map = mapView
         
-        let circle = GMSCircle(position: CLLocationCoordinate2DMake(CLLocationDegrees(longlat[1]), CLLocationDegrees(longlat[0])), radius: self.metres)
+        let circle = GMSCircle(position: CLLocationCoordinate2DMake(CLLocationDegrees(longlat[1]), CLLocationDegrees(longlat[0])), radius: Double(self.metres))
         circle.fillColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
         circle.strokeWidth = 2
         circle.strokeColor = UIColor.googleBlue()
