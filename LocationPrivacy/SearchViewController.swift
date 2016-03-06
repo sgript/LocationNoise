@@ -161,11 +161,14 @@ class SearchViewController: UIViewController {
             
             let protectedLocation = CLLocation(latitude: filterResults[i]["latitude"]! as! Double, longitude: filterResults[i]["longitude"]! as! Double)
             
-            let distance = (usersLocation.distanceFromLocation(protectedLocation) / 1000) * 0.62137 // In miles
-            print(distance)
-            if distance < 0.3 && noise < 100 {
-                self.noiseLevel = noiseLevel + 100
-                print("Noise changed to: \(self.noiseLevel)")
+            let distance = (usersLocation.distanceFromLocation(protectedLocation)) // In metres
+            
+            print("Distance from sensitive location is: \(distance)m")
+            if distance < (filterResults[i]["minimumMetres"] as! Double) { // Checking if distance < minimum from sensitive
+                let userMinimumNoise = UInt32(filterResults[i]["minimumMetres"] as! Int)
+                print("User's minimum distance from sensitive location is: \(userMinimumNoise)m")
+                self.noiseLevel = userMinimumNoise + noise
+                print("Noise changed to: \(self.noiseLevel)m")
                 return true
             }
         }

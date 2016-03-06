@@ -75,25 +75,51 @@ class SettingsViewController: UITableViewController, UISearchResultsUpdating {
         let lat = item["lat"]! as! Double
         let long = item["long"]! as! Double
         
-        let sensitive = SensitiveLocations()
+        //1. Create the alert controller.
+        let alert = UIAlertController(title: "Choose distance", message: "Enter minimum metres of noise to have from this location. Default: 100", preferredStyle: .Alert)
         
-        sensitive.id = place_id as! String
-        sensitive.formatted_address = address as! String
-        sensitive.latitude = lat
-        sensitive.longitude = long
+        //2. Add the text field. You can configure it however you need.
+        alert.addTextFieldWithConfigurationHandler({ (textField) -> Void in
+            textField.text = "100"
+        })
         
-        let realm = try! Realm()
-        
-        let exists = realm.objectForPrimaryKey(SensitiveLocations.self, key: place_id)
-        print(exists)
-        if (exists == nil) {
-            try! realm.write {
-                realm.add(sensitive)
+        //3. Grab the value from the text field, and print it when the user clicks OK.
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
+            let textField = alert.textFields![0] as UITextField
+            textField.placeholder = "Minimum metres of noise to add."
+            print("Text field: \(textField.text)")
+            
+            let sensitive = SensitiveLocations()
+            
+            sensitive.id = place_id as! String
+            sensitive.formatted_address = address as! String
+            sensitive.latitude = lat
+            sensitive.longitude = long
+            
+            if(textField.text != nil){
+                sensitive.minimumMetres = Double(textField.text!)!
             }
-        }
-        else {
-            print("This already exists!") // Throw some popup notification
-        }
+            else {
+                sensitive.minimumMetres = 100
+            }
+            
+            let realm = try! Realm()
+            
+            let exists = realm.objectForPrimaryKey(SensitiveLocations.self, key: place_id)
+            if (exists == nil) {
+                print("Written sensitive location.")
+                try! realm.write {
+                    realm.add(sensitive)
+                    print("\(sensitive)")
+                }
+            }
+            else {
+                print("This already exists!") // Throw some popup notification
+            }
+        }))
+        
+        // 4. Present the alert.
+        self.presentViewController(alert, animated: true, completion: nil)
 
         print(lat,long)
     }
