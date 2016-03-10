@@ -1,11 +1,45 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ord-yN-JGm">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Mobile Attack View Controller-->
+        <scene sceneID="rGE-0D-Nym">
+            <objects>
+                <viewController id="dVN-AJ-Yws" customClass="MobileAttackViewController" customModule="LocationPrivacy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qwB-z1-iql"/>
+                        <viewControllerLayoutGuide type="bottom" id="uBF-HR-DCe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eU2-7R-idz">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Asy-6z-3n3" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Asy-6z-3n3" firstAttribute="top" secondItem="eU2-7R-idz" secondAttribute="top" id="4mZ-NA-c56"/>
+                            <constraint firstAttribute="trailing" secondItem="Asy-6z-3n3" secondAttribute="trailing" id="N2F-po-xtg"/>
+                            <constraint firstItem="Asy-6z-3n3" firstAttribute="leading" secondItem="eU2-7R-idz" secondAttribute="leading" id="XFC-rG-FBR"/>
+                            <constraint firstAttribute="bottom" secondItem="Asy-6z-3n3" secondAttribute="bottom" id="Xkl-M8-KAt"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="Asy-6z-3n3" id="PG3-v6-CRY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gvq-9X-8L5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3194" y="-918"/>
+        </scene>
         <!--Review Attack View Controller-->
         <scene sceneID="mXd-75-WLw">
             <objects>
@@ -18,12 +52,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DQt-qi-r12" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DQt-qi-r12" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="DQt-qi-r12" firstAttribute="leading" secondItem="UnW-Bg-s8K" secondAttribute="leading" id="6jG-2D-haN"/>
+                            <constraint firstAttribute="bottom" secondItem="DQt-qi-r12" secondAttribute="bottom" id="FLZ-xg-0y3"/>
+                            <constraint firstItem="DQt-qi-r12" firstAttribute="top" secondItem="UnW-Bg-s8K" secondAttribute="top" id="sOE-uJ-eNX"/>
+                            <constraint firstAttribute="trailing" secondItem="DQt-qi-r12" secondAttribute="trailing" id="vNH-Un-x85"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="mapView" destination="DQt-qi-r12" id="vej-EF-SVR"/>
@@ -272,20 +312,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="8lr-Im-3mB">
-                                <rect key="frame" x="241" y="313" width="118" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="114" id="4ft-u8-Eyv"/>
-                                </constraints>
-                                <connections>
-                                    <action selector="slidedSlider:" destination="uA6-Tp-Ofa" eventType="valueChanged" id="214-TN-1kv"/>
-                                </connections>
-                            </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of artificial locations:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DJn-o8-ukP">
                                 <rect key="frame" x="199" y="284" width="202" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="FpL-5u-c9x"/>
-                                    <constraint firstAttribute="width" constant="202" id="JVw-eV-3IW"/>
+                                    <constraint firstAttribute="width" constant="202" id="Kxr-i8-6cm"/>
+                                    <constraint firstAttribute="height" constant="21" id="LpS-1X-qbs"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -294,37 +325,69 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hjL-xI-Mfj">
                                 <rect key="frame" x="409" y="284" width="37" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="37" id="dWp-6V-UIs"/>
+                                    <constraint firstAttribute="width" constant="37" id="hYd-5a-XRz"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iWC-Tt-EEA">
-                                <rect key="frame" x="257" y="351" width="86" height="30"/>
-                                <state key="normal" title="Begin attack">
-                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
+                                <rect key="frame" x="224" y="351" width="152" height="30"/>
+                                <state key="normal" title="Begin immobile attack"/>
                                 <connections>
                                     <action selector="beginAttack:" destination="uA6-Tp-Ofa" eventType="touchUpInside" id="JBL-aI-fKP"/>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="elD-WW-xtK">
+                                <rect key="frame" x="230" y="102" width="141" height="29"/>
+                                <segments>
+                                    <segment title="Immobile"/>
+                                    <segment title="Mobile"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentChanged:" destination="uA6-Tp-Ofa" eventType="valueChanged" id="Iy4-ZE-bS6"/>
+                                </connections>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GoD-sw-HDO">
+                                <rect key="frame" x="232" y="351" width="136" height="30"/>
+                                <state key="normal" title="Begin mobile attack"/>
+                                <connections>
+                                    <action selector="beginMobileAttack:" destination="uA6-Tp-Ofa" eventType="touchUpInside" id="uyg-st-hdO"/>
+                                    <segue destination="dVN-AJ-Yws" kind="show" id="EEj-Ow-3Wp"/>
+                                </connections>
+                            </button>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="8lr-Im-3mB">
+                                <rect key="frame" x="241" y="313" width="118" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="114" id="mdH-lA-TdT"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="slidedSlider:" destination="uA6-Tp-Ofa" eventType="valueChanged" id="214-TN-1kv"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="iWC-Tt-EEA" firstAttribute="top" secondItem="8lr-Im-3mB" secondAttribute="bottom" constant="8" symbolic="YES" id="0Dc-g8-pUm"/>
-                            <constraint firstItem="DJn-o8-ukP" firstAttribute="top" secondItem="BZ7-P2-FEM" secondAttribute="bottom" constant="220" id="97A-Pj-3Yy"/>
-                            <constraint firstItem="DJn-o8-ukP" firstAttribute="centerX" secondItem="1CZ-e3-jYN" secondAttribute="centerX" id="D3W-HZ-ePU"/>
-                            <constraint firstItem="hjL-xI-Mfj" firstAttribute="firstBaseline" secondItem="DJn-o8-ukP" secondAttribute="firstBaseline" id="KP6-KR-XYg"/>
-                            <constraint firstItem="8lr-Im-3mB" firstAttribute="centerX" secondItem="DJn-o8-ukP" secondAttribute="centerX" id="Txr-bz-LRW"/>
-                            <constraint firstItem="iWC-Tt-EEA" firstAttribute="centerX" secondItem="8lr-Im-3mB" secondAttribute="centerX" id="ZT9-uR-Irf"/>
-                            <constraint firstItem="hjL-xI-Mfj" firstAttribute="baseline" secondItem="DJn-o8-ukP" secondAttribute="baseline" id="e5Z-IV-lxM"/>
-                            <constraint firstItem="hjL-xI-Mfj" firstAttribute="leading" secondItem="DJn-o8-ukP" secondAttribute="trailing" constant="8" symbolic="YES" id="fHB-1L-VYo"/>
-                            <constraint firstItem="8lr-Im-3mB" firstAttribute="top" secondItem="DJn-o8-ukP" secondAttribute="bottom" constant="8" symbolic="YES" id="xxd-Io-Hlm"/>
+                            <constraint firstItem="hjL-xI-Mfj" firstAttribute="leading" secondItem="DJn-o8-ukP" secondAttribute="trailing" constant="8" symbolic="YES" id="4Wt-vs-aAb"/>
+                            <constraint firstItem="GoD-sw-HDO" firstAttribute="baseline" secondItem="iWC-Tt-EEA" secondAttribute="baseline" id="Fhb-wk-Ydt"/>
+                            <constraint firstItem="DJn-o8-ukP" firstAttribute="centerX" secondItem="1CZ-e3-jYN" secondAttribute="centerX" id="IJs-GL-88w"/>
+                            <constraint firstItem="elD-WW-xtK" firstAttribute="top" secondItem="BZ7-P2-FEM" secondAttribute="bottom" constant="38" id="QmF-E3-hMV"/>
+                            <constraint firstItem="hjL-xI-Mfj" firstAttribute="firstBaseline" secondItem="DJn-o8-ukP" secondAttribute="firstBaseline" id="UNj-aB-qKx"/>
+                            <constraint firstItem="GoD-sw-HDO" firstAttribute="centerX" secondItem="iWC-Tt-EEA" secondAttribute="centerX" id="W5U-7A-I0e"/>
+                            <constraint firstItem="8lr-Im-3mB" firstAttribute="centerX" secondItem="DJn-o8-ukP" secondAttribute="centerX" id="X1U-Xf-Zd1"/>
+                            <constraint firstItem="8lr-Im-3mB" firstAttribute="centerX" secondItem="iWC-Tt-EEA" secondAttribute="centerX" id="ZDy-5p-B8V"/>
+                            <constraint firstItem="iWC-Tt-EEA" firstAttribute="top" secondItem="8lr-Im-3mB" secondAttribute="bottom" constant="8" symbolic="YES" id="Zlz-OJ-Rja"/>
+                            <constraint firstItem="hjL-xI-Mfj" firstAttribute="baseline" secondItem="DJn-o8-ukP" secondAttribute="baseline" id="bxs-86-Dc1"/>
+                            <constraint firstItem="8lr-Im-3mB" firstAttribute="top" secondItem="DJn-o8-ukP" secondAttribute="bottom" constant="8" symbolic="YES" id="d8E-yF-81p"/>
+                            <constraint firstItem="elD-WW-xtK" firstAttribute="centerX" secondItem="DJn-o8-ukP" secondAttribute="centerX" id="fIh-pT-uec"/>
+                            <constraint firstItem="DJn-o8-ukP" firstAttribute="top" secondItem="1CZ-e3-jYN" secondAttribute="top" constant="284" id="yOv-y4-FHe"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zCz-n4-rLp"/>
                     <connections>
+                        <outlet property="beginImmobileAttack" destination="iWC-Tt-EEA" id="T94-US-AvZ"/>
+                        <outlet property="beginMobileAttack" destination="GoD-sw-HDO" id="By4-Dm-J7M"/>
+                        <outlet property="segment" destination="elD-WW-xtK" id="W90-rK-SMJ"/>
                         <outlet property="updateNumOfArtificialLocations" destination="hjL-xI-Mfj" id="W71-W2-RHT"/>
                         <segue destination="lWn-O8-XOr" kind="show" identifier="reviewAttack" id="Kr9-8F-Xwt"/>
                     </connections>
@@ -426,6 +489,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Sensitive location" id="QQR-CF-76y">
                         <barButtonItem key="rightBarButtonItem" image="settings-selected" id="wiZ-jP-gS4">
+                            <color key="tintColor" red="0.96508087875902604" green="0.97220676599951739" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="zIT-eg-YlH" kind="show" id="Xdh-Qd-qkc"/>
                             </connections>
@@ -506,5 +570,5 @@
         <image name="warning" width="25" height="25"/>
         <image name="warning-selected" width="25" height="25"/>
     </resources>
-    <color key="tintColor" red="0.94481169870000004" green="0.94481169870000004" blue="0.94481169870000004" alpha="1" colorSpace="calibratedRGB"/>
+    <color key="tintColor" red="1" green="0.1803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
 </document>

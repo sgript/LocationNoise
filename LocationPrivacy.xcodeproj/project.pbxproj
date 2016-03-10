@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2903A1821C8D7E3A00BA55A9 /* MobileAttackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2903A1811C8D7E3A00BA55A9 /* MobileAttackViewController.swift */; };
 		292BDA451C7252A1000E2AD3 /* ManageSensitiveLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292BDA441C7252A1000E2AD3 /* ManageSensitiveLocations.swift */; };
 		292BDA471C725963000E2AD3 /* ManageLocationsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292BDA461C725963000E2AD3 /* ManageLocationsCell.swift */; };
 		292C79B31C6FF7F1006D7FC1 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 292C79B01C6FF7F1006D7FC1 /* RealmSwift.framework */; };
@@ -67,10 +68,11 @@
 
 /* Begin PBXFileReference section */
 		177865B8D650AD80D97F20ED /* Pods_LocationPrivacy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocationPrivacy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2903A1811C8D7E3A00BA55A9 /* MobileAttackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobileAttackViewController.swift; sourceTree = "<group>"; };
 		292BDA441C7252A1000E2AD3 /* ManageSensitiveLocations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageSensitiveLocations.swift; sourceTree = "<group>"; };
 		292BDA461C725963000E2AD3 /* ManageLocationsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageLocationsCell.swift; sourceTree = "<group>"; };
 		292C79B01C6FF7F1006D7FC1 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
-		292C79B51C6FF830006D7FC1 /* RLMSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMSupport.swift; sourceTree = "<group>"; };
+		292C79B51C6FF830006D7FC1 /* RLMSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RLMSupport.swift; path = LocationPrivacy/RLMSupport.swift; sourceTree = "<group>"; };
 		293EBD481C640DD50087A9A8 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		294E6ABC1C81D10E00B4408D /* AttackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttackViewController.swift; sourceTree = "<group>"; };
 		294E6ABE1C81F3D900B4408D /* ReviewAttackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewAttackViewController.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 		293EBD411C640DC70087A9A8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				292C79B51C6FF830006D7FC1 /* RLMSupport.swift */,
 				293EBD481C640DD50087A9A8 /* Array.swift */,
 				295122BA1C669F1000C896F0 /* Variables.swift */,
 				29FDA8691C6844C9006D10C1 /* UIColor.swift */,
@@ -142,10 +145,39 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		294B7A981C8CB55B00D03BF0 /* Search locations */ = {
+			isa = PBXGroup;
+			children = (
+				29E094401C617C6D00B50F53 /* SearchViewController.swift */,
+				29E094501C62799300B50F53 /* PlacesViewController.swift */,
+				295122B21C66993900C896F0 /* DetailsViewController.swift */,
+			);
+			name = "Search locations";
+			sourceTree = "<group>";
+		};
+		294B7A991C8CB69500D03BF0 /* Sensitive locations */ = {
+			isa = PBXGroup;
+			children = (
+				299635A21C6FBAC100669066 /* SensitiveLocations.swift */,
+				29DD65351C6D6516002C48D5 /* SettingsViewController.swift */,
+				292BDA441C7252A1000E2AD3 /* ManageSensitiveLocations.swift */,
+			);
+			name = "Sensitive locations";
+			sourceTree = "<group>";
+		};
+		294B7A9A1C8CB6E300D03BF0 /* Attacks */ = {
+			isa = PBXGroup;
+			children = (
+				294E6ABC1C81D10E00B4408D /* AttackViewController.swift */,
+				294E6ABE1C81F3D900B4408D /* ReviewAttackViewController.swift */,
+				2903A1811C8D7E3A00BA55A9 /* MobileAttackViewController.swift */,
+			);
+			name = Attacks;
+			sourceTree = "<group>";
+		};
 		299F17BE1C5AB3230018A5CA = {
 			isa = PBXGroup;
 			children = (
-				292C79B01C6FF7F1006D7FC1 /* RealmSwift.framework */,
 				299F17C91C5AB3230018A5CA /* LocationPrivacy */,
 				299F17DE1C5AB3240018A5CA /* LocationPrivacyTests */,
 				299F17E91C5AB3240018A5CA /* LocationPrivacyUITests */,
@@ -168,21 +200,15 @@
 		299F17C91C5AB3230018A5CA /* LocationPrivacy */ = {
 			isa = PBXGroup;
 			children = (
-				293EBD411C640DC70087A9A8 /* Extensions */,
-				29E094401C617C6D00B50F53 /* SearchViewController.swift */,
-				29E094501C62799300B50F53 /* PlacesViewController.swift */,
-				295122B21C66993900C896F0 /* DetailsViewController.swift */,
 				299F17CA1C5AB3230018A5CA /* AppDelegate.swift */,
-				29DD65351C6D6516002C48D5 /* SettingsViewController.swift */,
-				292C79B51C6FF830006D7FC1 /* RLMSupport.swift */,
+				293EBD411C640DC70087A9A8 /* Extensions */,
+				294B7A981C8CB55B00D03BF0 /* Search locations */,
+				294B7A991C8CB69500D03BF0 /* Sensitive locations */,
+				294B7A9A1C8CB6E300D03BF0 /* Attacks */,
 				29E0944D1C62711300B50F53 /* Main.storyboard */,
 				299F17D31C5AB3230018A5CA /* LaunchScreen.storyboard */,
 				299F17D61C5AB3230018A5CA /* Info.plist */,
 				299F17D11C5AB3230018A5CA /* Assets.xcassets */,
-				299635A21C6FBAC100669066 /* SensitiveLocations.swift */,
-				292BDA441C7252A1000E2AD3 /* ManageSensitiveLocations.swift */,
-				294E6ABC1C81D10E00B4408D /* AttackViewController.swift */,
-				294E6ABE1C81F3D900B4408D /* ReviewAttackViewController.swift */,
 			);
 			path = LocationPrivacy;
 			sourceTree = "<group>";
@@ -208,6 +234,7 @@
 		74DFE64FA44CAB9E9BC82718 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				292C79B01C6FF7F1006D7FC1 /* RealmSwift.framework */,
 				29BA92FF1C778C9B00A83EA3 /* CoreBluetooth.framework */,
 				299F17FC1C5AFFC00018A5CA /* CoreLocation.framework */,
 				177865B8D650AD80D97F20ED /* Pods_LocationPrivacy.framework */,
@@ -297,6 +324,11 @@
 					299F17C61C5AB3230018A5CA = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = NWFK758PSC;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					299F17DA1C5AB3240018A5CA = {
 						CreatedOnToolsVersion = 7.2;
@@ -412,6 +444,7 @@
 				292C79B61C6FF830006D7FC1 /* RLMSupport.swift in Sources */,
 				29FDA86A1C6844C9006D10C1 /* UIColor.swift in Sources */,
 				293EBD491C640DD50087A9A8 /* Array.swift in Sources */,
+				2903A1821C8D7E3A00BA55A9 /* MobileAttackViewController.swift in Sources */,
 				294E6ABF1C81F3D900B4408D /* ReviewAttackViewController.swift in Sources */,
 				292BDA451C7252A1000E2AD3 /* ManageSensitiveLocations.swift in Sources */,
 				292BDA471C725963000E2AD3 /* ManageLocationsCell.swift in Sources */,
