@@ -57,26 +57,75 @@ class SearchViewController: UIViewController {
     
     @IBAction func searchLocation(sender: AnyObject) {
         if (!typeOfLocation.text!.isEmpty){
-            var longlat: [Double] = getCurrentLocation()
-            (longitude, latitude) = (longlat[0], longlat[1])
+            verifiedNoise()
             
-            sensitiveLocations(latitude, long: longitude, noise: noiseLevel)
-            var noise: [Double] = addNoise(noiseLevel)
-            (artiflongitude, artiflatitude) = (noise[0], noise[1])
-            (artificial.longitude, artificial.latitude) = (noise[0], noise[1])
+        }
+        else {
+            let error = UIAlertController(title: "Please enter data", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+            error.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
             
-            let parameters : [String : AnyObject] = [
-                "location" : "\(artiflatitude),\(artiflongitude)",
-                "radius" : mapRadius,
-                "types" : typeOfLocation.text!,
-                "sensor" : "true",
-                "key" : "AIzaSyDhx9NTuC7DBbVGKhrEuMLD5GJESIgzZjw"
+            self.presentViewController(error, animated: true, completion: nil)
+        }
+    }
+    
+    func verifiedNoise(){
+        var longlat: [Double] = getCurrentLocation()
+        (longitude, latitude) = (longlat[0], longlat[1])
+        
+        sensitiveLocations(latitude, long: longitude, noise: noiseLevel)
+        var noise: [Double] = addNoise(noiseLevel)
+        (artiflongitude, artiflatitude) = (noise[0], noise[1])
+        (artificial.longitude, artificial.latitude) = (noise[0], noise[1])
+        
+        Alamofire.request(.GET, "https://maps.googleapis.com/maps/api/geocode/json?latlng=\(artiflatitude),\(artiflongitude)")
+            .validate()
+            .responseJSON { response in
+                switch response.result {
+                    
+                case .Success(let data):
+                    
+                    if(JSON(data)["status"] == "OK" ){
+                        var all_types = [String]()
+                        let json = JSON(data)["results"]
+                        for(var i = 0; i < json.count; i++){
+                            var array = [String]()
+                            array = (Array(arrayLiteral: json[i]["types"].arrayValue)[0]).map { $0.string! }
+                                all_types.appendContentsOf(array)
+                        }
+                        
+                        if all_types.contains("natural_feature"){
+                            print("Natural feature detected, re-trying noise.")
+                            self.verifiedNoise()
+                        }
+                        else{
+                            self.nearbyPlaces(self.artiflatitude, long: self.artiflongitude)
+                        }
+                    }
+                    else {
+                        self.verifiedNoise()
+                    }
+                    
+                case .Failure(let error):
+                    print("Request failed with error: \(error)")
+                }
 
-            ]
-
-            Alamofire.request(.GET, "https:maps.googleapis.com/maps/api/place/nearbysearch/json?", parameters: parameters)
-                .validate()
-                .responseJSON { response in
+        }
+    }
+    
+    
+    func nearbyPlaces(lat: Double, long: Double){
+        let parameters : [String : AnyObject] = [
+            "location" : "\(lat),\(long)",
+            "radius" : mapRadius,
+            "types" : typeOfLocation.text!,
+            "sensor" : "true",
+            "key" : "AIzaSyDhx9NTuC7DBbVGKhrEuMLD5GJESIgzZjw"
+            
+        ]
+        
+        Alamofire.request(.GET, "https:maps.googleapis.com/maps/api/place/nearbysearch/json?", parameters: parameters)
+            .validate()
+            .responseJSON { response in
                 switch response.result {
                     
                 case .Success(let data):
@@ -89,17 +138,9 @@ class SearchViewController: UIViewController {
                 case .Failure(let error):
                     print("Request failed with error: \(error)")
                 }
-            }
         }
-        else {
-            let error = UIAlertController(title: "Please enter data", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
-            error.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-            
-            self.presentViewController(error, animated: true, completion: nil)
-        }
+
     }
-    
-    
     
     func getCurrentLocation() -> [Double] {
         var currentLocation: CLLocation!
