@@ -11,7 +11,7 @@ import  SwiftyJSON
 import Alamofire
 import CoreLocation
 
-class PlacesViewController: UIViewController {
+class PlacesViewController: UIViewController {    
     var delegate: PlacesViewController? = nil
     var json: JSON = []
     var chosenType: [String] = []
@@ -96,27 +96,6 @@ class PlacesViewController: UIViewController {
         let distance = (currentLocation.distanceFromLocation(placelocation) / 1000) * 0.62137 // In miles
         
         return distance
-    }
-    
-    func partition(inout dataList: [Double], low: Int, high: Int) -> Int { // https://gist.github.com/fjcaetano/b0c00a889dc2a17efad9#gistcomment-1338271
-        var pivotPos = low
-        let pivot = dataList[low]
-        
-        for var i = low + 1; i <= high; i++ {
-            if dataList[i] < pivot && ++pivotPos != i {
-                (dataList[pivotPos], dataList[i]) = (dataList[i], dataList[pivotPos])
-            }
-        }
-        (dataList[low], dataList[pivotPos]) = (dataList[pivotPos], dataList[low])
-        return pivotPos
-    }
-    
-    func quickSort(inout dataList: [Double], left: Int, right: Int) {
-        if left < right {
-            let pivotPos = partition(&dataList, low: left, high: right)
-            quickSort(&dataList, left: left, right: pivotPos - 1)
-            quickSort(&dataList, left: pivotPos + 1, right: right)
-        }
     }
 }
 
