@@ -19,6 +19,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var typeOfLocation: CustomTextField!
     @IBOutlet weak var noiseValue: UILabel!
     @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var discretizeSwitch: UISwitch!
 
     var locationManager:CLLocationManager!
     var longitude: Double = 0.0
@@ -28,6 +29,7 @@ class SearchViewController: UIViewController {
     var mapRadius = 1000;
     var json: JSON = []
     var noiseLevel = UInt32()
+    var discretizePoint = Bool()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +44,7 @@ class SearchViewController: UIViewController {
         typeOfLocation.layer.borderWidth = 1.0
         typeOfLocation.layer.borderColor = UIColor.seaShell().CGColor
         searchButton.setTitleColor(UIColor.appleRed(), forState: UIControlState.Normal)
+    
     }
     
     override func didReceiveMemoryWarning() {
@@ -49,13 +52,30 @@ class SearchViewController: UIViewController {
         print("SearchVC")
     }
     
+    @IBAction func switched(sender: AnyObject) {
+        if discretizeSwitch.on {
+           discretizePoint = true
+        } else {
+            discretizePoint = false
+        }
+    
+    }
+    
     @IBAction func noiseAction(sender: UISlider) {
         let currentVal = Int(sender.value)
         noiseValue.text = "\(currentVal)m"
         noiseLevel = UInt32(currentVal)             // Remember to do 0 between chosen metres here.
+    
     }
     
+    
+
     @IBAction func searchLocation(sender: AnyObject) {
+        
+        if discretizeSwitch.on {
+            // Do method to add discretized point
+        }
+        
         if (!typeOfLocation.text!.isEmpty){
             verifiedNoise()
             
@@ -68,7 +88,9 @@ class SearchViewController: UIViewController {
         }
     }
     
-    func verifiedNoise(){
+    func verifiedNoise() {
+        switched(discretizeSwitch)
+        
         var longlat: [Double] = getCurrentLocation()
         (longitude, latitude) = (longlat[0], longlat[1])
         
@@ -98,7 +120,14 @@ class SearchViewController: UIViewController {
                             self.verifiedNoise()
                         }
                         else{
-                            self.nearbyPlaces(self.artiflatitude, long: self.artiflongitude)
+                            if !self.discretizePoint {
+                                self.nearbyPlaces(self.artiflatitude, long: self.artiflongitude, type: self.typeOfLocation.text!)
+                            }
+                            else {
+                                self.nearbyPlaces(self.artiflatitude, long: self.artiflongitude, type: "establishment")
+                            }
+                            // Else go to another function to grab establishments
+                            // After steps 2 and 3 on EN are done, feed into nearbyPlaces
                         }
                     }
                     else {
@@ -113,11 +142,11 @@ class SearchViewController: UIViewController {
     }
     
     
-    func nearbyPlaces(lat: Double, long: Double){
+    func nearbyPlaces(lat: Double, long: Double, type: String){
         let parameters : [String : AnyObject] = [
             "location" : "\(lat),\(long)",
             "radius" : mapRadius,
-            "types" : typeOfLocation.text!,
+            "types" : type,
             "sensor" : "true",
             "key" : "AIzaSyDhx9NTuC7DBbVGKhrEuMLD5GJESIgzZjw"
             
@@ -131,15 +160,52 @@ class SearchViewController: UIViewController {
                 case .Success(let data):
                     self.json = JSON(data)["results"]
                     
-                    dispatch_async(dispatch_get_main_queue()){
-                        self.performSegueWithIdentifier("showPlaceList", sender: nil) // NOTE TO SELF: Hooked up segue from searchViewController to PlacesViewController, rather than Search button
-                    }
                     
+                    dispatch_async(dispatch_get_main_queue()){
+                        if !self.discretizePoint {
+                            self.performSegueWithIdentifier("showPlaceList", sender: nil) // NOTE TO SELF: Hooked up segue from searchViewController to PlacesViewController, rather than Search button
+                        }
+                        else{
+                            self.discretizePointToBuilding(self.json)
+                        }
+                        
+                    }
+                        
                 case .Failure(let error):
                     print("Request failed with error: \(error)")
                 }
         }
 
+    }
+    
+    func discretizePointToBuilding(buildings: JSON){
+        var buildingGPS = [[Double]]()
+        let currentLocation = CLLocation(latitude: self.latitude, longitude: self.longitude)
+        var distance = [Double]()
+        
+        for(var i = 0; i < json.count; i++){
+            let lat = Double("\(json[i]["geometry"]["location"]["lat"])")
+            let long = Double("\(json[i]["geometry"]["location"]["lng"])")
+            
+            buildingGPS.append([lat!,long!])
+            
+            let buildingLocation = CLLocation(latitude: buildingGPS[i][0], longitude: buildingGPS[i][1])
+            distance.append(currentLocation.distanceFromLocation(buildingLocation)) // In miles
+        }
+        
+        let closestBuilding = buildingGPS[distance.indexOf(distance.minElement()!)!]
+        
+  
+        
+        let discretizedLat = closestBuilding[0]
+        let discretizedLng = closestBuilding[1]
+        
+        self.discretizePoint = false
+        
+        print("buildingGPS \(buildingGPS)")
+        print("distance \(distance)")
+        print("ESTABLISHMENT LAT/LONGS: \(discretizedLat),\(discretizedLng)")
+        nearbyPlaces(discretizedLat, long: discretizedLng, type: typeOfLocation.text!)
     }
     
     func getCurrentLocation() -> [Double] {

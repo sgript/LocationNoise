@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2903A1821C8D7E3A00BA55A9 /* MobileAttackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2903A1811C8D7E3A00BA55A9 /* MobileAttackViewController.swift */; };
+		2910125E1CA4CA1700947024 /* Quick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2910125D1CA4CA1700947024 /* Quick.swift */; };
 		292BDA451C7252A1000E2AD3 /* ManageSensitiveLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292BDA441C7252A1000E2AD3 /* ManageSensitiveLocations.swift */; };
 		292BDA471C725963000E2AD3 /* ManageLocationsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292BDA461C725963000E2AD3 /* ManageLocationsCell.swift */; };
 		292C79B31C6FF7F1006D7FC1 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 292C79B01C6FF7F1006D7FC1 /* RealmSwift.framework */; };
@@ -69,6 +70,7 @@
 /* Begin PBXFileReference section */
 		177865B8D650AD80D97F20ED /* Pods_LocationPrivacy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocationPrivacy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2903A1811C8D7E3A00BA55A9 /* MobileAttackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobileAttackViewController.swift; sourceTree = "<group>"; };
+		2910125D1CA4CA1700947024 /* Quick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quick.swift; sourceTree = "<group>"; };
 		292BDA441C7252A1000E2AD3 /* ManageSensitiveLocations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageSensitiveLocations.swift; sourceTree = "<group>"; };
 		292BDA461C725963000E2AD3 /* ManageLocationsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageLocationsCell.swift; sourceTree = "<group>"; };
 		292C79B01C6FF7F1006D7FC1 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				29FDA8691C6844C9006D10C1 /* UIColor.swift */,
 				29FDA86B1C685559006D10C1 /* CustomTextField.swift */,
 				292BDA461C725963000E2AD3 /* ManageLocationsCell.swift */,
+				2910125D1CA4CA1700947024 /* Quick.swift */,
 			);
 			name = Extensions;
 			path = ..;
@@ -444,6 +447,7 @@
 				292C79B61C6FF830006D7FC1 /* RLMSupport.swift in Sources */,
 				29FDA86A1C6844C9006D10C1 /* UIColor.swift in Sources */,
 				293EBD491C640DD50087A9A8 /* Array.swift in Sources */,
+				2910125E1CA4CA1700947024 /* Quick.swift in Sources */,
 				2903A1821C8D7E3A00BA55A9 /* MobileAttackViewController.swift in Sources */,
 				294E6ABF1C81F3D900B4408D /* ReviewAttackViewController.swift in Sources */,
 				292BDA451C7252A1000E2AD3 /* ManageSensitiveLocations.swift in Sources */,
