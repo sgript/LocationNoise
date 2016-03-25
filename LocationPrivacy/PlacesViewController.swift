@@ -71,7 +71,7 @@ class PlacesViewController: UIViewController {
         }
         
         var sortMiles = miles
-        quickSort(&sortMiles, left: 0, right: miles.count-1)
+        Quick().sort(&sortMiles, left: 0, right: miles.count-1)
         //print("miles sorted \(sortMiles)") // DEBUG
         
         // Reconstruct the array of dictionaries to be in sorted order using indexes.

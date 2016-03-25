@@ -22,11 +22,11 @@ public class Quick {
         return pivotPos
     }
     
-    func quickSort(inout dataList: [Double], left: Int, right: Int) {
+    func sort(inout dataList: [Double], left: Int, right: Int) {
         if left < right {
             let pivotPos = partition(&dataList, low: left, high: right)
-            quickSort(&dataList, left: left, right: pivotPos - 1)
-            quickSort(&dataList, left: pivotPos + 1, right: right)
+            sort(&dataList, left: left, right: pivotPos - 1)
+            sort(&dataList, left: pivotPos + 1, right: right)
         }
     }
 }
