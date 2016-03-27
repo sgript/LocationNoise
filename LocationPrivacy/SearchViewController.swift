@@ -20,7 +20,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var noiseValue: UILabel!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var discretizeSwitch: UISwitch!
-
+    
     var locationManager:CLLocationManager!
     var longitude: Double = 0.0
     var latitude: Double = 0.0
@@ -34,7 +34,7 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.typeOfLocation.delegate = self;
-
+        
         locationManager = CLLocationManager()
         locationManager.startUpdatingLocation()
         locationManager.requestAlwaysAuthorization()
@@ -44,32 +44,34 @@ class SearchViewController: UIViewController {
         typeOfLocation.layer.borderWidth = 1.0
         typeOfLocation.layer.borderColor = UIColor.seaShell().CGColor
         searchButton.setTitleColor(UIColor.appleRed(), forState: UIControlState.Normal)
-    
+        
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        print("SearchVC")
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(true)
+        self.noiseLevel = UInt32(noiseValue.text!)!
+        
+        print("-- VIEW DID DISAPPEAR -- ")
     }
     
     @IBAction func switched(sender: AnyObject) {
         if discretizeSwitch.on {
-           discretizePoint = true
+            discretizePoint = true
         } else {
             discretizePoint = false
         }
-    
+        
     }
     
     @IBAction func noiseAction(sender: UISlider) {
         let currentVal = Int(sender.value)
-        noiseValue.text = "\(currentVal)m"
+        noiseValue.text = "\(currentVal)"
         noiseLevel = UInt32(currentVal)             // Remember to do 0 between chosen metres here.
-    
+        
     }
     
     
-
+    
     @IBAction func searchLocation(sender: AnyObject) {
         
         if discretizeSwitch.on {
@@ -112,7 +114,7 @@ class SearchViewController: UIViewController {
                         for(var i = 0; i < json.count; i++){
                             var array = [String]()
                             array = (Array(arrayLiteral: json[i]["types"].arrayValue)[0]).map { $0.string! }
-                                all_types.appendContentsOf(array)
+                            all_types.appendContentsOf(array)
                         }
                         
                         if all_types.contains("natural_feature"){
@@ -137,7 +139,7 @@ class SearchViewController: UIViewController {
                 case .Failure(let error):
                     print("Request failed with error: \(error)")
                 }
-
+                
         }
     }
     
@@ -170,12 +172,12 @@ class SearchViewController: UIViewController {
                         }
                         
                     }
-                        
+                    
                 case .Failure(let error):
                     print("Request failed with error: \(error)")
                 }
         }
-
+        
     }
     
     func discretizePointToBuilding(buildings: JSON){
@@ -195,7 +197,7 @@ class SearchViewController: UIViewController {
         
         let closestBuilding = buildingGPS[distance.indexOf(distance.minElement()!)!]
         
-  
+        
         
         let discretizedLat = closestBuilding[0]
         let discretizedLng = closestBuilding[1]
@@ -213,8 +215,8 @@ class SearchViewController: UIViewController {
         
         if( CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedWhenInUse ||
             CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedAlways){
-                
-                currentLocation = locationManager.location
+            
+            currentLocation = locationManager.location
         }
         
         if (currentLocation != nil){
@@ -261,29 +263,33 @@ class SearchViewController: UIViewController {
         let realm = try! Realm()
         
         let filterResults = realm.objects(SensitiveLocations).filter("latitude >= \(Int(lat))").filter("latitude < \(Int(lat)+1)")
-
-        let usersLocation = CLLocation(latitude: lat, longitude: long)
-        for i in 0..<filterResults.count{
-            print(filterResults[i]["latitude"])
-            
-            let protectedLocation = CLLocation(latitude: filterResults[i]["latitude"]! as! Double, longitude: filterResults[i]["longitude"]! as! Double)
-            
-            let distance = (usersLocation.distanceFromLocation(protectedLocation)) // In metres
-            
-            print("Distance from sensitive location is: \(distance)m")
-            if distance < (filterResults[i]["minimumMetres"] as! Double) { // Checking if distance < minimum from sensitive
-                let userMinimumNoise = UInt32(filterResults[i]["minimumMetres"] as! Int)
-                print("User's minimum distance from sensitive location is: \(userMinimumNoise)m")
-                self.noiseLevel = userMinimumNoise + noise
-                print("Noise changed to: \(self.noiseLevel)m")
-                return true
+        if !filterResults.isEmpty {
+            let usersLocation = CLLocation(latitude: lat, longitude: long)
+            for i in 0..<filterResults.count{
+                print(filterResults[i]["latitude"])
+                
+                let protectedLocation = CLLocation(latitude: filterResults[i]["latitude"]! as! Double, longitude: filterResults[i]["longitude"]! as! Double)
+                
+                let distance = (usersLocation.distanceFromLocation(protectedLocation)) // In metres
+                
+                print("Distance from sensitive location is: \(distance)m")
+                if distance < (filterResults[i]["minimumMetres"] as! Double) { // Checking if distance < minimum from sensitive
+                    let userMinimumNoise = UInt32(filterResults[i]["minimumMetres"] as! Int)
+                    print("User's minimum distance from sensitive location is: \(userMinimumNoise)m")
+                    self.noiseLevel = userMinimumNoise + noise
+                    print("Noise changed to: \(self.noiseLevel)m")
+                    return true
+                }
             }
         }
         
-        self.noiseLevel = UInt32(String(noiseValue.text!.characters.dropLast()))!
+        //self.noiseLevel = UInt32(String(noiseValue.text!.characters.dropLast()))!
+        
+        self.noiseLevel = UInt32(noiseValue.text!)!
+        print("DEBUG2 - \(self.noiseLevel)")
         print("Noise kept/reset as: \(self.noiseLevel)")
         return false
-            
+        
     }
     
     

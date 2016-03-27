@@ -560,31 +560,31 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6KG-3x-cZc">
-                                            <rect key="frame" x="537" y="5" width="55" height="33"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="55" id="hlA-6N-vJv"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <state key="normal" title="Remove"/>
-                                            <connections>
-                                                <action selector="removeButtonClicked:" destination="zIT-eg-YlH" eventType="touchUpInside" id="bcn-Oi-We4"/>
-                                            </connections>
-                                        </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWq-Fj-fbB">
-                                            <rect key="frame" x="8" y="11" width="534" height="21"/>
+                                            <rect key="frame" x="15" y="14" width="534" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6KG-3x-cZc">
+                                            <rect key="frame" x="557" y="8" width="35" height="33"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="35" id="zFx-AQ-WIv"/>
+                                            </constraints>
+                                            <state key="normal" image="cancel"/>
+                                            <connections>
+                                                <action selector="removeButtonClicked:" destination="zIT-eg-YlH" eventType="touchUpInside" id="bcn-Oi-We4"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="6KG-3x-cZc" firstAttribute="trailing" secondItem="hQM-0y-Pm0" secondAttribute="trailingMargin" id="1T8-Kn-0z3"/>
-                                        <constraint firstItem="6KG-3x-cZc" firstAttribute="top" secondItem="hQM-0y-Pm0" secondAttribute="topMargin" constant="-3" id="532-gK-nC8"/>
-                                        <constraint firstItem="iWq-Fj-fbB" firstAttribute="centerY" secondItem="6KG-3x-cZc" secondAttribute="centerY" id="PyC-4Z-08s"/>
-                                        <constraint firstItem="iWq-Fj-fbB" firstAttribute="leading" secondItem="hQM-0y-Pm0" secondAttribute="leadingMargin" id="f7O-Yp-f4K"/>
-                                        <constraint firstItem="iWq-Fj-fbB" firstAttribute="centerY" secondItem="hQM-0y-Pm0" secondAttribute="centerY" id="u7G-Pz-EID"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="iWq-Fj-fbB" secondAttribute="trailing" constant="50" id="zdj-RD-DqM"/>
+                                        <constraint firstItem="iWq-Fj-fbB" firstAttribute="leading" secondItem="hQM-0y-Pm0" secondAttribute="leadingMargin" constant="7" id="CuN-Da-peJ"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="6KG-3x-cZc" secondAttribute="bottom" constant="-5.5" id="DmN-BS-3fX"/>
+                                        <constraint firstItem="6KG-3x-cZc" firstAttribute="trailing" secondItem="hQM-0y-Pm0" secondAttribute="trailingMargin" id="IHX-ZI-b30"/>
+                                        <constraint firstItem="6KG-3x-cZc" firstAttribute="leading" secondItem="iWq-Fj-fbB" secondAttribute="trailing" constant="8" symbolic="YES" id="Sav-Uh-WHF"/>
+                                        <constraint firstItem="iWq-Fj-fbB" firstAttribute="top" secondItem="hQM-0y-Pm0" secondAttribute="topMargin" constant="6" id="a9V-4Q-c8s"/>
+                                        <constraint firstItem="iWq-Fj-fbB" firstAttribute="centerY" secondItem="6KG-3x-cZc" secondAttribute="centerY" id="qMh-FU-SHJ"/>
+                                        <constraint firstItem="6KG-3x-cZc" firstAttribute="top" secondItem="hQM-0y-Pm0" secondAttribute="topMargin" id="uGm-we-SXG"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -605,6 +605,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="cancel" width="32" height="32"/>
         <image name="iconapp" width="152" height="152"/>
         <image name="lock" width="25" height="25"/>
         <image name="lock-selected" width="25" height="25"/>

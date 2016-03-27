@@ -57,11 +57,9 @@ class ManageSensitiveLocations: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("ManageLocationsCell") as! ManageLocationsCell
         
         var item = userSensitiveLocations[indexPath.row]
-        let formatted_address = item["formatted_address"] as! String
-        let split_address = formatted_address.characters.split{$0 == ","}.map(String.init)
-
+        let formatted_address = item["formatted_address"]
         
-        cell.sensitiveLocationText!.text = "\(split_address[0]),\(split_address[1])."
+        cell.sensitiveLocationText!.text = formatted_address as? String
         
         cell.removeButton.tag = indexPath.row // Instead of sending indexPath row, send it the place_id!
         cell.removeButton.addTarget(self, action: "removeButtonClicked:", forControlEvents: UIControlEvents.TouchUpInside)
