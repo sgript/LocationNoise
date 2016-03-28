@@ -79,6 +79,7 @@ class SearchViewController: UIViewController {
         }
         
         if (!typeOfLocation.text!.isEmpty){
+            typeOfLocation.text = typeOfLocation.text!.stringByReplacingOccurrencesOfString(" ", withString: "")
             verifiedNoise()
             
         }
@@ -164,13 +165,13 @@ class SearchViewController: UIViewController {
                     
                     
                     dispatch_async(dispatch_get_main_queue()){
-                        if !self.discretizePoint {
-                            self.performSegueWithIdentifier("showPlaceList", sender: nil) // NOTE TO SELF: Hooked up segue from searchViewController to PlacesViewController, rather than Search button
-                        }
-                        else{
-                            self.discretizePointToBuilding(self.json)
-                        }
-                        
+                            if !self.discretizePoint {
+                                    self.performSegueWithIdentifier("showPlaceList", sender: nil) // NOTE TO SELF: Hooked up segue from searchViewController to PlacesViewController, rather than Search button
+                            }
+                            else{
+                                self.discretizePointToBuilding(self.json)
+                            }
+
                     }
                     
                 case .Failure(let error):
@@ -299,7 +300,7 @@ class SearchViewController: UIViewController {
             
             placesVC.json = self.json
             
-            let inputAsArray:Array = (self.typeOfLocation.text!.stringByReplacingOccurrencesOfString(" ", withString: "")).componentsSeparatedByString(",")
+            let inputAsArray:Array = (self.typeOfLocation.text!).componentsSeparatedByString(",")
             placesVC.chosenType = inputAsArray
             placesVC.actual = [latitude, longitude]
         }

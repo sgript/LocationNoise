@@ -12,30 +12,41 @@ import SwiftyJSON
 import RealmSwift
 
 class SettingsViewController: UITableViewController, UISearchResultsUpdating {
-    var resultSearchController = UISearchController()
+    var resultSearchController: UISearchController?
     var arrayObj =  [String]()
     var array: [[String : AnyObject]] = []
     
     override func viewDidLoad(){
         super.viewDidLoad()
-
         self.definesPresentationContext = true
 
         self.resultSearchController = UISearchController(searchResultsController: nil)
-        self.resultSearchController.searchResultsUpdater = self
-        self.resultSearchController.dimsBackgroundDuringPresentation = false
-        self.resultSearchController.searchBar.sizeToFit()
-        self.resultSearchController.searchBar.placeholder = "Search for locations to add as sensitive"
-        self.resultSearchController.searchBar.barTintColor = UIColor.appleRed()
+        self.resultSearchController!.searchResultsUpdater = self
+        self.resultSearchController!.dimsBackgroundDuringPresentation = false
+        self.resultSearchController!.searchBar.sizeToFit()
+        self.resultSearchController!.searchBar.placeholder = "Search for locations to add as sensitive"
+        self.resultSearchController!.searchBar.barTintColor = UIColor.appleRed()
         
-        self.tableView.tableHeaderView = self.resultSearchController.searchBar
+        self.tableView.tableHeaderView = self.resultSearchController!.searchBar
         
+        (UIBarButtonItem.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self])).tintColor = UIColor.whiteColor()
+        self.tableView.separatorStyle = .None
         self.tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning(){
         super.didReceiveMemoryWarning()
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        self.tableView.separatorStyle = .None
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(true)
+        self.resultSearchController!.removeFromParentViewController()
     }
     
     // MARK: - Table view data source
@@ -46,7 +57,7 @@ class SettingsViewController: UITableViewController, UISearchResultsUpdating {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        if (self.resultSearchController.active){
+        if (self.resultSearchController!.active){
             return self.arrayObj.count
         }
         else{
@@ -58,7 +69,7 @@ class SettingsViewController: UITableViewController, UISearchResultsUpdating {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell?
         
-        if (self.resultSearchController.active){
+        if (self.resultSearchController!.active){
             cell!.textLabel?.text = self.arrayObj[indexPath.row]
             
             return cell!
@@ -69,6 +80,8 @@ class SettingsViewController: UITableViewController, UISearchResultsUpdating {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+
         var item = self.array[indexPath.row]
         let place_id = item["place_id"]!
         let address = item["formatted_address"]!
@@ -84,7 +97,7 @@ class SettingsViewController: UITableViewController, UISearchResultsUpdating {
         })
         
         //3. Grab the value from the text field, and print it when the user clicks OK.
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
+        alert.addAction(UIAlertAction(title: "Save", style: .Default, handler: { (action) -> Void in
             let textField = alert.textFields![0] as UITextField
             textField.placeholder = "Minimum metres of noise to add."
             print("Text field: \(textField.text)")
@@ -105,17 +118,28 @@ class SettingsViewController: UITableViewController, UISearchResultsUpdating {
             
             let realm = try! Realm()
             
+            var alert: UIAlertController?
             let exists = realm.objectForPrimaryKey(SensitiveLocations.self, key: place_id)
             if (exists == nil) {
                 print("Written sensitive location.")
                 try! realm.write {
                     realm.add(sensitive)
                     print("\(sensitive)")
+                    alert = UIAlertController(title: "Saved", message: "Location is now protected.", preferredStyle: UIAlertControllerStyle.Alert)
                 }
             }
             else {
                 print("This already exists!") // Throw some popup notification
+                alert = UIAlertController(title: "Error", message: "Location already protected!", preferredStyle: UIAlertControllerStyle.Alert)
+
+                
             }
+            alert!.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert!, animated: true, completion: nil)
+            tableView.reloadData()
+            self.tableView.separatorStyle = .None
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .Destructive, handler: { (action) -> Void in
         }))
         
         // 4. Present the alert.
@@ -127,7 +151,8 @@ class SettingsViewController: UITableViewController, UISearchResultsUpdating {
     func updateSearchResultsForSearchController(searchController: UISearchController)
     {
         if((searchController.searchBar.text!.characters.count) > 4){
-        self.getPlaces(String(searchController.searchBar.text!))
+            self.getPlaces(String(searchController.searchBar.text!))
+            self.tableView.separatorStyle = .SingleLine
         }
     }
     

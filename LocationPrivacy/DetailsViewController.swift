@@ -17,7 +17,6 @@ import MapKit
 class DetailsViewController: UIViewController {
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var placeTitle: UILabel!
-    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var placeDesc: UITextView!
     
     let locationManager = CLLocationManager()

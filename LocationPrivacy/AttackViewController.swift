@@ -13,6 +13,7 @@ class AttackViewController: UIViewController {
     @IBOutlet weak var beginImmobileAttack: UIButton!
     @IBOutlet weak var segment: UISegmentedControl!
     @IBOutlet weak var beginMobileAttack: UIButton!
+    @IBOutlet weak var information: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,10 +51,12 @@ class AttackViewController: UIViewController {
             case 0:
                 beginMobileAttack.hidden = true
                 beginImmobileAttack.hidden = false
-
+                information.text = "Immobile attacks will work under the constraints of having a fixed real location and create an artificial point using the user's real location with noise from 0 up to a fixed number of metres (100 for this demo)."
+            
             case 1:
                 beginImmobileAttack.hidden = true
                 beginMobileAttack.hidden = false
+                information.text = ""
             
             default:
                 break

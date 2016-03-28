@@ -10,6 +10,8 @@ import UIKit
 import RealmSwift
 
 class ManageSensitiveLocations: UITableViewController {
+    @IBOutlet weak var empty: UILabel!
+    
     var sensitiveLocationName = [String]()
     var userSensitiveLocations = [[String: AnyObject]]()
     let realm = try! Realm()
@@ -17,6 +19,25 @@ class ManageSensitiveLocations: UITableViewController {
     override func viewDidLoad() {
         displaySensitiveLocations()
         //self.tableView.reloadData()
+
+    }
+    
+    override func viewWillAppear(animated: Bool){
+        super.viewWillAppear(true)
+        
+        empty.hidden = true
+        
+        if self.userSensitiveLocations.isEmpty{
+            empty.hidden = false
+            
+            self.tableView.separatorStyle = .None
+            
+            let wait_period = (Int64(NSEC_PER_SEC) * 3)
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, wait_period), dispatch_get_main_queue(), { () -> Void in
+                self.navigationController?.popViewControllerAnimated(true)
+            })
+            
+        }
     }
     
     @IBAction func removeButtonClicked(sender: AnyObject) {
@@ -57,9 +78,10 @@ class ManageSensitiveLocations: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("ManageLocationsCell") as! ManageLocationsCell
         
         var item = userSensitiveLocations[indexPath.row]
-        let formatted_address = item["formatted_address"]
-        
-        cell.sensitiveLocationText!.text = formatted_address as? String
+        let formatted_address = item["formatted_address"] as! String
+        let split_address = formatted_address.characters.split{$0 == ","}.map(String.init)
+
+        cell.sensitiveLocationText!.text = "\(split_address[0]),\(split_address[1])."
         
         cell.removeButton.tag = indexPath.row // Instead of sending indexPath row, send it the place_id!
         cell.removeButton.addTarget(self, action: "removeButtonClicked:", forControlEvents: UIControlEvents.TouchUpInside)

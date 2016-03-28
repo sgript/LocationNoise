@@ -11,7 +11,9 @@ import  SwiftyJSON
 import Alamofire
 import CoreLocation
 
-class PlacesViewController: UIViewController {    
+class PlacesViewController: UIViewController {
+    @IBOutlet weak var empty: UILabel!
+    
     var delegate: PlacesViewController? = nil
     var json: JSON = []
     var chosenType: [String] = []
@@ -24,6 +26,11 @@ class PlacesViewController: UIViewController {
         arrayifyJSON()
     }
     
+    override func viewWillAppear(animated: Bool){
+        super.viewWillAppear(true)
+        empty.hidden = true
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         print("PlacesVC")
@@ -33,7 +40,7 @@ class PlacesViewController: UIViewController {
 
         var miles:[Double] = []
         var array: [JSON] = []
-        for(var i = 0; i < self.json.count; i++){
+        for i in 0 ... self.json.count {
             array = Array(arrayLiteral: self.json[i]["types"].arrayValue)[0] // Reconsider refactoring for efficiency.
             let stringArray = array.map { $0.string!}
             
@@ -120,6 +127,19 @@ extension PlacesViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if arrayOfDictionary.isEmpty {
+            empty.hidden = false
+            tableView.separatorStyle = .None
+            let wait_period = (Int64(NSEC_PER_SEC) * 3)
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, wait_period), dispatch_get_main_queue(), { () -> Void in
+                self.navigationController?.popViewControllerAnimated(true)
+            })
+        }
+        else {
+            empty.hidden = true
+            tableView.separatorStyle = .SingleLine
+        }
+        
         return arrayOfDictionary.count
     }
     
@@ -151,10 +171,12 @@ extension PlacesViewController: UITableViewDataSource {
 
 extension PlacesViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
         performSegueWithIdentifier("giveDetails", sender: indexPath)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        
         if (segue.identifier == "giveDetails") {
             let detailsVC = segue.destinationViewController as! DetailsViewController
             
