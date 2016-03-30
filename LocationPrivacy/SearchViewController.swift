@@ -183,7 +183,7 @@ class SearchViewController: UIViewController {
     
     func discretizePointToBuilding(buildings: JSON){
         var buildingGPS = [[Double]]()
-        let currentLocation = CLLocation(latitude: self.latitude, longitude: self.longitude)
+        let currentArtificialLocation = CLLocation(latitude: artificial.latitude!, longitude: artificial.longitude!)
         var distance = [Double]()
         
         for(var i = 0; i < json.count; i++){
@@ -193,7 +193,7 @@ class SearchViewController: UIViewController {
             buildingGPS.append([lat!,long!])
             
             let buildingLocation = CLLocation(latitude: buildingGPS[i][0], longitude: buildingGPS[i][1])
-            distance.append(currentLocation.distanceFromLocation(buildingLocation)) // In miles
+            distance.append(currentArtificialLocation.distanceFromLocation(buildingLocation)) // In miles
         }
         
         let closestBuilding = buildingGPS[distance.indexOf(distance.minElement()!)!]
