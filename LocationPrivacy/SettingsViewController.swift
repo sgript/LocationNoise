@@ -143,8 +143,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UISearchR
                 let sensitive = SensitiveLocationsPassword()
                 
                 var alert: UIAlertController?
-                if(textField.text != nil){
-                    if(textField.text!.characters.count > 0){
+                if(textField.text != nil && textField.text!.characters.count > 0){
                         sensitive.password = textField.text!
                         
                         let realm = try! Realm()
@@ -155,11 +154,8 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UISearchR
                             print("\(sensitive)")
                             alert = UIAlertController(title: "Saved", message: "Your sensitive data is password protected.", preferredStyle: UIAlertControllerStyle.Alert)
                             self.passwordButton.setTitle("Change password", forState: .Normal)
+                            self.hasPassword = true
                         }
-                    }
-                    else {
-                        alert = UIAlertController(title: "Not saved!", message: "You did not enter anything!", preferredStyle: UIAlertControllerStyle.Alert)
-                    }
                 }
                 else {
                     alert = UIAlertController(title: "Not saved!", message: "You did not enter anything!", preferredStyle: UIAlertControllerStyle.Alert)
