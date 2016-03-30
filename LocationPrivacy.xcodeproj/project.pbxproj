@@ -26,6 +26,7 @@
 		299F17E01C5AB3240018A5CA /* LocationPrivacyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299F17DF1C5AB3240018A5CA /* LocationPrivacyTests.swift */; };
 		299F17EB1C5AB3240018A5CA /* LocationPrivacyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299F17EA1C5AB3240018A5CA /* LocationPrivacyUITests.swift */; };
 		299F17FD1C5AFFC00018A5CA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299F17FC1C5AFFC00018A5CA /* CoreLocation.framework */; };
+		29ADEF2F1CAB68B70087BD74 /* SensitiveLocationsPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ADEF2E1CAB68B70087BD74 /* SensitiveLocationsPassword.swift */; };
 		29BA93001C778C9B00A83EA3 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29BA92FF1C778C9B00A83EA3 /* CoreBluetooth.framework */; };
 		29DD65361C6D6516002C48D5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DD65351C6D6516002C48D5 /* SettingsViewController.swift */; };
 		29E094411C617C6D00B50F53 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E094401C617C6D00B50F53 /* SearchViewController.swift */; };
@@ -93,6 +94,7 @@
 		299F17EA1C5AB3240018A5CA /* LocationPrivacyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPrivacyUITests.swift; sourceTree = "<group>"; };
 		299F17EC1C5AB3240018A5CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		299F17FC1C5AFFC00018A5CA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		29ADEF2E1CAB68B70087BD74 /* SensitiveLocationsPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensitiveLocationsPassword.swift; sourceTree = "<group>"; };
 		29BA92FF1C778C9B00A83EA3 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		29DD65351C6D6516002C48D5 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		29E094401C617C6D00B50F53 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				299635A21C6FBAC100669066 /* SensitiveLocations.swift */,
+				29ADEF2E1CAB68B70087BD74 /* SensitiveLocationsPassword.swift */,
 				29DD65351C6D6516002C48D5 /* SettingsViewController.swift */,
 				292BDA441C7252A1000E2AD3 /* ManageSensitiveLocations.swift */,
 			);
@@ -443,6 +446,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29ADEF2F1CAB68B70087BD74 /* SensitiveLocationsPassword.swift in Sources */,
 				29E094511C62799300B50F53 /* PlacesViewController.swift in Sources */,
 				292C79B61C6FF830006D7FC1 /* RLMSupport.swift in Sources */,
 				29FDA86A1C6844C9006D10C1 /* UIColor.swift in Sources */,
