@@ -73,6 +73,57 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UISearchR
         self.resultSearchController!.removeFromParentViewController()
     }
     
+    @IBAction func goToSettings(sender: AnyObject) {
+        if hasPassword! {
+            let alert = UIAlertController(title: "Enter your password", message: "Enter your password to access your stored sensitive locations.", preferredStyle: .Alert)
+            
+            //2. Add the text field. You can configure it however you need.
+            alert.addTextFieldWithConfigurationHandler({ (textField) -> Void in
+                textField.secureTextEntry = true
+            })
+            
+            //3. Grab the value from the text field, and print it when the user clicks OK.
+            alert.addAction(UIAlertAction(title: "Done", style: .Default, handler: { (action) -> Void in
+                let textField = alert.textFields![0] as UITextField
+                textField.placeholder = "Enter a password."
+                print("Text field: \(textField.text)")
+                
+                var inneralert: UIAlertController?
+                if(textField.text != nil && textField.text!.characters.count > 0){
+                        
+                    let realm = try! Realm()
+                    let password = realm.objects(SensitiveLocationsPassword)
+                    
+                    if password[0]["password"]! as! String == textField.text! {
+                        self.performSegueWithIdentifier("goToManage", sender: self)
+                        print("debug1")
+                    }
+                    else {
+                        inneralert = UIAlertController(title: "Incorrect!", message: "Your current password does not match!", preferredStyle: UIAlertControllerStyle.Alert)
+                    }
+                    
+                }
+                else {
+                    inneralert = UIAlertController(title: "Error!", message: "You did not enter anything!", preferredStyle: UIAlertControllerStyle.Alert)
+                }
+                
+                if(inneralert != nil){
+                    inneralert!.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                    self.presentViewController(inneralert!, animated: true, completion: nil)
+                }
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .Destructive, handler: { (action) -> Void in
+            }))
+            
+            // 4. Present the alert.
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+        else {
+            self.performSegueWithIdentifier("goToManage", sender: self)
+        }
+    
+    }
+    
     @IBAction func setPassword(sender: AnyObject) {
         
         if !hasPassword! {
@@ -197,7 +248,6 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UISearchR
             }
             alert!.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert!, animated: true, completion: nil)
-
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .Destructive, handler: { (action) -> Void in
         }))
@@ -389,5 +439,12 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UISearchR
         }
     
         return array
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "goToManage") {
+            print("something")
+            let manageVC = segue.destinationViewController as! ManageSensitiveLocations
+        }
     }
 }

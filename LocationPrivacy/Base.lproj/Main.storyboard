@@ -528,7 +528,7 @@
                                         <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="36V-bJ-L8f" id="dsD-9X-GY7">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3ln-8I-jRX">
@@ -588,7 +588,7 @@
                         <barButtonItem key="rightBarButtonItem" image="settings-selected" id="uGW-zG-Vyf">
                             <color key="tintColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="zIT-eg-YlH" kind="show" id="ENs-bH-O1Z"/>
+                                <action selector="goToSettings:" destination="aTC-xe-Rmf" id="9js-WP-bWE"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -596,6 +596,7 @@
                         <outlet property="footer" destination="KAB-VU-1WX" id="rd0-7v-U16"/>
                         <outlet property="passwordButton" destination="kAm-nR-Ysh" id="4IZ-Zd-Z0k"/>
                         <outlet property="tableView" destination="49h-Z8-Mjf" id="5Rr-iN-XIA"/>
+                        <segue destination="zIT-eg-YlH" kind="show" identifier="goToManage" id="vKD-kz-Gf1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Snv-a0-Cxx" userLabel="First Responder" sceneMemberID="firstResponder"/>
