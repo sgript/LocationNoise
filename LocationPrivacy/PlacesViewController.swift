@@ -43,9 +43,7 @@ class PlacesViewController: UIViewController {
         for i in 0 ... self.json.count {
             array = Array(arrayLiteral: self.json[i]["types"].arrayValue)[0] // Reconsider refactoring for efficiency.
             let stringArray = array.map { $0.string!}
-            
-            print(json)
-            
+                        
             var previous = String()
             var current = String()
             for type in chosenType{

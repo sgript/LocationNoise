@@ -9,6 +9,7 @@
 import Foundation
 
 struct artificial {
+    static var generalised_building: String?
     static var longitude: Double?
     static var latitude: Double?
 }

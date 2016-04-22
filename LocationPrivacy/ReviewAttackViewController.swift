@@ -99,6 +99,8 @@ extension ReviewAttackViewController: CLLocationManagerDelegate {
         
         marker.title = markTitle
         marker.map = mapView
+        marker.icon = GMSMarker.markerImageWithColor(UIColor.appleRed())
+
         
         if artificial_point {
             marker.icon = UIImage(named: "noise")

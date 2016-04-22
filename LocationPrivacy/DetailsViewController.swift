@@ -51,11 +51,16 @@ extension DetailsViewController: CLLocationManagerDelegate {
         if( CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedWhenInUse ||
             CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedAlways){
             locationManager.startUpdatingLocation()
-            mapView.myLocationEnabled = true
-            mapView.settings.myLocationButton = true
-                
+            //mapView.myLocationEnabled = true
+            //mapView.settings.myLocationButton = true
+            
+            let marker = GMSMarker(position: CLLocationCoordinate2DMake(CLLocationDegrees(real.latitude!), CLLocationDegrees(real.longitude!)))
+            
             addLocationPoint()
             addArtificialPoint()
+            marker.title = "Your location"
+            marker.icon = GMSMarker.markerImageWithColor(UIColor.blackColor())
+            marker.map = mapView
         }
     }
     
@@ -70,6 +75,7 @@ extension DetailsViewController: CLLocationManagerDelegate {
         let marker = GMSMarker(position: CLLocationCoordinate2DMake(CLLocationDegrees(placeDetails!["lat"]! as! NSNumber), CLLocationDegrees(placeDetails!["long"]! as! NSNumber)))
 
         marker.title = "\(placeDetails!["name"]!)"
+        marker.icon = GMSMarker.markerImageWithColor(UIColor.googleBlue())
         marker.map = mapView
         print("Plotted interest point")
     }
@@ -78,7 +84,14 @@ extension DetailsViewController: CLLocationManagerDelegate {
         let marker = GMSMarker(position: CLLocationCoordinate2DMake(CLLocationDegrees(artificial.latitude!), CLLocationDegrees(artificial.longitude!)))
         
         marker.icon = UIImage(named: "noise")
-        marker.title = "Artificial location"
+        
+        if artificial.generalised_building != nil {
+            marker.title = "Discretized to \(artificial.generalised_building!)"
+        }
+        else {
+            marker.title = "Artificial location"
+        }
+        
         marker.map = mapView
         
         let circle = GMSCircle(position: CLLocationCoordinate2DMake(CLLocationDegrees(artificial.latitude!), CLLocationDegrees(artificial.longitude!)), radius: 1000)

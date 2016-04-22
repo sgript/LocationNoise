@@ -191,7 +191,7 @@ class SearchViewController: UIViewController {
         
         let closestBuilding = buildingGPS[distance.indexOf(distance.minElement()!)!]
         
-        
+        artificial.generalised_building = String(json[Int(distance.indexOf(distance.minElement()!)!)]["name"])
         
         let discretizedLat = closestBuilding[0]
         let discretizedLng = closestBuilding[1]
@@ -201,6 +201,7 @@ class SearchViewController: UIViewController {
         print("buildingGPS \(buildingGPS)")
         print("distance \(distance)")
         print("ESTABLISHMENT LAT/LONGS: \(discretizedLat),\(discretizedLng)")
+        (artificial.latitude, artificial.longitude) = (discretizedLat, discretizedLng)
         nearbyPlaces(discretizedLat, long: discretizedLng, type: typeOfLocation.text!)
     }
     
@@ -214,6 +215,7 @@ class SearchViewController: UIViewController {
         }
         
         if (currentLocation != nil){
+            (real.latitude, real.longitude) = (currentLocation.coordinate.latitude, currentLocation.coordinate.longitude)
             return [currentLocation.coordinate.longitude, currentLocation.coordinate.latitude]
         }
         return [Double(0)]
