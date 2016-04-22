@@ -37,18 +37,20 @@ class PlacesViewController: UIViewController {
     }
     
     func arrayifyJSON(){
-
+        
         var miles:[Double] = []
         var array: [JSON] = []
         for i in 0 ... self.json.count {
             array = Array(arrayLiteral: self.json[i]["types"].arrayValue)[0] // Reconsider refactoring for efficiency.
             let stringArray = array.map { $0.string!}
             
+            print(json)
+            
             var previous = String()
             var current = String()
             for type in chosenType{
                 if(stringArray.contains(type)){ // MAY REMOVE
-
+                    
                     let lat = Double("\(json[i]["geometry"]["location"]["lat"])")
                     let long = Double("\(json[i]["geometry"]["location"]["lng"])")
                     let distance = distanceFromEveryLocation(long!, loclat: lat!)

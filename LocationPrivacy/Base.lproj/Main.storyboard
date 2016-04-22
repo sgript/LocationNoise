@@ -116,6 +116,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cS3-6o-RL5">
                                 <rect key="frame" x="208" y="248" width="185" height="35"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="185" id="0gl-QR-0gS"/>
                                     <constraint firstAttribute="height" constant="35" id="aLY-aa-rC4"/>
                                 </constraints>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
