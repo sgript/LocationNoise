@@ -37,7 +37,6 @@ class SearchViewController: UIViewController {
         
         locationManager = CLLocationManager()
         locationManager.startUpdatingLocation()
-        locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
         
         typeOfLocation.delegate = self
@@ -51,7 +50,6 @@ class SearchViewController: UIViewController {
         super.viewDidDisappear(true)
         self.noiseLevel = UInt32(noiseValue.text!)!
         
-        print("-- VIEW DID DISAPPEAR -- ")
     }
     
     @IBAction func switched(sender: AnyObject) {
@@ -73,10 +71,6 @@ class SearchViewController: UIViewController {
     
     
     @IBAction func searchLocation(sender: AnyObject) {
-        
-        if discretizeSwitch.on {
-            // Do method to add discretized point
-        }
         
         if (!typeOfLocation.text!.isEmpty){
             typeOfLocation.text = typeOfLocation.text!.stringByReplacingOccurrencesOfString(" ", withString: "")
@@ -150,8 +144,7 @@ class SearchViewController: UIViewController {
             "location" : "\(lat),\(long)",
             "radius" : mapRadius,
             "types" : type,
-            "sensor" : "true",
-            "key" : "AIzaSyDhx9NTuC7DBbVGKhrEuMLD5GJESIgzZjw"
+            "key" : api.key
             
         ]
         
@@ -287,7 +280,6 @@ class SearchViewController: UIViewController {
         //self.noiseLevel = UInt32(String(noiseValue.text!.characters.dropLast()))!
         
         self.noiseLevel = UInt32(noiseValue.text!)!
-        print("DEBUG2 - \(self.noiseLevel)")
         print("Noise kept/reset as: \(self.noiseLevel)")
         return false
         

@@ -22,16 +22,10 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Because I want to know where you are</string>
 	<key>NSLocationUsageDescription</key>
-	<string>Because I want to know where you are</string>
+	<string>Your location is required in order to add noise to it before transmitting to a server.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Becase I need to know where you are</string>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>location</string>
-	</array>
+	<string>Your location is required in order to add noise to it before transmitting to a server.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

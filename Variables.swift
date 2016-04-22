@@ -17,3 +17,7 @@ struct real {
     static var longitude: Double?
     static var latitude: Double?
 }
+
+struct api {
+    static var key = "AIzaSyDhx9NTuC7DBbVGKhrEuMLD5GJESIgzZjw"
+}

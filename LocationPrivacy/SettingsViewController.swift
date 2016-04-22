@@ -392,11 +392,11 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UISearchR
         let parameters = [
             "address": place,
             "region" : countryCode,
-            "key" : "AIzaSyDhx9NTuC7DBbVGKhrEuMLD5GJESIgzZjw"
+            "key" : api.key
             
         ]
 
-        Alamofire.request(.GET, "https://maps.googleapis.com/maps/api/geocode/json?region=GB", parameters: parameters)
+        Alamofire.request(.GET, "https://maps.googleapis.com/maps/api/geocode/json?", parameters: parameters)
             .validate()
             .responseJSON { response in
                 switch response.result {
