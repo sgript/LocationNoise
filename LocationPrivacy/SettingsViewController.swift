@@ -88,18 +88,88 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UISearchR
                 textField.placeholder = "Enter a password."
                 print("Text field: \(textField.text)")
                 
+                let realm = try! Realm()
+                let password = realm.objects(SensitiveLocationsPassword)
+                let sensitive = SensitiveLocationsPassword()
+                let currentPassword = password[0]["password"]
+                
                 var inneralert: UIAlertController?
                 if(textField.text != nil && textField.text!.characters.count > 0){
-                        
-                    let realm = try! Realm()
-                    let password = realm.objects(SensitiveLocationsPassword)
                     
                     if password[0]["password"]! as! String == textField.text! {
+                        
+                        let attempts = password[0]["numberOfAttempts"] as! Int
+                        if (attempts > 0 && attempts < 5) {
+                            realm.beginWrite()
+                            realm.delete(password)
+                            try! realm.commitWrite()
+                            
+                            sensitive.password = currentPassword as! String
+                            sensitive.numberOfAttempts = 0
+                            
+                            try! realm.write {
+                                realm.add(sensitive)
+                            }
+                            
+                            inneralert = UIAlertController(title: "Notice!", message: "\nPrevious incorrect attempts reset.", preferredStyle: UIAlertControllerStyle.Alert)
+                        }
+                        
+                        if password[0]["dataDestroyed"] as! Bool == true {
+                            realm.beginWrite()
+                            realm.delete(password)
+                            try! realm.commitWrite()
+                            
+                            sensitive.password = currentPassword as! String
+                            sensitive.numberOfAttempts = 0
+                            sensitive.dataDestroyed = false
+                            
+                            try! realm.write {
+                                realm.add(sensitive)
+                            }
+                        
+                            inneralert = UIAlertController(title: "Notice!", message: "Your data was wiped due to break-ins.\nPrevious incorrect attempts reset.\nPlease re-add sensitive data, if any.", preferredStyle: UIAlertControllerStyle.Alert)
+                        }
+                        
                         self.performSegueWithIdentifier("goToManage", sender: self)
                         print("debug1")
                     }
                     else {
                         inneralert = UIAlertController(title: "Incorrect!", message: "Your current password does not match!", preferredStyle: UIAlertControllerStyle.Alert)
+                        let attempts = (password[0]["numberOfAttempts"]! as! Int) + 1
+                    
+                        
+                        if attempts >= 5 {
+                            
+                            let sensitive_locations = realm.objects(SensitiveLocations)
+                            
+                            realm.beginWrite()
+                            realm.delete(sensitive_locations)
+                            realm.delete(password)
+                            try! realm.commitWrite()
+
+                            sensitive.dataDestroyed = true
+                            
+                            inneralert = UIAlertController(title: "Incorrect!", message: "Your current password does not match!\n5 out of 5 attempts made. Data destroyed!", preferredStyle: UIAlertControllerStyle.Alert)
+                            
+                        }
+                        else {
+                            realm.beginWrite()
+                            realm.delete(password)
+                            try! realm.commitWrite()
+                            
+                            sensitive.dataDestroyed = false
+                            
+                            inneralert = UIAlertController(title: "Incorrect!", message: "Your current password does not match!\n\(attempts) out of 5 attempts made.", preferredStyle: UIAlertControllerStyle.Alert)
+                        }
+                        
+                        sensitive.numberOfAttempts = attempts
+                        sensitive.password = currentPassword as! String
+                        
+                        try! realm.write {
+                            realm.add(sensitive)
+                        }
+                    
+                    
                     }
                     
                 }
@@ -111,6 +181,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UISearchR
                     inneralert!.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
                     self.presentViewController(inneralert!, animated: true, completion: nil)
                 }
+                
             }))
             alert.addAction(UIAlertAction(title: "Cancel", style: .Destructive, handler: { (action) -> Void in
             }))
@@ -144,10 +215,18 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UISearchR
                 
                 var alert: UIAlertController?
                 if(textField.text != nil && textField.text!.characters.count > 0){
-                        sensitive.password = textField.text!
-                        
+                
                         let realm = try! Realm()
                     
+                        let password = realm.objects(SensitiveLocationsPassword)
+                    
+                        if !password.isEmpty {
+                            realm.beginWrite()
+                            realm.delete(sensitive)
+                            try! realm.commitWrite()
+                        }
+                    
+                        sensitive.password = textField.text!
                     
                         try! realm.write {
                             realm.add(sensitive)

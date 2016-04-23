@@ -46,6 +46,21 @@ class SearchViewController: UIViewController {
         
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        
+        let realm = try! Realm()
+
+        let password = realm.objects(SensitiveLocationsPassword)
+        if !password.isEmpty && password[0]["dataDestroyed"] as! Bool == true {
+            let alert = UIAlertController(title: "Your data was destroyed due to multiple break-in attempts.\nPlease change your password for security and re-add these.", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+
+        
+    }
+    
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(true)
         self.noiseLevel = UInt32(noiseValue.text!)!
