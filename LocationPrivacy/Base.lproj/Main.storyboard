@@ -218,7 +218,7 @@
         <!--Places near you-->
         <scene sceneID="fBt-wR-9c4">
             <objects>
-                <viewController id="CJp-fd-fmQ" customClass="PlacesViewController" customModule="LocationPrivacy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="CJp-fd-fmQ" customClass="PlacesViewController" customModule="LocationPrivacy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2AG-bM-fKJ"/>
                         <viewControllerLayoutGuide type="bottom" id="K28-1j-3iF"/>
@@ -231,7 +231,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <label key="tableFooterView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nothing found, check your parameters." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="T35-FU-yPM">
-                                    <rect key="frame" x="0.0" y="64" width="600" height="93"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="93"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

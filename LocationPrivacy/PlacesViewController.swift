@@ -23,6 +23,7 @@ class PlacesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("In places view controller")
+        self.automaticallyAdjustsScrollViewInsets = false
         arrayifyJSON()
     }
     

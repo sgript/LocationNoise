@@ -295,7 +295,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UISearchR
         let long = item["long"]! as! Double
         
         //1. Create the alert controller.
-        let alert = UIAlertController(title: "Choose distance", message: "Enter minimum metres of noise to have from this location. Default: 100", preferredStyle: .Alert)
+        var alert = UIAlertController(title: "Choose distance", message: "Enter minimum metres of noise to have from this location. Default: 100", preferredStyle: .Alert)
         
         //2. Add the text field. You can configure it however you need.
         alert.addTextFieldWithConfigurationHandler({ (textField) -> Void in
@@ -307,48 +307,57 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UISearchR
             let textField = alert.textFields![0] as UITextField
             textField.placeholder = "Minimum metres of noise to add."
             print("Text field: \(textField.text)")
-            
-            let sensitive = SensitiveLocations()
-            
-            sensitive.id = place_id as! String
-            sensitive.formatted_address = address as! String
-            sensitive.latitude = lat
-            sensitive.longitude = long
-            
-            
-            if(textField.text != nil){
-                if(textField.text!.characters.count != 0){
-                    sensitive.minimumMetres = Double(textField.text!)!
-                } else {
-                    sensitive.minimumMetres = 100
-                }
-            }
-            else {
-                sensitive.minimumMetres = 100
-            }
-            
-            let realm = try! Realm()
-            
-            var alert: UIAlertController?
-            let exists = realm.objectForPrimaryKey(SensitiveLocations.self, key: place_id)
-            if (exists == nil) {
-                print("Written sensitive location.")
-                try! realm.write {
-                    realm.add(sensitive)
-                    print("\(sensitive)")
-                    alert = UIAlertController(title: "Saved", message: "Location is now protected.", preferredStyle: UIAlertControllerStyle.Alert)
-                }
-            }
-            else {
-                print("This already exists!") // Throw some popup notification
-                alert = UIAlertController(title: "Error", message: "Location already protected!", preferredStyle: UIAlertControllerStyle.Alert)
-
                 
-            }
-            alert!.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-            self.presentViewController(alert!, animated: true, completion: nil)
-            tableView.reloadData()
-            self.tableView.separatorStyle = .None
+                var alert: UIAlertController?
+            
+                if(textField.text!.characters.count != 0){
+                    if let intCheck = Int(textField.text!){
+                        if (intCheck <= 1000 && intCheck >= 100){
+                        
+                            let sensitive = SensitiveLocations()
+                            
+                            sensitive.id = place_id as! String
+                            sensitive.formatted_address = address as! String
+                            sensitive.latitude = lat
+                            sensitive.longitude = long
+                            
+                            sensitive.minimumMetres = Double(textField.text!)!
+                            
+                            let realm = try! Realm()
+                            
+                        
+                            let exists = realm.objectForPrimaryKey(SensitiveLocations.self, key: place_id)
+                            if (exists == nil) {
+                                print("Written sensitive location.")
+                                try! realm.write {
+                                    realm.add(sensitive)
+                                    print("\(sensitive)")
+                                    alert = UIAlertController(title: "Saved", message: "Location is now protected.", preferredStyle: UIAlertControllerStyle.Alert)
+                                }
+                            }
+                            else {
+                                print("This already exists!") // Throw some popup notification
+                                alert = UIAlertController(title: "Error", message: "Location already protected!", preferredStyle: UIAlertControllerStyle.Alert)
+
+                                
+                            }
+                        }
+                        else {
+                           alert = UIAlertController(title: "Error", message: "Please enter values 100-1000 metres only.", preferredStyle: UIAlertControllerStyle.Alert)
+                        }
+                    }
+                    else {
+                        alert = UIAlertController(title: "Error", message: "Enter integers only!", preferredStyle: UIAlertControllerStyle.Alert)
+                    }
+                }
+                else {
+                    alert = UIAlertController(title: "Error", message: "You did not enter anything.", preferredStyle: UIAlertControllerStyle.Alert)
+                }
+                alert!.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert!, animated: true, completion: nil)
+                tableView.reloadData()
+                self.tableView.separatorStyle = .None
+            
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .Destructive, handler: { (action) -> Void in
         }))

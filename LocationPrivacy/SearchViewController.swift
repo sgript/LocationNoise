@@ -71,17 +71,28 @@ class SearchViewController: UIViewController {
     
     
     @IBAction func searchLocation(sender: AnyObject) {
+        var alert: UIAlertController?
+        
+        let decimals = NSCharacterSet.decimalDigitCharacterSet()
+        let intCheck = typeOfLocation.text!.rangeOfCharacterFromSet(decimals, options: NSStringCompareOptions(), range: nil)
         
         if (!typeOfLocation.text!.isEmpty){
-            typeOfLocation.text = typeOfLocation.text!.stringByReplacingOccurrencesOfString(" ", withString: "")
-            verifiedNoise()
+            if intCheck == nil {
+                typeOfLocation.text = typeOfLocation.text!.stringByReplacingOccurrencesOfString(" ", withString: "")
+                verifiedNoise()
+            }
+            else {
+                alert = UIAlertController(title: "Please enter words only\n(separated by commas).", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+            }
             
         }
         else {
-            let error = UIAlertController(title: "Please enter data", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
-            error.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-            
-            self.presentViewController(error, animated: true, completion: nil)
+            alert = UIAlertController(title: "Please enter data", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+        }
+        
+        if alert != nil{
+            alert!.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert!, animated: true, completion: nil)
         }
     }
     
