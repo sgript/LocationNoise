@@ -71,7 +71,8 @@ extension ReviewAttackViewController: CLLocationManagerDelegate {
                 print(longlat)
                 
                 var artificial_points = [[Double]]()
-                for(var i = 1; i <= self.pointsToPlot; i++){
+
+                for i in 1 ... self.pointsToPlot {
 
                     let title = "Artificial point \(i)"
                     let points = getArtificialPoint()
@@ -116,7 +117,7 @@ extension ReviewAttackViewController: CLLocationManagerDelegate {
     func findIntersection(artificial_locations: [[Double]]) -> [Double] {
         
         var cartesians = [[Double]]()
-        for(var i = 0; i < artificial_locations.count; i++){
+        for i in 0 ..< artificial_locations.count{
             let latitudeRadian = artificial_locations[i][1] * M_PI/180.0
             let longitudeRadian = artificial_locations[i][0] * M_PI/180.0
             

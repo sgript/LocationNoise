@@ -41,6 +41,7 @@ class PlacesViewController: UIViewController {
         
         var miles:[Double] = []
         var array: [JSON] = []
+        
         for i in 0 ... self.json.count {
             array = Array(arrayLiteral: self.json[i]["types"].arrayValue)[0] // Reconsider refactoring for efficiency.
             let stringArray = array.map { $0.string!}
@@ -54,14 +55,16 @@ class PlacesViewController: UIViewController {
                     let long = Double("\(json[i]["geometry"]["location"]["lng"])")
                     let distance = distanceFromEveryLocation(long!, loclat: lat!)
                     
+                    
                     current = "\(json[i]["name"])"
+                    let name = current.componentsSeparatedByString("(")
                     
                     if (arrayOfDictionary.count > 0){
                         previous = "\(arrayOfDictionary[arrayOfDictionary.count-1]["name"] as! String)"
                     }
                     
                     if(current != previous){
-                        arrayOfDictionary.append(["name": "\(json[i]["name"])", "rating" : "\(json[i]["rating"])", "icon" : "\(json[i]["icon"])", "vicinity" : "\(json[i]["vicinity"])", "type" : "\(type.capitalizedString)", "lat" : lat!, "long" : long!, "distance" : distance])
+                        arrayOfDictionary.append(["name": "\(name[0])", "rating" : "\(json[i]["rating"])", "icon" : "\(json[i]["icon"])", "vicinity" : "\(json[i]["vicinity"])", "type" : "\(type.capitalizedString)", "lat" : lat!, "long" : long!, "distance" : distance])
                         
                        miles.append(distance) // Only need to add miles once, we don't want to add miles again if the place exists already in below if statement as another type.
                    
@@ -71,7 +74,7 @@ class PlacesViewController: UIViewController {
                         let appendedType = "\(currentTypes), \(type)"
                         
                         arrayOfDictionary.removeAtIndex(arrayOfDictionary.count-1)
-                        arrayOfDictionary.append(["name": "\(json[i]["name"])", "rating" : "\(json[i]["rating"])", "icon" : "\(json[i]["icon"])", "vicinity" : "\(json[i]["vicinity"])", "type" : "\(appendedType)", "lat" : lat!, "long" : long!, "distance" : distance])
+                        arrayOfDictionary.append(["name": "\(name[0])", "rating" : "\(json[i]["rating"])", "icon" : "\(json[i]["icon"])", "vicinity" : "\(json[i]["vicinity"])", "type" : "\(appendedType)", "lat" : lat!, "long" : long!, "distance" : distance])
                                                 
                     }
                 }
@@ -80,7 +83,6 @@ class PlacesViewController: UIViewController {
         
         var sortMiles = miles
         Quick().sort(&sortMiles, left: 0, right: miles.count-1)
-        //print("miles sorted \(sortMiles)") // DEBUG
         
         // Reconstruct the array of dictionaries to be in sorted order using indexes.
         var copyArrayOfDictionary: [[String: AnyObject]] = []

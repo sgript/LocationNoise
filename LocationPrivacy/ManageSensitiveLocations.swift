@@ -84,7 +84,7 @@ class ManageSensitiveLocations: UITableViewController {
         cell.sensitiveLocationText!.text = "\(split_address[0]),\(split_address[1])."
         
         cell.removeButton.tag = indexPath.row // Instead of sending indexPath row, send it the place_id!
-        cell.removeButton.addTarget(self, action: "removeButtonClicked:", forControlEvents: UIControlEvents.TouchUpInside)
+        cell.removeButton.addTarget(self, action: #selector(ManageSensitiveLocations.removeButtonClicked(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         return cell
     }

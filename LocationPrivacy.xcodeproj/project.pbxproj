@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2903A1821C8D7E3A00BA55A9 /* MobileAttackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2903A1811C8D7E3A00BA55A9 /* MobileAttackViewController.swift */; };
 		2910125E1CA4CA1700947024 /* Quick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2910125D1CA4CA1700947024 /* Quick.swift */; };
 		292BDA451C7252A1000E2AD3 /* ManageSensitiveLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292BDA441C7252A1000E2AD3 /* ManageSensitiveLocations.swift */; };
 		292BDA471C725963000E2AD3 /* ManageLocationsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292BDA461C725963000E2AD3 /* ManageLocationsCell.swift */; };
@@ -70,7 +69,6 @@
 
 /* Begin PBXFileReference section */
 		177865B8D650AD80D97F20ED /* Pods_LocationPrivacy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocationPrivacy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2903A1811C8D7E3A00BA55A9 /* MobileAttackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobileAttackViewController.swift; sourceTree = "<group>"; };
 		2910125D1CA4CA1700947024 /* Quick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quick.swift; sourceTree = "<group>"; };
 		292BDA441C7252A1000E2AD3 /* ManageSensitiveLocations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageSensitiveLocations.swift; sourceTree = "<group>"; };
 		292BDA461C725963000E2AD3 /* ManageLocationsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageLocationsCell.swift; sourceTree = "<group>"; };
@@ -176,7 +174,6 @@
 			children = (
 				294E6ABC1C81D10E00B4408D /* AttackViewController.swift */,
 				294E6ABE1C81F3D900B4408D /* ReviewAttackViewController.swift */,
-				2903A1811C8D7E3A00BA55A9 /* MobileAttackViewController.swift */,
 			);
 			name = Attacks;
 			sourceTree = "<group>";
@@ -452,7 +449,6 @@
 				29FDA86A1C6844C9006D10C1 /* UIColor.swift in Sources */,
 				293EBD491C640DD50087A9A8 /* Array.swift in Sources */,
 				2910125E1CA4CA1700947024 /* Quick.swift in Sources */,
-				2903A1821C8D7E3A00BA55A9 /* MobileAttackViewController.swift in Sources */,
 				294E6ABF1C81F3D900B4408D /* ReviewAttackViewController.swift in Sources */,
 				292BDA451C7252A1000E2AD3 /* ManageSensitiveLocations.swift in Sources */,
 				292BDA471C725963000E2AD3 /* ManageLocationsCell.swift in Sources */,

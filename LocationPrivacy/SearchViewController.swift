@@ -132,7 +132,7 @@ class SearchViewController: UIViewController {
                     if(JSON(data)["status"] == "OK" ){
                         var all_types = [String]()
                         let json = JSON(data)["results"]
-                        for(var i = 0; i < json.count; i++){
+                        for i in 0 ..< json.count {
                             var array = [String]()
                             array = (Array(arrayLiteral: json[i]["types"].arrayValue)[0]).map { $0.string! }
                             all_types.appendContentsOf(array)
@@ -205,7 +205,7 @@ class SearchViewController: UIViewController {
         let currentArtificialLocation = CLLocation(latitude: artificial.latitude!, longitude: artificial.longitude!)
         var distance = [Double]()
         
-        for(var i = 0; i < json.count; i++){
+        for i in 0 ..< json.count {
             let lat = Double("\(json[i]["geometry"]["location"]["lat"])")
             let long = Double("\(json[i]["geometry"]["location"]["lng"])")
             
