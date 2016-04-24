@@ -13,9 +13,12 @@ public class Quick {
         var pivotPos = low
         let pivot = dataList[low]
         
-        for var i = low + 1; i <= high; i++ {
-            if dataList[i] < pivot && ++pivotPos != i {
-                (dataList[pivotPos], dataList[i]) = (dataList[i], dataList[pivotPos])
+        for i in (low+1)...high{
+            if dataList[i] < pivot {
+                pivotPos += 1
+                if pivotPos != i {
+                    (dataList[pivotPos], dataList[i]) = (dataList[i], dataList[pivotPos])
+                }
             }
         }
         (dataList[low], dataList[pivotPos]) = (dataList[pivotPos], dataList[low])
