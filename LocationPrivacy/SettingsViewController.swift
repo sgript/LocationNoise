@@ -260,7 +260,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UISearchR
     
     func verifyPassword(){
         //1. Create the alert controller.
-        let alert = UIAlertController(title: "Choose distance", message: "Enter minimum metres of noise to have from this location. Default: 100", preferredStyle: .Alert)
+        let alert = UIAlertController(title: "Password change", message: "Enter your current password and your desired new password.", preferredStyle: .Alert)
         
         //2. Add the text field. You can configure it however you need.
         alert.addTextFieldWithConfigurationHandler({ (textField) -> Void in
