@@ -228,7 +228,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jVI-xb-oz5">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <label key="tableFooterView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nothing found, check your parameters." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="T35-FU-yPM">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="93"/>
@@ -245,10 +245,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="jVI-xb-oz5" firstAttribute="top" secondItem="pda-w6-FOg" secondAttribute="top" id="236-IJ-465"/>
-                            <constraint firstItem="jVI-xb-oz5" firstAttribute="bottom" secondItem="K28-1j-3iF" secondAttribute="top" id="BKv-m9-3KM"/>
-                            <constraint firstItem="jVI-xb-oz5" firstAttribute="leading" secondItem="pda-w6-FOg" secondAttribute="leading" id="RJc-1j-qhV"/>
-                            <constraint firstAttribute="trailing" secondItem="jVI-xb-oz5" secondAttribute="trailing" id="jUH-1T-vGB"/>
+                            <constraint firstItem="jVI-xb-oz5" firstAttribute="leading" secondItem="pda-w6-FOg" secondAttribute="leading" id="JcE-7a-Uf8"/>
+                            <constraint firstAttribute="trailing" secondItem="jVI-xb-oz5" secondAttribute="trailing" id="UD0-Y9-v6g"/>
+                            <constraint firstItem="jVI-xb-oz5" firstAttribute="top" secondItem="2AG-bM-fKJ" secondAttribute="bottom" id="ZQg-5o-NML"/>
+                            <constraint firstItem="jVI-xb-oz5" firstAttribute="bottom" secondItem="K28-1j-3iF" secondAttribute="top" id="qm1-sX-SGL"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Places near you" id="0He-Uw-AWs">
@@ -341,7 +341,7 @@
             </objects>
             <point key="canvasLocation" x="1738" y="-220"/>
         </scene>
-        <!--Attack View Controller-->
+        <!--Simulated attack-->
         <scene sceneID="cjD-cM-mUr">
             <objects>
                 <viewController id="uA6-Tp-Ofa" customClass="AttackViewController" customModule="LocationPrivacy" customModuleProvider="target" sceneMemberID="viewController">
@@ -436,7 +436,7 @@
                             <constraint firstItem="DJn-o8-ukP" firstAttribute="baseline" secondItem="hjL-xI-Mfj" secondAttribute="baseline" id="yby-Ig-ZA9"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="zCz-n4-rLp"/>
+                    <navigationItem key="navigationItem" title="Simulated attack" id="zCz-n4-rLp"/>
                     <connections>
                         <outlet property="beginImmobileAttack" destination="iWC-Tt-EEA" id="T94-US-AvZ"/>
                         <outlet property="beginMobileAttack" destination="GoD-sw-HDO" id="By4-Dm-J7M"/>
