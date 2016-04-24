@@ -289,6 +289,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UISearchR
                     
                     let realm = try! Realm()
                     let password = realm.objects(SensitiveLocationsPassword)
+                    let currentPassword = password[0]["password"]
                     
                     if password[0]["password"]! as! String == textField.text! {
                         
@@ -310,7 +311,39 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UISearchR
                         print(password)
                     }
                     else {
-                        alert = UIAlertController(title: "Not saved", message: "Your current password does not match!", preferredStyle: UIAlertControllerStyle.Alert)
+                        let attempts = (password[0]["numberOfAttempts"]! as! Int) + 1
+                        
+                        
+                        if attempts >= 5 {
+                            
+                            let sensitive_locations = realm.objects(SensitiveLocations)
+                            
+                            realm.beginWrite()
+                            realm.delete(sensitive_locations)
+                            realm.delete(password)
+                            try! realm.commitWrite()
+                            
+                            sensitive.dataDestroyed = true
+                            
+                            alert = UIAlertController(title: "Incorrect!", message: "Your current password does not match!\n5 out of 5 attempts made. Data destroyed!", preferredStyle: UIAlertControllerStyle.Alert)
+                            
+                        }
+                        else {
+                            realm.beginWrite()
+                            realm.delete(password)
+                            try! realm.commitWrite()
+                            
+                            sensitive.dataDestroyed = false
+                            
+                            alert = UIAlertController(title: "Incorrect!", message: "Your current password does not match!\n\(attempts) out of 5 attempts made.", preferredStyle: UIAlertControllerStyle.Alert)
+                        }
+                        
+                        sensitive.numberOfAttempts = attempts
+                        sensitive.password = currentPassword as! String
+                        
+                        try! realm.write {
+                            realm.add(sensitive)
+                        }
                     }
                 }
                 else {
