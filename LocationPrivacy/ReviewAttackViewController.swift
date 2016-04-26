@@ -106,7 +106,6 @@ extension ReviewAttackViewController: CLLocationManagerDelegate {
         if artificial_point {
             marker.icon = UIImage(named: "noise")
             let circle = GMSCircle(position: CLLocationCoordinate2DMake(CLLocationDegrees(longlat[1]), CLLocationDegrees(longlat[0])), radius: Double(self.metres))
-            circle.fillColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
             circle.strokeWidth = 2
             circle.strokeColor = UIColor.googleBlue()
             circle.map = mapView
