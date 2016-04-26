@@ -407,7 +407,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UISearchR
         let long = item["long"]! as! Double
         
         //1. Create the alert controller.
-        let alert = UIAlertController(title: "Choose distance", message: "Enter minimum metres of noise to have from this location. Default: 100", preferredStyle: .Alert)
+        let alert = UIAlertController(title: "Choose distance", message: "Enter metres of noise to have from this location. Between 100-1000m.", preferredStyle: .Alert)
         
         //2. Add the text field. You can configure it however you need.
         alert.addTextFieldWithConfigurationHandler({ (textField) -> Void in
@@ -491,12 +491,10 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UISearchR
         
         
         if searchController.active{
-            print("active")
             searchController.searchBar.enablesReturnKeyAutomatically = false
             self.footer.hidden = true
         }
         if !searchController.active{
-            print("inactive")
             searchController.searchBar.enablesReturnKeyAutomatically = true
             self.footer.hidden = false
             self.tableView.reloadData()
