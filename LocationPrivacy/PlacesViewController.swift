@@ -57,14 +57,21 @@ class PlacesViewController: UIViewController {
                     
                     
                     current = "\(json[i]["name"])"
-                    let name = current.componentsSeparatedByString("(")
+                    let name = "\(json[i]["name"])".componentsSeparatedByString("(")
+                    current = name[0]
+                    var rating = "\(json[i]["rating"])"
+                    if rating.rangeOfString("null") != nil {
+                        rating = "-"
+                    }
                     
                     if (arrayOfDictionary.count > 0){
                         previous = "\(arrayOfDictionary[arrayOfDictionary.count-1]["name"] as! String)"
+                        let name = previous.componentsSeparatedByString("(")
+                        previous = name[0]
                     }
                     
                     if(current != previous){
-                        arrayOfDictionary.append(["name": "\(name[0])", "rating" : "\(json[i]["rating"])", "icon" : "\(json[i]["icon"])", "vicinity" : "\(json[i]["vicinity"])", "type" : "\(type.capitalizedString)", "lat" : lat!, "long" : long!, "distance" : distance])
+                        arrayOfDictionary.append(["name": "\(name[0])", "rating" : rating, "icon" : "\(json[i]["icon"])", "vicinity" : "\(json[i]["vicinity"])", "type" : "\(type.capitalizedString)", "lat" : lat!, "long" : long!, "distance" : distance])
                         
                        miles.append(distance) // Only need to add miles once, we don't want to add miles again if the place exists already in below if statement as another type.
                    
@@ -74,7 +81,7 @@ class PlacesViewController: UIViewController {
                         let appendedType = "\(currentTypes), \(type)"
                         
                         arrayOfDictionary.removeAtIndex(arrayOfDictionary.count-1)
-                        arrayOfDictionary.append(["name": "\(name[0])", "rating" : "\(json[i]["rating"])", "icon" : "\(json[i]["icon"])", "vicinity" : "\(json[i]["vicinity"])", "type" : "\(appendedType)", "lat" : lat!, "long" : long!, "distance" : distance])
+                        arrayOfDictionary.append(["name": "\(name[0])", "rating" : rating, "icon" : "\(json[i]["icon"])", "vicinity" : "\(json[i]["vicinity"])", "type" : "\(appendedType)", "lat" : lat!, "long" : long!, "distance" : distance])
                                                 
                     }
                 }

@@ -42,7 +42,7 @@ class DetailsViewController: UIViewController {
         let locationSearched = CLLocation(latitude: placeDetails!["lat"]! as! Double, longitude: placeDetails!["long"]! as! Double)
         let distance = (artificialLocation.distanceFromLocation(locationSearched) / 1000) * 0.62137
         let milesFromArt = String(format:"%.2f", distance)
-        self.placeDesc.text = "Area: \(placeDetails!["vicinity"]!)\nRating: \(placeDetails!["rating"]!)\nDistance from real location: \(milesFromReal)\nGoogle thinks you are \(milesFromArt) away from \(self.placeTitle.text!)"
+        self.placeDesc.text = "Area: \(placeDetails!["vicinity"]!)\nRating: \(placeDetails!["rating"]!)\nDistance from real location: \(milesFromReal) miles\nGoogle thinks you are \(milesFromArt) miles away from \(self.placeTitle.text!)"
     }
 }
 
