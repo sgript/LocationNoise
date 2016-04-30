@@ -37,11 +37,11 @@ class DetailsViewController: UIViewController {
     
     func displayDetails(){
         self.placeTitle.text = "\(placeDetails!["name"]!)"
-        let milesFromReal = String(format:"%.1f", placeDetails!["distance"]! as! Float)
+        let milesFromReal = String(format:"%.2f", placeDetails!["distance"]! as! Float)
         let artificialLocation = CLLocation(latitude: artificial.latitude!, longitude: artificial.longitude!)
         let locationSearched = CLLocation(latitude: placeDetails!["lat"]! as! Double, longitude: placeDetails!["long"]! as! Double)
         let distance = (artificialLocation.distanceFromLocation(locationSearched) / 1000) * 0.62137
-        let milesFromArt = String(format:"%.1f", distance)
+        let milesFromArt = String(format:"%.2f", distance)
         self.placeDesc.text = "Area: \(placeDetails!["vicinity"]!)\nRating: \(placeDetails!["rating"]!)\nDistance from real location:\(milesFromReal)\nGoogle thinks you are \(milesFromArt) away from \(self.placeTitle.text!)"
     }
 }

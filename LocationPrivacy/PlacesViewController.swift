@@ -151,7 +151,7 @@ extension PlacesViewController: UITableViewDataSource {
 
         let cell = UITableViewCell()
         var item = arrayOfDictionary[indexPath.row]
-        let miles = String(format:"%.1f", item["distance"]! as! Float)
+        let miles = String(format:"%.2f", item["distance"]! as! Float)
         var rating = item["rating"]!
         if item["rating"]! is NSNull {
             rating = "No rating available."
