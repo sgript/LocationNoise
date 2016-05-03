@@ -27,7 +27,6 @@ class ReviewAttackViewController: UIViewController {
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
-        print(pointsToPlot)
     }
     
     override func didReceiveMemoryWarning() {
@@ -63,7 +62,7 @@ extension ReviewAttackViewController: CLLocationManagerDelegate {
                 locationManager.startUpdatingLocation()
                 mapView.myLocationEnabled = true
                 mapView.settings.myLocationButton = true
-                
+            
                 let longlat = getUserCurrentLocation()
                 real.latitude = longlat[1]
                 real.longitude = longlat[0]
@@ -84,7 +83,14 @@ extension ReviewAttackViewController: CLLocationManagerDelegate {
                 }
                 
                 let average_artificial_location = findIntersection(artificial_points)
+            
                 mapComponents("Predicted real location", longlat: average_artificial_location, artificial_point: false)
+            
+                let predictedLocation = CLLocation(latitude: average_artificial_location[1], longitude: average_artificial_location[0])
+                let realLocation = CLLocation(latitude: real.latitude!, longitude: real.longitude!)
+                let distanceFromReal = realLocation.distanceFromLocation(predictedLocation)
+                
+                print("metres: \(distanceFromReal)")
         }
     }
     
@@ -127,9 +133,6 @@ extension ReviewAttackViewController: CLLocationManagerDelegate {
             cartesians.append([x,y,z])
         }
         
-        print("GPS COORDS: \(artificial_locations)")
-        print("CARTESIAN: \(artificial_locations)")
-        
         var x = Double()
         var y = Double()
         var z = Double()
@@ -151,7 +154,6 @@ extension ReviewAttackViewController: CLLocationManagerDelegate {
         let latitude = lon * 180.0/M_PI
         let longitude = lat * 180.0/M_PI
         
-        print("Average lat/long: \([latitude, longitude])")
         return [latitude, longitude]
     }
 
