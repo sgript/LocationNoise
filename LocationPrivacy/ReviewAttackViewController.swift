@@ -85,12 +85,7 @@ extension ReviewAttackViewController: CLLocationManagerDelegate {
                 let average_artificial_location = findIntersection(artificial_points)
             
                 mapComponents("Predicted real location", longlat: average_artificial_location, artificial_point: false)
-            
-                let predictedLocation = CLLocation(latitude: average_artificial_location[1], longitude: average_artificial_location[0])
-                let realLocation = CLLocation(latitude: real.latitude!, longitude: real.longitude!)
-                let distanceFromReal = realLocation.distanceFromLocation(predictedLocation)
-                
-                print("metres: \(distanceFromReal)")
+
         }
     }
     
